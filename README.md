@@ -1,3 +1,3 @@
 # mohdizzudin.github.io
 
-name : MIR
+I`m Deng 😎
