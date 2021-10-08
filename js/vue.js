@@ -1,6 +1,5 @@
-
-now = new Date();
-past = new Date('2018-07-01');
+now = new Date()
+past = new Date('2018-07-01')
 
 Vue.component('experience', {
   template: `
@@ -15,15 +14,14 @@ Vue.component('experience', {
       </div>
     </div>
   `,
-  props : {
-    title : {required: true},
-      company : {required: true},
-      description : {required: true},
-      timeline : {required: true},
-      duration : {required: true},
+  props: {
+    title: { required: true },
+    company: { required: true },
+    description: { required: true },
+    timeline: { required: true },
+    duration: { required: true },
   },
-  
-});
+})
 
 Vue.component('skills', {
   template: `
@@ -40,16 +38,15 @@ Vue.component('skills', {
     </div>
   `,
   props: {
-    title: {required:true}
+    title: { required: true },
   },
   data() {
-    return { skills: [] };
+    return { skills: [] }
   },
   created() {
-    this.skills = this.$children;
+    this.skills = this.$children
   },
-
-});
+})
 
 Vue.component('skill', {
   template: `
@@ -57,9 +54,9 @@ Vue.component('skill', {
   `,
 
   props: {
-    icon: {required:true}
+    icon: { required: true },
   },
-});
+})
 
 Vue.component('projects', {
   template: `
@@ -78,13 +75,12 @@ Vue.component('projects', {
     </div>
   `,
   data() {
-    return { projects: [] };
+    return { projects: [] }
   },
   created() {
-    this.projects = this.$children;
+    this.projects = this.$children
   },
-
-});
+})
 
 Vue.component('project', {
   template: `
@@ -92,13 +88,13 @@ Vue.component('project', {
   `,
 
   props: {
-    title: {required:true},
-    description: {required:true},
-    href: {required:true},
-    image: {required:true}
+    title: { required: true },
+    description: { required: true },
+    href: { required: true },
+    image: { required: true },
   },
-});
+})
 
 new Vue({
-  el: "#root",
-});
+  el: '#root',
+})
