@@ -21,6 +21,9 @@
   "contributors": [
     "David Miller (http://davidmiller.io/)"
   ],
+  "engines": {
+    "node": ">=8.17.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/BlackrockDigital/startbootstrap-resume.git"
