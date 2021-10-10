@@ -1,5 +1,3 @@
-# mohdizzudin.github.io
+# [mohdizzudin.github.io](https://mohdizzudin.github.io/)
 
-I`m Deng 😎
-
-Template from : https://startbootstrap.com/template-overviews/resume/
+I`m Deng 😎.
