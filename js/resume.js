@@ -28,7 +28,8 @@
   })
 
   // Activate scrollspy to add active class to navbar items on scroll
-  $('body').scrollspy({
-    target: '#sideNav',
+  const scrollSpy = new bootstrap.ScrollSpy(document.body, {
+    target: '#sideNav'
   })
+
 })(jQuery) // End of use strict

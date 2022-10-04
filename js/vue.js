@@ -9,7 +9,7 @@ Vue.component('experience', {
         <div class="subheading">{{company}}</div>
         <p>{{description}}</p>
       </div>
-      <div class="resume-date text-md-right">
+      <div class="resume-date text-md-end">
         <span class="text-primary">{{timeline}} {{duration?'('+duration+')':''}}</span>
       </div>
     </div>
