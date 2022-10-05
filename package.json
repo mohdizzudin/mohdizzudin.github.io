@@ -25,27 +25,24 @@
   "contributors": [
     "David Miller (http://davidmiller.io/)"
   ],
-  "engines": {
-    "node": ">=8.17.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/BlackrockDigital/startbootstrap-resume.git"
   },
   "dependencies": {
-    "bootstrap": "4.3.1",
+    "bootstrap": "5.2.2",
     "devicons": "^1.8.0",
-    "jquery": "3.5.0",
-    "simple-line-icons": "^2.4.1"
+    "jquery": "3.6.1",
+    "simple-line-icons": "^2.5.5"
   },
   "devDependencies": {
-    "browser-sync": "2.24.3",
+    "browser-sync": "2.27.10",
     "gulp": "^3.9.1",
     "gulp-clean-css": "3.9.4",
-    "gulp-header": "2.0.5",
+    "gulp-header": "2.0.9",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "4.0.1",
     "gulp-uglify": "^3.0.2",
-    "prettier": "^2.4.1"
+    "prettier": "^2.7.1"
   }
 }
