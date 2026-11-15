@@ -3,7 +3,6 @@ const sass = require('gulp-sass')(require('sass'))
 const cleanCSS = require('gulp-clean-css')
 const rename = require('gulp-rename')
 const uglify = require('gulp-uglify')
-const browserSync = require('browser-sync').create()
 
 function vendor() {
   const bootstrap = gulp
@@ -71,39 +70,21 @@ function cssMinify() {
     .pipe(cleanCSS())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./css'))
-    .pipe(browserSync.stream())
 }
 
 function jsMinify() {
   return gulp
-    .src(['./js/*.js', '!./js/*.min.js', '!./js/vue.js', '!./js/vue.min.js'])
+    .src(['./js/resume.js'])
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('./js'))
-    .pipe(browserSync.stream())
-}
-
-function serve(done) {
-  browserSync.init({
-    server: { baseDir: './' },
-    open: false,
-  })
-  done()
-}
-
-function watch() {
-  gulp.watch('./scss/**/*.scss', gulp.series(cssCompile, cssMinify))
-  gulp.watch(['./js/*.js', '!./js/*.min.js'], jsMinify)
-  gulp.watch('./*.html').on('change', browserSync.reload)
 }
 
 const css = gulp.series(cssCompile, cssMinify)
 const js = jsMinify
 const build = gulp.parallel(css, js, vendor)
-const dev = gulp.series(css, js, serve, watch)
 
 exports.vendor = vendor
 exports.css = css
 exports.js = js
 exports.default = build
-exports.dev = dev

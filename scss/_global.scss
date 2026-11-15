@@ -1,5 +1,10 @@
 // Global styling for this template
 
+// Override Bootstrap reboot so section nav jumps have no smooth delay
+html {
+  scroll-behavior: auto !important;
+}
+
 body {
   @include body-font;
   padding-top: 54px;

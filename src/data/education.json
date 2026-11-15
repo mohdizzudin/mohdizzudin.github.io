@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Barchelor Degree in Computer Science (Software Engineering)",
+    "company": "Universiti Teknologi Malaysia (UTM Skudai)",
+    "description": "CGPA: 3.69",
+    "start": "2012",
+    "end": "2016"
+  },
+  {
+    "title": "Foundation in Enginerring",
+    "company": "Universiti Teknologi Mara Puncak Alam (UiTM)",
+    "description": "CGPA: 3.67",
+    "start": "2011",
+    "end": "2012"
+  },
+  {
+    "title": "Secondary School",
+    "company": "Sekolah Menengah Sains Sultan Haji Ahmad Shah Kuantan (SEMSAS)",
+    "description": "8A 1B",
+    "start": "2006",
+    "end": "2010"
+  }
+]

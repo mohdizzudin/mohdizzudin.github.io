@@ -1,0 +1,51 @@
+[
+  {
+    "title": "UIUX Engineer",
+    "company": "Daysmart Vet",
+    "description": "Coding.....",
+    "start": "2021-06",
+    "end": null
+  },
+  {
+    "title": "Lead Backend Developer",
+    "company": "Sync Lab Sdn Bhd",
+    "description": "Lead the development of API.",
+    "start": "2018-07",
+    "end": "2021-04"
+  },
+  {
+    "title": "Freelance Backend Developer",
+    "company": "Community semakhadis",
+    "description": "Develop restful API.",
+    "start": "2018-02",
+    "end": "2018-07"
+  },
+  {
+    "title": "Freelance Programmer",
+    "company": "Infinite Logix System PLT",
+    "description": "Develop mobile app using ionic and angular 4.",
+    "start": "2018-05",
+    "end": "2018-05"
+  },
+  {
+    "title": "Web Freelancer",
+    "company": "NaturaGiv Resource",
+    "description": "Develop website for a company.",
+    "start": "2017-10",
+    "end": "2018-05"
+  },
+  {
+    "title": "DevOps Engineer",
+    "company": "Infinite Logix System Plt",
+    "description": "Developent and server maintenance.",
+    "start": "2016-07",
+    "end": "2017-09"
+  },
+  {
+    "title": "Junior Web Developer",
+    "company": "UTM",
+    "description": "Develop MyMohes.",
+    "start": "2015-09",
+    "end": "2016-02"
+  }
+]

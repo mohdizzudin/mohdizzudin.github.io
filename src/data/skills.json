@@ -1,0 +1,65 @@
+{
+  "columns": [
+    {
+      "groups": [
+        {
+          "title": "Frontend",
+          "icons": [
+            "devicon-html5-plain colored",
+            "devicon-css3-plain colored",
+            "devicon-javascript-plain colored",
+            "devicon-jquery-plain colored",
+            "devicon-bootstrap-plain colored",
+            "devicon-grunt-plain colored",
+            "devicon-gulp-plain colored",
+            "devicon-npm-plain colored"
+          ],
+          "breakAfter": 6
+        },
+        {
+          "title": "Servers and Databases",
+          "icons": [
+            "devicon-amazonwebservices-original colored",
+            "devicon-heroku-original colored",
+            "devicon-linux-plain-wordmark colored",
+            "devicon-apache-plain-wordmark colored",
+            "devicon-nginx-plain-wordmark colored",
+            "devicon-mysql-plain-wordmark colored",
+            "devicon-redis-plain-wordmark colored"
+          ]
+        }
+      ]
+    },
+    {
+      "groups": [
+        {
+          "title": "Backend",
+          "icons": ["devicon-php-plain colored", "devicon-python-plain colored"]
+        },
+        {
+          "title": "Frameworks and CMS",
+          "icons": [
+            "devicon-angularjs-plain colored",
+            "devicon-vuejs-plain colored",
+            "devicon-laravel-plain colored",
+            "devicon-wordpress-plain colored"
+          ]
+        },
+        {
+          "title": "Tools",
+          "icons": [
+            "devicon-bitbucket-plain colored",
+            "devicon-trello-plain colored",
+            "devicon-gitlab-plain colored",
+            "devicon-git-plain colored",
+            "devicon-slack-plain colored"
+          ]
+        }
+      ]
+    }
+  ],
+  "thirdParty": {
+    "title": "Third Party intergrated with Laravel",
+    "items": ["Onesignal", "Pusher", "Billplz", "Mailchimp"]
+  }
+}

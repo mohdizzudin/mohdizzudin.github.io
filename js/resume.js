@@ -1,35 +1,49 @@
 ;(function ($) {
-  'use strict' // Start of use strict
+  'use strict'
 
-  // Smooth scrolling using jQuery easing
-  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function () {
-    if (
-      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
-      location.hostname == this.hostname
-    ) {
-      var target = $(this.hash)
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']')
-      if (target.length) {
-        $('html, body').animate(
-          {
-            scrollTop: target.offset().top,
-          },
-          1000,
-          'easeInOutExpo'
-        )
-        return false
+  function bindScrollTriggers() {
+    $(document).off('click.resumeScroll', 'a.js-scroll-trigger[href*="#"]:not([href="#"])')
+    $(document).on('click.resumeScroll', 'a.js-scroll-trigger[href*="#"]:not([href="#"])', function () {
+      if (
+        location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
+        location.hostname == this.hostname
+      ) {
+        var target = $(this.hash)
+        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']')
+        if (target.length) {
+          window.scrollTo(0, target.offset().top)
+          return false
+        }
       }
+    })
+
+    $(document).off('click.resumeCollapse', '.js-scroll-trigger')
+    $(document).on('click.resumeCollapse', '.js-scroll-trigger', function () {
+      $('.navbar-collapse').collapse('hide')
+    })
+  }
+
+  function initScrollSpy() {
+    if (typeof bootstrap === 'undefined' || !bootstrap.ScrollSpy) {
+      return
     }
-  })
 
-  // Closes responsive menu when a scroll trigger link is clicked
-  $('.js-scroll-trigger').click(function () {
-    $('.navbar-collapse').collapse('hide')
-  })
+    const existing = bootstrap.ScrollSpy.getInstance(document.body)
+    if (existing) {
+      existing.dispose()
+    }
 
-  // Activate scrollspy to add active class to navbar items on scroll
-  const scrollSpy = new bootstrap.ScrollSpy(document.body, {
-    target: '#sideNav'
-  })
+    new bootstrap.ScrollSpy(document.body, {
+      target: '#sideNav',
+    })
+  }
 
-})(jQuery) // End of use strict
+  window.initResume = function initResume() {
+    bindScrollTriggers()
+    initScrollSpy()
+  }
+
+  $(function () {
+    bindScrollTriggers()
+  })
+})(jQuery)

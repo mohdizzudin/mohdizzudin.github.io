@@ -1,0 +1,25 @@
+{
+  "firstName": "Mohd",
+  "lastName": "Izzudin",
+  "email": "mohdizzudinrazali@gmail.com",
+  "image": "img/mohdizzudin.jpeg",
+  "social": [
+    {
+      "name": "linkedin",
+      "url": "https://www.linkedin.com/in/mohd-izzudin-razali/",
+      "icon": "fa-linkedin"
+    },
+    {
+      "name": "github",
+      "url": "https://github.com/mohdizzudin",
+      "icon": "fa-github"
+    }
+  ],
+  "nav": [
+    { "href": "#about", "label": "About" },
+    { "href": "#experience", "label": "Experiences" },
+    { "href": "#education", "label": "Educations" },
+    { "href": "#skills", "label": "Skills" },
+    { "href": "#projects", "label": "Projects" }
+  ]
+}
