@@ -5,9 +5,10 @@
   "private": true,
   "description": "Personal site / resume for mohdizzudin.github.io",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node scripts/ensure-vite-index.cjs && vite",
+    "build": "node scripts/ensure-vite-index.cjs && vite build",
     "preview": "vite preview",
+    "pages": "node scripts/publish-pages.cjs",
     "css": "gulp css",
     "vendor": "gulp vendor",
     "gulp:build": "gulp",

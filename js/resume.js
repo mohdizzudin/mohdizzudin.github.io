@@ -11,7 +11,13 @@
         var target = $(this.hash)
         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']')
         if (target.length) {
-          window.scrollTo(0, target.offset().top)
+          $('html, body').stop(true).animate(
+            {
+              scrollTop: target.offset().top,
+            },
+            400,
+            'swing'
+          )
           return false
         }
       }
