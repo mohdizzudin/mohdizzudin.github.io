@@ -3,60 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>9-Phone 512GB Multi-Category Flagship Ranking vs Huawei Pura 80 Ultra</title>
+  <title>Perbandingan Flagship 512GB MY vs Huawei Pura 80 Ultra</title>
   <style>
     :root {
-      --bg-page: #f4f6f9;
+      --bg-page: #eef2f7;
       --bg-card: #ffffff;
       --bg-subtle: #f8fafc;
       --text-primary: #0f172a;
       --text-secondary: #475569;
       --text-muted: #64748b;
-      --border-light: #e2e8f0;
-      --accent-vivo: #0284c7;
-      --accent-vivo-bg: #f0f9ff;
-      --accent-oppo: #059669;
-      --accent-oppo-bg: #ecfdf5;
-      --accent-honor: #4f46e5;
-      --accent-honor-bg: #eef2ff;
-      --accent-samsung: #1d4ed8;
-      --accent-samsung-bg: #eff6ff;
-      --accent-xiaomi: #ea580c;
-      --accent-xiaomi-bg: #fff7ed;
-      --accent-apple: #334155;
-      --accent-apple-bg: #f1f5f9;
-      --accent-huawei: #be123c;
-      --accent-huawei-bg: #fff1f2;
+      --border: #e2e8f0;
+      --dock: #0f172a;
+      --gain: #059669;
+      --gain-bg: #ecfdf5;
+      --loss: #be123c;
+      --loss-bg: #fff1f2;
+      --accent: #2563eb;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-page);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg-page);
       color: var(--text-primary);
       line-height: 1.55;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
 
-    /* Non-Sticky Top Bar */
+    a { color: inherit; }
+    a.ref-link {
+      color: #1d4ed8;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 700;
+    }
+    a.ref-link:hover { color: #1e40af; }
+
     .top-bar {
-      position: static;
       background: #0f172a;
-      color: #ffffff;
-      padding: 12px 18px;
+      color: #fff;
+      padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
-
     .top-bar-title {
       font-size: 0.85rem;
       font-weight: 600;
@@ -65,7 +58,6 @@
       gap: 8px;
       flex-wrap: wrap;
     }
-
     .badge-live {
       background: #10b981;
       color: #064e3b;
@@ -74,154 +66,187 @@
       padding: 2px 8px;
       border-radius: 999px;
       text-transform: uppercase;
-      white-space: nowrap;
     }
-
-    .btn-pdf {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #ffffff;
+    .btn {
       border: none;
-      padding: 9px 15px;
       border-radius: 8px;
-      font-size: 0.82rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      white-space: nowrap;
-      flex-shrink: 0;
+    }
+    .btn-pdf {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      padding: 9px 14px;
+      font-size: 0.82rem;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
     }
 
-    /* Sticky Dock: Hanya Senarai Phone 512GB & Harga Bulanan (12 / 24 / 36 Bulan) */
-    .sticky-price-dock {
+    .sticky-tools {
       position: sticky;
       top: 0;
-      z-index: 90;
+      z-index: 100;
       background: rgba(15, 23, 42, 0.97);
       backdrop-filter: blur(10px);
-      color: #ffffff;
-      padding: 8px 12px 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.22);
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
     }
 
-    .dock-controls {
-      max-width: 1280px;
-      margin: 0 auto 7px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .dock-label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #93c5fd;
-      white-space: nowrap;
-    }
-
-    .dock-tabs {
-      display: inline-flex;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 3px;
-      border-radius: 8px;
-      gap: 3px;
-    }
-
-    .dock-tab {
-      border: none;
-      background: transparent;
-      color: #cbd5e1;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .dock-tab.active {
-      background: #2563eb;
-      color: #ffffff;
-      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
-    }
-
-    .dock-phones-strip {
+    .tools-inner, .dock-inner, .trade-inner {
       max-width: 1280px;
       margin: 0 auto;
+      padding: 10px 14px;
+    }
+
+    .search-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    #searchInput, #sortSelect {
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+    }
+    #searchInput { flex: 1 1 220px; min-width: 180px; }
+    #searchInput::placeholder { color: #94a3b8; }
+    #sortSelect option { color: #0f172a; }
+
+    .filter-row, .dock-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .filter-btn, .dock-tab {
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      color: #cbd5e1;
+      border-radius: 999px;
+      padding: 5px 11px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .filter-btn.active, .dock-tab.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #fff;
+    }
+
+    .dock-phones {
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding-bottom: 2px;
+      padding: 8px 0 4px;
       scrollbar-width: thin;
-      scrollbar-color: #475569 transparent;
     }
-
     .dock-pill {
-      min-width: 162px;
+      min-width: 168px;
       flex: 0 0 auto;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 9px;
-      padding: 6px 9px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 8px 10px;
       display: flex;
       flex-direction: column;
+      gap: 3px;
+    }
+    .dock-pill.best { border-color: #38bdf8; background: rgba(2,132,199,0.28); }
+    .dock-pill.baseline { border-color: #fda4af; background: rgba(190,18,60,0.25); }
+    .dock-pill.hidden-by-filter { display: none; }
+    .dock-name { font-size: 0.72rem; font-weight: 700; color: #f8fafc; }
+    .dock-monthly { font-size: 0.88rem; font-weight: 800; color: #34d399; font-variant-numeric: tabular-nums; }
+    .dock-pill.baseline .dock-monthly { color: #fda4af; }
+    .dock-full { font-size: 0.64rem; color: #94a3b8; }
+    .dock-actions {
+      display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
     }
-
-    .dock-pill.best {
-      background: rgba(2, 132, 199, 0.28);
-      border-color: #38bdf8;
+    .compare-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.68rem;
+      color: #cbd5e1;
+      cursor: pointer;
+      user-select: none;
     }
+    .compare-check input { accent-color: #2563eb; }
 
-    .dock-pill.baseline {
-      background: rgba(190, 18, 60, 0.25);
-      border-color: #fda4af;
+    .trade-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
     }
-
-    .dock-phone-name {
-      font-size: 0.71rem;
-      font-weight: 700;
-      color: #f8fafc;
-      white-space: nowrap;
+    .trade-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 12px;
+      align-items: end;
     }
-
-    .dock-phone-monthly {
-      font-size: 0.85rem;
+    .trade-label {
+      font-size: 0.72rem;
       font-weight: 800;
-      color: #34d399;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .trade-value {
+      font-size: 1.15rem;
+      font-weight: 800;
       font-variant-numeric: tabular-nums;
-      line-height: 1.25;
     }
+    #tradeSlider { width: 100%; accent-color: var(--accent); }
+    .trade-hint { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
 
-    .dock-phone-full {
-      font-size: 0.64rem;
-      color: #94a3b8;
-      font-variant-numeric: tabular-nums;
+    .container { max-width: 1280px; margin: 18px auto 60px; padding: 0 14px; }
+
+    .compare-panel {
+      display: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(15,23,42,0.04);
     }
-
-    /* Main Container */
-    .container {
-      max-width: 1280px;
-      margin: 20px auto 60px;
-      padding: 0 14px;
+    .compare-panel.open { display: block; }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
     }
+    .compare-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: var(--bg-subtle);
+    }
+    .compare-card h3 { font-size: 0.95rem; margin-bottom: 8px; }
+    .compare-card dl { display: grid; gap: 6px; }
+    .compare-card dt { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
+    .compare-card dd { font-size: 0.82rem; margin-bottom: 4px; }
 
-    /* Header Hero */
     .report-header {
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: #ffffff;
+      color: #fff;
       border-radius: 14px;
-      padding: 24px 22px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.1);
+      padding: 22px;
+      margin-bottom: 18px;
     }
-
     .report-eyebrow {
       font-size: 0.74rem;
       text-transform: uppercase;
@@ -230,116 +255,71 @@
       font-weight: 700;
       margin-bottom: 6px;
     }
-
     .report-header h1 {
-      font-size: 1.48rem;
+      font-size: 1.4rem;
       font-weight: 800;
       line-height: 1.25;
       margin-bottom: 10px;
-      letter-spacing: -0.02em;
     }
-
-    .report-subtitle {
-      color: #cbd5e1;
-      font-size: 0.89rem;
-      max-width: 960px;
-    }
-
-    .winner-summary-strip {
+    .report-subtitle { color: #cbd5e1; font-size: 0.9rem; max-width: 960px; }
+    .winner-strip {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 9px;
-      margin-top: 15px;
+      margin-top: 14px;
     }
-
     .winner-chip {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
       border-radius: 10px;
       padding: 9px 10px;
     }
+    .winner-chip-cat { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.04em; color: #93c5fd; font-weight: 700; }
+    .winner-chip-phone { font-size: 0.84rem; font-weight: 800; margin-top: 2px; }
+    .winner-chip-why { font-size: 0.68rem; color: #cbd5e1; margin-top: 2px; }
 
-    .winner-chip-cat {
-      font-size: 0.66rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #93c5fd;
-      font-weight: 700;
-    }
-
-    .winner-chip-phone {
-      font-size: 0.84rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-top: 2px;
-    }
-
-    .winner-chip-why {
-      font-size: 0.68rem;
-      color: #cbd5e1;
-      margin-top: 2px;
-    }
-
-    /* Sections */
     .section {
       background: var(--bg-card);
-      border: 1px solid var(--border-light);
+      border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 20px 18px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+      padding: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(15,23,42,0.03);
     }
-
     .section-header {
       margin-bottom: 14px;
-      border-bottom: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border);
       padding-bottom: 11px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      flex-wrap: wrap;
       gap: 10px;
+      flex-wrap: wrap;
     }
-
-    .section-title {
-      font-size: 1.12rem;
-      font-weight: 800;
-      color: var(--text-primary);
-      letter-spacing: -0.01em;
-    }
-
-    .section-desc {
-      font-size: 0.83rem;
-      color: var(--text-muted);
-    }
-
+    .section-title { font-size: 1.1rem; font-weight: 800; }
+    .section-desc { font-size: 0.83rem; color: var(--text-muted); margin-top: 2px; }
     .btn-fullview {
       background: #0f172a;
-      color: #ffffff;
+      color: #fff;
       border: 1px solid #334155;
-      padding: 7px 13px;
+      padding: 7px 12px;
       border-radius: 8px;
       font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
       white-space: nowrap;
     }
 
-    /* Tables with Sticky Top Header + Sticky First Column (#Rank) */
     .table-viewport {
       position: relative;
       width: 100%;
       max-height: 72vh;
       overflow: auto;
       border-radius: 12px;
-      border: 1px solid var(--border-light);
-      background: #ffffff;
+      border: 1px solid var(--border);
+      background: #fff;
       -webkit-overflow-scrolling: touch;
     }
-
     .table-viewport.fullscreen-active {
       position: fixed;
       inset: 0;
@@ -349,38 +329,24 @@
       max-height: 100vh;
       border-radius: 0;
       border: none;
-      margin: 0;
-      background: #ffffff;
       display: flex;
       flex-direction: column;
     }
-
     .fullscreen-toolbar {
       display: none;
       background: #0f172a;
-      color: #ffffff;
+      color: #fff;
       padding: 10px 16px;
       justify-content: space-between;
       align-items: center;
       gap: 10px;
       flex-shrink: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
-
-    .table-viewport.fullscreen-active .fullscreen-toolbar {
-      display: flex;
-    }
-
-    .fullscreen-scroll-area {
-      width: 100%;
-      overflow: auto;
-      flex: 1;
-      -webkit-overflow-scrolling: touch;
-    }
-
+    .table-viewport.fullscreen-active .fullscreen-toolbar { display: flex; }
+    .fullscreen-scroll-area { width: 100%; overflow: auto; flex: 1; }
     .btn-close-full {
       background: #ef4444;
-      color: #ffffff;
+      color: #fff;
       border: none;
       padding: 6px 12px;
       border-radius: 7px;
@@ -397,53 +363,37 @@
       font-size: 0.82rem;
       text-align: left;
     }
-
     table.rank-table thead th {
       position: sticky;
       top: 0;
       z-index: 20;
       background: #0f172a;
-      color: #ffffff;
+      color: #fff;
       font-weight: 700;
-      padding: 11px 11px;
+      padding: 11px;
       font-size: 0.77rem;
       white-space: nowrap;
       border-bottom: 2px solid #334155;
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      border-right: 1px solid rgba(255,255,255,0.08);
     }
-
-    /* Sticky Row Header (1st Column: Rank) */
     table.rank-table thead th.sticky-rank-col {
-      position: sticky;
       left: 0;
-      top: 0;
       z-index: 35;
       background: #020617;
-      box-shadow: 3px 0 6px rgba(0, 0, 0, 0.25);
+      box-shadow: 3px 0 6px rgba(0,0,0,0.25);
       min-width: 84px;
     }
-
     table.rank-table tbody td {
       padding: 10px 11px;
-      border-bottom: 1px solid var(--border-light);
-      border-right: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
       vertical-align: top;
       color: var(--text-secondary);
-      background: #ffffff;
+      background: #fff;
     }
-
-    table.rank-table tbody tr:nth-child(even) td {
-      background: #f8fafc;
-    }
-
-    table.rank-table tbody tr.row-rank-1 td {
-      background: #f0f9ff;
-    }
-
-    table.rank-table tbody tr.row-baseline td {
-      background: #fff1f2;
-    }
-
+    table.rank-table tbody tr:nth-child(even) td { background: #f8fafc; }
+    table.rank-table tbody tr.row-rank-1 td { background: #f0f9ff; }
+    table.rank-table tbody tr.row-baseline td { background: #fff1f2; }
     table.rank-table tbody td.sticky-rank-col {
       position: sticky;
       left: 0;
@@ -452,18 +402,11 @@
       color: var(--text-primary);
       background: #f1f5f9 !important;
       white-space: nowrap;
-      box-shadow: 3px 0 6px rgba(15, 23, 42, 0.07);
+      box-shadow: 3px 0 6px rgba(15,23,42,0.07);
     }
-
-    table.rank-table tbody tr.row-rank-1 td.sticky-rank-col {
-      background: #dbeafe !important;
-      color: #1e3a8a;
-    }
-
-    table.rank-table tbody tr.row-baseline td.sticky-rank-col {
-      background: #ffe4e6 !important;
-      color: #9f1239;
-    }
+    table.rank-table tbody tr.row-rank-1 td.sticky-rank-col { background: #dbeafe !important; color: #1e3a8a; }
+    table.rank-table tbody tr.row-baseline td.sticky-rank-col { background: #ffe4e6 !important; color: #9f1239; }
+    table.rank-table tbody tr.hidden-by-filter { display: none; }
 
     .rank-pill {
       display: inline-block;
@@ -472,34 +415,53 @@
       font-size: 0.76rem;
       font-weight: 900;
     }
-
-    .rp-1 { background: #1d4ed8; color: #ffffff; }
-    .rp-2 { background: #0284c7; color: #ffffff; }
-    .rp-3 { background: #059669; color: #ffffff; }
+    .rp-1 { background: #1d4ed8; color: #fff; }
+    .rp-2 { background: #0284c7; color: #fff; }
+    .rp-3 { background: #059669; color: #fff; }
     .rp-mid { background: #e2e8f0; color: #1e293b; }
-    .rp-base { background: #be123c; color: #ffffff; }
-
+    .rp-base { background: #be123c; color: #fff; }
     .num { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text-primary); }
 
-    .badge-gain {
+    .badge-gain, .badge-loss, .tag-x {
       display: inline-block;
-      background: #ecfdf5;
-      color: #065f46;
       font-weight: 700;
       font-size: 0.69rem;
       padding: 2px 6px;
       border-radius: 5px;
       margin-bottom: 2px;
     }
+    .badge-gain { background: var(--gain-bg); color: var(--gain); }
+    .badge-loss { background: var(--loss-bg); color: var(--loss); }
+    .tag-x {
+      background: #eef2ff;
+      color: #4338ca;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
 
-    .badge-lose {
-      display: inline-block;
-      background: #fff1f2;
-      color: #9f1239;
-      font-weight: 700;
-      font-size: 0.69rem;
-      padding: 2px 6px;
-      border-radius: 5px;
+    .batt-wrap { display: flex; align-items: center; gap: 8px; min-width: 140px; }
+    .batt-bar {
+      flex: 1;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .batt-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #34d399, #059669);
+      border-radius: 999px;
+    }
+    .batt-label { font-size: 0.75rem; font-weight: 800; white-space: nowrap; }
+
+    .status-note {
+      background: #fff7ed;
+      border: 1px solid #fdba74;
+      color: #9a3412;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      margin-top: 6px;
     }
 
     .scroll-hint {
@@ -509,395 +471,271 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       gap: 6px;
+      flex-wrap: wrap;
     }
-
     .footer-note {
       text-align: center;
       font-size: 0.76rem;
       color: var(--text-muted);
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
-    /* Responsive */
     @media (max-width: 960px) {
-      .winner-summary-strip {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .winner-strip { grid-template-columns: repeat(2, 1fr); }
+      .trade-grid { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 560px) {
-      .winner-summary-strip {
-        grid-template-columns: 1fr;
-      }
-      .report-header { padding: 18px 16px; }
-      .report-header h1 { font-size: 1.26rem; }
-      .section { padding: 16px 14px; }
+      .winner-strip { grid-template-columns: 1fr; }
+      .report-header h1 { font-size: 1.2rem; }
+      .section { padding: 14px; }
     }
 
-    /* Print / PDF Export Optimization */
     @media print {
       @page { size: A4 landscape; margin: 9mm 8mm; }
-      body { background: #ffffff !important; font-size: 8.2pt; }
-      .top-bar, .sticky-price-dock, .btn-fullview, .scroll-hint, .fullscreen-toolbar { display: none !important; }
+      body { background: #fff !important; font-size: 8.2pt; }
+      .top-bar, .sticky-tools, .trade-bar, .btn-fullview, .scroll-hint, .fullscreen-toolbar, .compare-panel { display: none !important; }
       .container { max-width: 100%; margin: 0; padding: 0; }
       .report-header, .section { box-shadow: none; padding: 12px; margin-bottom: 10px; border-radius: 8px; }
       .table-viewport, .fullscreen-scroll-area { max-height: none !important; overflow: visible !important; }
       table.rank-table { min-width: 100% !important; font-size: 7pt; }
       table.rank-table thead th, table.rank-table tbody td { position: static !important; box-shadow: none !important; padding: 4px 5px; }
-      .section, tr { break-inside: avoid; page-break-inside: avoid; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Non-Sticky Top Bar -->
   <div class="top-bar">
     <div class="top-bar-title">
-      <span class="badge-live">Verified MY Prices &amp; Dates</span>
-      <span>Multi-Category Flagship Ranking (Semua 512GB) vs Huawei Pura 80 Ultra</span>
+      <span class="badge-live">Verified MY Prices</span>
+      <span>Flagship 512GB Ranking vs Huawei Pura 80 Ultra</span>
     </div>
-    <button class="btn-pdf" onclick="downloadPDF()" title="Simpan atau Cetak sebagai PDF">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-        <polyline points="7 10 12 15 17 10"></polyline>
-        <line x1="12" y1="15" x2="12" y2="3"></line>
-      </svg>
-      Download PDF
-    </button>
+    <button class="btn btn-pdf" type="button" onclick="downloadPDF()" title="Simpan sebagai PDF">Download PDF</button>
   </div>
 
-  <!-- Sticky Dock: Hanya Senarai Phone 512GB & Harga Bulanan (12 / 24 / 36 Bulan) -->
-  <div class="sticky-price-dock" id="stickyPriceDock">
-    <div class="dock-controls">
-      <span class="dock-label">Ansuran 0% Rasmi MY (Semua 512GB):</span>
-      <div class="dock-tabs" role="tablist" aria-label="Pilih tempoh ansuran">
-        <button class="dock-tab" data-months="12" onclick="setDockTenure(12, this)">12 Bln</button>
-        <button class="dock-tab" data-months="24" onclick="setDockTenure(24, this)">24 Bln</button>
-        <button class="dock-tab active" data-months="36" onclick="setDockTenure(36, this)">36 Bln</button>
+  <div class="sticky-tools" id="stickyTools">
+    <div class="tools-inner">
+      <div class="search-row">
+        <input id="searchInput" type="search" placeholder="Cari model, cip, eSIM, kamera…" aria-label="Cari telefon" />
+        <select id="sortSelect" aria-label="Susun">
+          <option value="rank">Susun: Overall Rank</option>
+          <option value="price-asc">Harga (Rendah ke Tinggi)</option>
+          <option value="monthly-asc">Ansuran Bulanan</option>
+          <option value="battery-desc">Kapasiti Bateri</option>
+          <option value="weight-asc">Berat (Ringan ke Berat)</option>
+        </select>
+      </div>
+      <div class="filter-row" role="group" aria-label="Penapis pantas">
+        <button type="button" class="filter-btn active" data-filter="all">Semua</button>
+        <button type="button" class="filter-btn" data-filter="price5000">Harga &lt;= RM 5,000</button>
+        <button type="button" class="filter-btn" data-filter="battery6500">Bateri &gt;= 6,500mAh</button>
+        <button type="button" class="filter-btn" data-filter="ios">iOS</button>
+        <button type="button" class="filter-btn" data-filter="android">Android</button>
       </div>
     </div>
-    <div class="dock-phones-strip">
-      <div class="dock-pill best">
-        <span class="dock-phone-name">vivo X300 Pro (512GB)</span>
-        <span class="dock-phone-monthly" data-price="4699">RM 130.53 / bln</span>
-        <span class="dock-phone-full">Rasmi MY: RM 4,699</span>
+    <div class="dock-inner">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+        <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#93c5fd;">Ansuran 0% rasmi MY (512GB)</span>
+        <div class="dock-tabs" role="tablist" aria-label="Tempoh ansuran">
+          <button type="button" class="dock-tab" data-months="12" onclick="setDockTenure(12, this)">12 Bln</button>
+          <button type="button" class="dock-tab" data-months="24" onclick="setDockTenure(24, this)">24 Bln</button>
+          <button type="button" class="dock-tab active" data-months="36" onclick="setDockTenure(36, this)">36 Bln</button>
+        </div>
       </div>
-      <div class="dock-pill">
-        <span class="dock-phone-name">OPPO Find X9 Pro (512GB)</span>
-        <span class="dock-phone-monthly" data-price="4999">RM 138.86 / bln</span>
-        <span class="dock-phone-full">Rasmi: RM 4,999 (Promo 4,399)</span>
-      </div>
-      <div class="dock-pill">
-        <span class="dock-phone-name">Honor Magic8 Pro (512GB)</span>
-        <span class="dock-phone-monthly" data-price="4599">RM 127.75 / bln</span>
-        <span class="dock-phone-full">Rasmi MY: RM 4,599</span>
-      </div>
-      <div class="dock-pill">
-        <span class="dock-phone-name">Galaxy S26 Ultra (512GB)</span>
-        <span class="dock-phone-monthly" data-price="5599">RM 155.53 / bln</span>
-        <span class="dock-phone-full">Promo MY: RM 5,599 (RRP 6,799)</span>
-      </div>
-      <div class="dock-pill">
-        <span class="dock-phone-name">Xiaomi 18 Pro (512GB)</span>
-        <span class="dock-phone-monthly" data-price="4999">RM 138.86 / bln</span>
-        <span class="dock-phone-full">Promo MY: RM 4,999 (RRP 5,299)</span>
-      </div>
-      <div class="dock-pill">
-        <span class="dock-phone-name">iPhone 17 Pro (512GB)</span>
-        <span class="dock-phone-monthly" data-price="5899">RM 163.86 / bln</span>
-        <span class="dock-phone-full">Promo MY: RM 5,899 (RRP 6,499)</span>
-      </div>
-      <div class="dock-pill">
-        <span class="dock-phone-name">iPhone 18 Pro (512GB)</span>
-        <span class="dock-phone-monthly" data-price="6499">RM 180.53 / bln</span>
-        <span class="dock-phone-full">Rasmi MY: RM 6,499</span>
-      </div>
-      <div class="dock-pill">
-        <span class="dock-phone-name">iPhone 17 Pro Max (512GB)</span>
-        <span class="dock-phone-monthly" data-price="6399">RM 177.75 / bln</span>
-        <span class="dock-phone-full">Promo MY: RM 6,399 (RRP 6,999)</span>
-      </div>
-      <div class="dock-pill">
-        <span class="dock-phone-name">iPhone 18 Pro Max (512GB)</span>
-        <span class="dock-phone-monthly" data-price="6999">RM 194.42 / bln</span>
-        <span class="dock-phone-full">Rasmi MY: RM 6,999</span>
-      </div>
-      <div class="dock-pill baseline">
-        <span class="dock-phone-name">Asal: Pura 80 Ultra (512GB)</span>
-        <span class="dock-phone-monthly" data-price="6099" style="color: #fda4af;">RM 169.42 / bln</span>
-        <span class="dock-phone-full">Promo MY: RM 6,099 (RRP 6,599)</span>
+      <div class="dock-phones" id="dockPhones"></div>
+    </div>
+  </div>
+
+  <div class="trade-bar">
+    <div class="trade-inner">
+      <div class="trade-grid">
+        <div>
+          <div class="trade-label">Kalkulator Trade-In Pura 80 Ultra</div>
+          <input id="tradeSlider" type="range" min="2500" max="4000" step="50" value="3200" />
+          <div class="trade-hint">Seret untuk anggaran jual semula (RM 2,500 – RM 4,000). Lalai RM 3,200.</div>
+        </div>
+        <div>
+          <div class="trade-label">Nilai Trade-In</div>
+          <div class="trade-value" id="tradeValue">RM 3,200</div>
+        </div>
+        <div>
+          <div class="trade-label">Contoh Top-Up (telefon dipilih pertama)</div>
+          <div class="trade-value" id="tradeTopupPreview">—</div>
+          <div class="trade-hint" id="tradeMonthlyPreview"></div>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <!-- Header -->
+    <div class="compare-panel" id="comparePanel">
+      <div class="section-header" style="border:none;margin:0;padding:0;">
+        <div>
+          <h2 class="section-title">Head-to-Head Compare</h2>
+          <p class="section-desc">Pilih 2–3 telefon melalui kotak “Banding” pada kad sticky. Maksimum 3.</p>
+        </div>
+        <button type="button" class="btn-fullview" onclick="clearCompare()">Kosongkan</button>
+      </div>
+      <div class="compare-grid" id="compareGrid"></div>
+    </div>
+
     <header class="report-header">
-      <div class="report-eyebrow">Verified Malaysia Market Data (Nov 2026) • Semua Varian 512GB Rasmi</div>
+      <div class="report-eyebrow">Verified Malaysia Market Data (Nov 2026) · Semua varian 512GB rasmi</div>
       <h1>Ranking Mengikut Kategori (Kamera, Bateri, Travel, Video &amp; Nilai) vs Huawei Pura 80 Ultra</h1>
       <p class="report-subtitle">
-        Setiap kategori mempunyai pemenang berbeza berdasarkan ujian makmal bebas (<strong>DXOMARK</strong>), spesifikasi rasmi Malaysia, tarikh pelancaran rasmi di Malaysia, dan perbandingan terus dengan <strong>Huawei Pura 80 Ultra (16GB+512GB)</strong> anda.
+        Setiap model ada pautan rujukan aktif. Harga &amp; spesifikasi di bawah mengikuti data yang disahkan untuk pasaran Malaysia.
+        Xiaomi dilabel status semakan supaya tidak mengelirukan.
       </p>
-
-      <!-- Category Winners Strip -->
-      <div class="winner-summary-strip">
+      <div class="winner-strip">
         <div class="winner-chip">
-          <div class="winner-chip-cat">🏆 Juara Overall (512GB)</div>
+          <div class="winner-chip-cat">Juara Overall</div>
           <div class="winner-chip-phone">vivo X300 Pro</div>
-          <div class="winner-chip-why">Kamera #1 Android + 6,510mAh + RM 4,699</div>
+          <div class="winner-chip-why">Kamera Android kuat + 6,510mAh + RM 4,699</div>
         </div>
         <div class="winner-chip">
-          <div class="winner-chip-cat">📸 Juara Kamera (Foto &amp; Warna)</div>
-          <div class="winner-chip-phone">vivo X300 Pro &amp; iPhone 18 Pro</div>
-          <div class="winner-chip-why">DXOMARK 171 &amp; 172 (Warna &amp; Detail)</div>
+          <div class="winner-chip-cat">Juara Kamera</div>
+          <div class="winner-chip-phone">Pura 80 Ultra / iPhone 18 Pro</div>
+          <div class="winner-chip-why">1" RYYB vs Variable Aperture + video</div>
         </div>
         <div class="winner-chip">
-          <div class="winner-chip-cat">🔋 Juara Bateri &amp; Caj</div>
-          <div class="winner-chip-phone">OPPO Find X9 Pro &amp; Magic8 Pro</div>
-          <div class="winner-chip-why">7,500mAh &amp; 7,100mAh (100W+80W)</div>
+          <div class="winner-chip-cat">Juara Bateri</div>
+          <div class="winner-chip-phone">OPPO Find X9 Pro</div>
+          <div class="winner-chip-why">7,500mAh Si-C + 80W/50W</div>
         </div>
         <div class="winner-chip">
-          <div class="winner-chip-cat">✈️ Juara Travel Global</div>
-          <div class="winner-chip-phone">iPhone 17/18 Pro &amp; S26 Ultra</div>
-          <div class="winner-chip-why">eSIM, Apple Pay/Suica, Privacy Screen</div>
+          <div class="winner-chip-cat">Juara Travel</div>
+          <div class="winner-chip-phone">iPhone 17/18 Pro</div>
+          <div class="winner-chip-why">eSIM, Apple Pay/Suica, Privacy S26</div>
         </div>
         <div class="winner-chip">
-          <div class="winner-chip-cat">🎬 Juara Video &amp; Potret</div>
-          <div class="winner-chip-phone">iPhone 18 Pro / Pro Max</div>
-          <div class="winner-chip-why">4K120 ProRes RAW + Var. Aperture</div>
+          <div class="winner-chip-cat">Nilai Terbaik</div>
+          <div class="winner-chip-phone">Honor Magic8 Pro</div>
+          <div class="winner-chip-why">RM 4,599 + 7,100mAh + IP69K</div>
         </div>
       </div>
     </header>
 
-    <!-- =========================================================
-         SECTION 1: OVERALL RANK (Balanced Camera + Travel + Value)
-         ========================================================= -->
     <section class="section">
       <div class="section-header">
         <div>
-          <h2 class="section-title">1. Overall Rank (Gabungan Kamera, Bateri, Travel &amp; Nilai Harga 512GB)</h2>
-          <p class="section-desc">Kolum pertama (<strong>Rank</strong>) dan baris atas melekat (sticky). Semua harga &amp; tarikh rasmi Malaysia disahkan.</p>
+          <h2 class="section-title">1. Overall Rank (Kamera, Bateri, Travel &amp; Nilai Harga 512GB)</h2>
+          <p class="section-desc">Kolum rank melekat. Harga &amp; ansuran dikira dari harga efektif MY. Top-up mengikut slider trade-in.</p>
         </div>
-        <button class="btn-fullview" onclick="openFullView('tblOverall')">Full View Table</button>
+        <button class="btn-fullview" type="button" onclick="openFullView('tblOverall')">Full View Table</button>
       </div>
       <div class="table-viewport" id="tblOverall">
         <div class="fullscreen-toolbar">
-          <span>1. Overall Rank — Semua 9 Calon + Huawei Pura 80 Ultra (512GB)</span>
-          <button class="btn-close-full" onclick="closeFullView('tblOverall')">✕ Tutup</button>
+          <span>1. Overall Rank · 512GB vs Pura 80 Ultra</span>
+          <button class="btn-close-full" type="button" onclick="closeFullView('tblOverall')">✕ Tutup</button>
         </div>
         <div class="fullscreen-scroll-area">
-          <table class="rank-table">
+          <table class="rank-table" id="tableOverall">
             <thead>
               <tr>
                 <th class="sticky-rank-col">Rank</th>
-                <th>Model (Varian 512GB)</th>
+                <th>Model (512GB)</th>
                 <th>Tarikh Keluar MY</th>
                 <th>Harga Rasmi / Promo MY</th>
                 <th>36 Bln (0%)</th>
+                <th>Top-Up (Trade-In)</th>
                 <th>Sebab Utama Menang</th>
-                <th>vs Huawei Pura 80 Ultra (512GB)</th>
+                <th>vs Pura 80 Ultra</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="row-rank-1">
-                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 Overall</span></td>
-                <td><strong>vivo X300 Pro (16GB+512GB)</strong></td>
-                <td>13 Nov 2025</td>
-                <td class="num">RM 4,699 (RRP)</td>
-                <td class="num">RM 130.53/bln</td>
-                <td>Pengganti paling seimbang: Kamera ZEISS #1 Android (DXOMARK 171), bateri 6,510mAh, Google/eSIM penuh pada harga RM 4,699.</td>
-                <td><span class="badge-gain">+Dapat:</span> Google/eSIM penuh, bateri 6,510mAh (+1,340mAh), jimat RM 1,400.<br><span class="badge-lose">-Hilang:</span> Sensor utama 1/1.28" (vs 1" RYYB Huawei) &amp; zum optikal 9.4x.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 Overall</span></td>
-                <td><strong>Honor Magic8 Pro (12GB+512GB)</strong></td>
-                <td>27 Nov 2025</td>
-                <td class="num">RM 4,599 (RRP)</td>
-                <td class="num">RM 127.75/bln</td>
-                <td>Paling dekat dengan DNA Huawei (MagicOS + 3D Face ID + caj 100W/80W) tetapi ada Google penuh, eSIM, &amp; bateri 7,100mAh.</td>
-                <td><span class="badge-gain">+Dapat:</span> Bateri 7,100mAh (+1,930mAh), Google/Wallet/eSIM penuh, jimat RM 1,500.<br><span class="badge-lose">-Hilang:</span> Sensor 1-inci RYYB &amp; dwi-periskop optikal 9.4x Huawei.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Overall</span></td>
-                <td><strong>OPPO Find X9 Pro (16GB+512GB)</strong></td>
-                <td>29 Okt 2025 (Jual 8 Nov)</td>
-                <td class="num">RM 4,999 (Promo RM 4,399)</td>
-                <td class="num">RM 138.86/bln (Promo 122.19)</td>
-                <td>Bateri terbesar 7,500mAh + kamera warna semula jadi Hasselblad + 200MP telefoto pada harga promo RM 4,399.</td>
-                <td><span class="badge-gain">+Dapat:</span> Bateri raksasa 7,500mAh, eSIM/Google penuh, warna Hasselblad natural.<br><span class="badge-lose">-Hilang:</span> Caj wireless 50W (vs 80W Huawei) &amp; zum jarak jauh ekstrem.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4 Overall</span></td>
-                <td><strong>Samsung Galaxy S26 Ultra (12GB+512GB)</strong></td>
-                <td>26 Feb 2026</td>
-                <td class="num">RM 5,599 Promo (RRP RM 6,799)</td>
-                <td class="num">RM 155.53/bln</td>
-                <td>Terbaik untuk produktiviti travel (Privacy Display anti-intai, S Pen, Dual eSIM, 7 tahun OS) + 200MP f/1.4.</td>
-                <td><span class="badge-gain">+Dapat:</span> Skrin anti-silau Privacy Display, S Pen, Google/eSIM, 7 tahun update.<br><span class="badge-lose">-Hilang:</span> Skor kamera DXOMARK lebih rendah (157 vs 175) &amp; bateri 5,000mAh.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5 Overall</span></td>
-                <td><strong>iPhone 17 Pro (512GB)</strong></td>
-                <td>19 Sep 2025</td>
-                <td class="num">RM 5,899 Promo (RRP RM 6,499)</td>
-                <td class="num">RM 163.86/bln</td>
-                <td>iPhone Pro paling berbaloi (diskaun RM 600 vs 18 Pro), eSIM/Apple Pay/Suica terbaik untuk travel, dan video ProRes.</td>
-                <td><span class="badge-gain">+Dapat:</span> Video 4K120 ProRes terbaik, Apple Pay/Suica, eSIM lancar, resale tinggi.<br><span class="badge-lose">-Hilang:</span> Foto malam 1" RYYB, zum optikal 9.4x &amp; caj pantas 100W/80W.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#6 Overall</span></td>
-                <td><strong>iPhone 18 Pro (512GB)</strong></td>
-                <td>18 Sep 2026</td>
-                <td class="num">RM 6,499 (RRP)</td>
-                <td class="num">RM 180.53/bln</td>
-                <td>Kamera utama Variable Aperture f/1.48–f/4.0 (DXOMARK 172, #3 dunia) + A20 Pro, tetapi mahal RM 600 dari 17 Pro.</td>
-                <td><span class="badge-gain">+Dapat:</span> Video ProRes RAW, Variable Aperture iOS, Apple Pay/eSIM &amp; resale #1.<br><span class="badge-lose">-Hilang:</span> Skrin 6.3" lebih kecil, caj perlahan, tambah +RM 400 vs promo Pura.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#7 Overall</span></td>
-                <td><strong>Xiaomi 18 Pro (12GB+512GB)</strong></td>
-                <td>18 Nov 2026 (Baru Lancar)</td>
-                <td class="num">RM 4,999 Promo (RRP RM 5,299)</td>
-                <td class="num">RM 138.86/bln</td>
-                <td>Saiz kompak 6.4" paling ringan + cip SD 8 Elite Gen 6 (2nm) + dwi-200MP Leica + skrin belakang 2.7".</td>
-                <td><span class="badge-gain">+Dapat:</span> Saiz ringan poket, skrin belakang untuk selfie kamera Leica, bateri 6,000mAh.<br><span class="badge-lose">-Hilang:</span> Skrin kecil 6.4" (vs 6.8") &amp; zum telefoto 3.2x sahaja.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#8 Overall</span></td>
-                <td><strong>iPhone 17 Pro Max (512GB)</strong></td>
-                <td>19 Sep 2025</td>
-                <td class="num">RM 6,399 Promo (RRP RM 6,999)</td>
-                <td class="num">RM 177.75/bln</td>
-                <td>Skrin besar 6.9" + bateri 39 jam video dengan diskaun RM 600 (lebih berbaloi dari 18 Pro Max RM 6,999).</td>
-                <td><span class="badge-gain">+Dapat:</span> Skrin 6.9" luas, video ProRes, eSIM &amp; Apple Pay/transit travel.<br><span class="badge-lose">-Hilang:</span> Foto malam ekstrem 1" &amp; caj pantas 100W/80W Huawei.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#9 Overall</span></td>
-                <td><strong>iPhone 18 Pro Max (512GB)</strong></td>
-                <td>18 Sep 2026</td>
-                <td class="num">RM 6,999 (RRP)</td>
-                <td class="num">RM 194.42/bln</td>
-                <td>Bateri iOS paling tahan lama (45 jam video) + Variable Aperture, tetapi harga hampir RM 7,000.</td>
-                <td><span class="badge-gain">+Dapat:</span> Bateri iOS terlama, video ProRes RAW &amp; ekosistem travel iOS.<br><span class="badge-lose">-Hilang:</span> Paling mahal (RM 6,999) &amp; tiada zum optikal jarak jauh 9.4x.</td>
-              </tr>
-              <tr class="row-baseline">
-                <td class="sticky-rank-col"><span class="rank-pill rp-base">ASAL</span></td>
-                <td><strong>Huawei Pura 80 Ultra (16GB+512GB)</strong></td>
-                <td>24 Jul 2025</td>
-                <td class="num">RM 6,099 Promo (RRP RM 6,599)</td>
-                <td class="num">RM 169.42/bln</td>
-                <td>Phone semasa anda. Masih #1 DXOMARK (175) untuk foto, tetapi tiada Google natif &amp; eSIM travel terhad.</td>
-                <td><strong>Rujukan Asal</strong> (Anggaran harga jual terpakai: ~RM 3,200 – RM 3,500).</td>
-              </tr>
-            </tbody>
+            <tbody id="tbodyOverall"></tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================
-         SECTION 2: RANK BASED ON CAMERA (Image Beauty, Detail, Color & Video)
-         ========================================================= -->
     <section class="section">
       <div class="section-header">
         <div>
-          <h2 class="section-title">2. Rank Based on Camera (Cantik Gambar, Detail Tekstur, Ketepatan Warna &amp; Video)</h2>
-          <p class="section-desc">Menilai kualiti imej sebenar (julat dinamik, warna kulit/langit, detail dalam cahaya malap, bokeh semula jadi &amp; skor DXOMARK)—bukan sekadar angka zum.</p>
+          <h2 class="section-title">2. Rank Berdasarkan Kamera (Cantik Gambar, Detail, Warna &amp; Video)</h2>
+          <p class="section-desc">Menilai kualiti imej sebenar, bukan sekadar zum. Pura 80 Ultra kekal rujukan foto malam ekstrem.</p>
         </div>
-        <button class="btn-fullview" onclick="openFullView('tblCamera')">Full View Table</button>
+        <button class="btn-fullview" type="button" onclick="openFullView('tblCamera')">Full View Table</button>
       </div>
       <div class="table-viewport" id="tblCamera">
         <div class="fullscreen-toolbar">
-          <span>2. Camera Rank — Detail Gambar, Warna &amp; Video vs Huawei Pura 80 Ultra</span>
-          <button class="btn-close-full" onclick="closeFullView('tblCamera')">✕ Tutup</button>
+          <span>2. Camera Rank vs Pura 80 Ultra</span>
+          <button class="btn-close-full" type="button" onclick="closeFullView('tblCamera')">✕ Tutup</button>
         </div>
         <div class="fullscreen-scroll-area">
           <table class="rank-table">
             <thead>
               <tr>
                 <th class="sticky-rank-col">Camera Rank</th>
-                <th>Model (512GB)</th>
-                <th>Skor DXOMARK</th>
-                <th>Karakter Warna &amp; Cantik Gambar</th>
-                <th>Detail Gambar &amp; Cahaya Malap</th>
-                <th>Kualiti Video</th>
-                <th>Banding Kamera vs Pura 80 Ultra</th>
+                <th>Model</th>
+                <th>Sensor &amp; Optik</th>
+                <th>Kekuatan Warna / Detail</th>
+                <th>Video</th>
+                <th>Banding vs Pura 80 Ultra</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="row-baseline">
+              <tr class="row-baseline" data-phone="pura80">
                 <td class="sticky-rank-col"><span class="rank-pill rp-base">Rujukan #1</span></td>
-                <td><strong>Huawei Pura 80 Ultra</strong></td>
-                <td class="num">175 (#1 Dunia)</td>
-                <td>Warna XMAGE kaya &amp; kontras dramatik; potret kulit sangat hidup.</td>
-                <td>Sensor <strong>1" RYYB Variable Aperture (f/1.6–4.0)</strong> menangkap detail malam paling bersih.</td>
-                <td>4K HDR Vivid (Bagus, tetapi di belakang iPhone &amp; vivo).</td>
-                <td><strong>Penanda Aras Kamera Pegun Anda.</strong> Sukar ditandingi untuk foto malam.</td>
+                <td><a class="ref-link" href="https://consumer.huawei.com/my/phones/pura80-ultra/specs/" target="_blank" rel="noopener noreferrer"><strong>Huawei Pura 80 Ultra</strong></a></td>
+                <td>50MP 1" RYYB Variable Aperture + dwi-telefoto 3.7x &amp; 9.4x</td>
+                <td>Warna XMAGÉ kaya; detail malam paling bersih pada sensor 1".</td>
+                <td>4K HDR Vivid (bagus, tapi di belakang iPhone &amp; vivo untuk ProRes/RAW).</td>
+                <td><strong>Penanda aras foto malam anda.</strong></td>
               </tr>
-              <tr class="row-rank-1">
+              <tr class="row-rank-1" data-phone="iphone18pro">
                 <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 Pengganti</span></td>
-                <td><strong>iPhone 18 Pro / Pro Max</strong></td>
-                <td class="num">172 (#3 Dunia)</td>
-                <td>Warna paling jujur &amp; natural; <strong>Variable Aperture f/1.48–4.0</strong> beri bokeh optikal tulen.</td>
-                <td>Detail tekstur wajah &amp; julat dinamik HDR sangat konsisten dalam semua keadaan cahaya.</td>
-                <td><strong>#1 Terbaik:</strong> 4K 120fps Dolby Vision &amp; ProRes RAW.</td>
-                <td><span class="badge-gain">+Menang:</span> Video jauh lebih sinematik &amp; warna konsisten antara lensa.<br><span class="badge-lose">-Kalah:</span> Detail malam gelap gelita sedikit di bawah sensor 1" Huawei.</td>
+                <td><a class="ref-link" href="https://www.apple.com/my/shop/buy-iphone/iphone-18-pro" target="_blank" rel="noopener noreferrer"><strong>iPhone 18 Pro / Pro Max</strong></a></td>
+                <td>48MP Fusion Main Variable Aperture f/1.48–f/4.0 + 48MP 4x</td>
+                <td>Warna konsisten; aperture berubah ikut cahaya tanpa tukar lensa.</td>
+                <td><strong>#1:</strong> 4K120 Dolby Vision &amp; ProRes RAW.</td>
+                <td><span class="badge-gain">+Menang:</span> Video &amp; warna konsisten.<br><span class="badge-loss">-Kalah:</span> Detail malam 1" RYYB Huawei masih lebih dalam.</td>
               </tr>
-              <tr>
+              <tr data-phone="vivox300">
                 <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 Pengganti</span></td>
-                <td><strong>vivo X300 Pro</strong></td>
-                <td class="num">171 (#4 Dunia)</td>
-                <td><strong>ZEISS Natural Color</strong>: warna langit &amp; landskap bersih tanpa *over-saturation*, potret bokeh ZEISS sangat cantik.</td>
-                <td>Sensor Sony LYT-828 + <strong>200MP ZEISS APO</strong> mengekalkan detail halus pada bangunan &amp; pakaian.</td>
-                <td>8K 30fps &amp; 4K 120fps 10-bit Log (Terbaik di Android).</td>
-                <td><span class="badge-gain">+Menang:</span> Detail potret 85mm &amp; video 4K120 jauh lebih baik dari Pura 80U.<br><span class="badge-lose">-Kalah:</span> Julat dinamik malam ekstrem sedikit di belakang Huawei.</td>
+                <td><a class="ref-link" href="https://shop.vivo.com/my/product/2555" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a></td>
+                <td>50MP utama + 200MP ZEISS APO telefoto</td>
+                <td><strong>ZEISS Natural Color:</strong> warna langsing &amp; landscape bersih; potret ZEISS cantik.</td>
+                <td>8K 30fps &amp; 4K 120fps 10-bit Log (terbaik di Android).</td>
+                <td><span class="badge-gain">+Menang:</span> Detail potret 85mm &amp; video 4K120.<br><span class="badge-loss">-Kalah:</span> Julat dinamik malam ekstrem masih di belakang Huawei.</td>
               </tr>
-              <tr>
+              <tr data-phone="oppox9">
                 <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Pengganti</span></td>
-                <td><strong>iPhone 17 Pro / Pro Max</strong></td>
-                <td class="num">168 (#7 Dunia)</td>
-                <td>Ton warna hangat &amp; semula jadi (Photonic Engine); sangat boleh diharap untuk gambar keluarga bergerak.</td>
-                <td>Tiga kamera 48MP beri detail tajam, tetapi aperture tetap f/1.78 kurang bokeh semula jadi berbanding 18 Pro.</td>
-                <td><strong>Top 2:</strong> 4K 120fps Dolby Vision &amp; ProRes Log.</td>
-                <td><span class="badge-gain">+Menang:</span> Penstabilan video berjalan &amp; kelajuan *shutter* tangkap subjek bergerak.<br><span class="badge-lose">-Kalah:</span> Kurang menyerlah untuk foto malam malap berbanding Pura 80U.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4 Pengganti</span></td>
-                <td><strong>OPPO Find X9 Pro</strong></td>
-                <td class="num">166 (#11 Dunia)</td>
-                <td><strong>Hasselblad Color Calibration</strong>: tona warna ala kamera filem medium-format, sangat cantik untuk *street photography*.</td>
-                <td>50MP f/1.5 utama + 200MP telefoto beri detail lembut semula jadi tanpa *oversharpening* AI.</td>
+                <td><a class="ref-link" href="https://www.oppo.com/my/smartphones/series-find-x/find-x9-pro/" target="_blank" rel="noopener noreferrer"><strong>OPPO Find X9 Pro</strong></a></td>
+                <td>50MP Hasselblad + 200MP telefoto</td>
+                <td><strong>Hasselblad Color:</strong> tone ala filem medium-format, cantik untuk street.</td>
                 <td>4K 120fps Dolby Vision &amp; Master Mode.</td>
-                <td><span class="badge-gain">+Menang:</span> Warna kulit Hasselblad lebih natural &amp; video 4K 120fps.<br><span class="badge-lose">-Kalah:</span> Detail cahaya sangat malap kalah pada sensor 1" RYYB Huawei.</td>
+                <td><span class="badge-gain">+Menang:</span> Warna Hasselblad natural.<br><span class="badge-loss">-Kalah:</span> Cahaya sangat malap masih kalah sensor 1".</td>
               </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5 Pengganti</span></td>
-                <td><strong>Honor Magic8 Pro</strong></td>
-                <td class="num">164 (#13 Dunia)</td>
-                <td>Warna terang &amp; menyerlah (sesuai terus upload media sosial tanpa edit); mod Harcourt Portrait cantik.</td>
-                <td>50MP f/1.6 (1/1.3") + 200MP Ultra Night dengan penstabilan CIPA 5.5 beri detail malam yang tajam.</td>
+              <tr data-phone="honorm8">
+                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4</span></td>
+                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/spec/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
+                <td>50MP utama + 200MP telefoto Ultra Night (CIPA 5.5)</td>
+                <td>Warna terang untuk sosial; mode Harcourt Portrait cantik.</td>
                 <td>4K 120fps Magic Log.</td>
-                <td><span class="badge-gain">+Menang:</span> Penstabilan gegaran tangan (CIPA 5.5) &amp; kelajuan tangkap aksi.<br><span class="badge-lose">-Kalah:</span> Pemprosesan AI kadangkala nampak lebih buatan berbanding Pura 80U.</td>
+                <td><span class="badge-gain">+Menang:</span> Penstabilan gegaran CIPA 5.5.<br><span class="badge-loss">-Kalah:</span> Pemprosesan AI kadangkala nampak buatan vs Pura.</td>
               </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#6 Pengganti</span></td>
-                <td><strong>Xiaomi 18 Pro</strong></td>
-                <td class="num">Belum Uji (Est. ~163)</td>
-                <td><strong>Leica Authentic &amp; Vibrant</strong>: bayang-bayang dramatik &amp; karakter seni yang unik + skrin belakang untuk selfie kamera utama.</td>
-                <td>Sensor baharu <strong>200MP Light Fusion 960 (1/1.28", f/1.67)</strong> beri detail tinggi pada kamera utama.</td>
-                <td>8K 30fps &amp; 4K 120fps Dolby Vision.</td>
-                <td><span class="badge-gain">+Menang:</span> Selfie guna kamera utama 200MP Leica melalui skrin belakang.<br><span class="badge-lose">-Kalah:</span> Lensa telefoto &amp; ultrawide tidak sekuat Pura 80 Ultra.</td>
+              <tr data-phone="s26u">
+                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5</span></td>
+                <td><a class="ref-link" href="https://www.senheng.com.my/product/galaxy-s26-ultra-5g/" target="_blank" rel="noopener noreferrer"><strong>Galaxy S26 Ultra</strong></a></td>
+                <td>200MP f/1.4 utama + 50MP 5x + 10MP 3x</td>
+                <td>Warna cerah; kadangkala washed/oversharpened vs vivo/Apple.</td>
+                <td>8K 30fps &amp; 4K 120fps Log.</td>
+                <td><span class="badge-gain">+Menang:</span> Zoom jarak jauh &amp; AI sunting objek.<br><span class="badge-loss">-Kalah:</span> Potret malam &amp; foto pegun di belakang Pura.</td>
               </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#7 Pengganti</span></td>
-                <td><strong>Samsung Galaxy S26 Ultra</strong></td>
-                <td class="num">157 (#22 Dunia)</td>
-                <td>Warna cerah &amp; kontras tinggi, tetapi kadangkala lebih *washed-out* atau *oversharpened* berbanding vivo/Apple.</td>
-                <td>Lensa utama baharu <strong>200MP f/1.4</strong> terang di waktu malam, tetapi *shutter lag* pada subjek bergerak masih ada.</td>
-                <td>8K 30fps &amp; 4K 120fps Log (Audio Eraser hebat).</td>
-                <td><span class="badge-gain">+Menang:</span> Video 8K &amp; suntingan Galaxy AI (buang objek/bunyi angin).<br><span class="badge-lose">-Kalah:</span> Kualiti foto pegun &amp; potret malam jelas di belakang Pura 80 Ultra.</td>
+              <tr data-phone="iphone17pro">
+                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#6</span></td>
+                <td><a class="ref-link" href="https://www.apple.com/my/iphone-17-pro/" target="_blank" rel="noopener noreferrer"><strong>iPhone 17 Pro / Pro Max</strong></a></td>
+                <td>48MP f/1.78 + 48MP 4x (8x optical-quality)</td>
+                <td>Tone hangat &amp; semula jadi (Photonic Engine).</td>
+                <td>Top 2: 4K120 Dolby Vision &amp; ProRes Log.</td>
+                <td><span class="badge-gain">+Menang:</span> Video &amp; shutter travel.<br><span class="badge-loss">-Kalah:</span> Tiada variable aperture seperti 18 Pro; malam ekstrem kalah 1".</td>
+              </tr>
+              <tr data-phone="xiaomi17">
+                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#7</span></td>
+                <td><strong>Xiaomi 17 Pro / 18 Pro</strong></td>
+                <td>Leica Light Fusion (ikut varian). Semak unit rasmi MY.</td>
+                <td>Leica Authentic/Vibrant (bergantung firmware).</td>
+                <td>8K / 4K120 (ikut varian).</td>
+                <td><div class="status-note">Status: maklumat MY &amp; skrin belakang 2.7" <strong>bukan universal</strong>. Sahkan varian sebelum beli.</div></td>
               </tr>
             </tbody>
           </table>
@@ -905,189 +743,104 @@
       </div>
     </section>
 
-    <!-- =========================================================
-         SECTION 3: RANK BATERI & PENGECASAN
-         ========================================================= -->
     <section class="section">
       <div class="section-header">
         <div>
-          <h2 class="section-title">3. Rank Bateri &amp; Pengecasan (Ketahanan Seharian Travel Tanpa Powerbank)</h2>
-          <p class="section-desc">Bateri Silicon-Carbon (Si-C) generasi baharu membolehkan penggunaan GPS, kamera &amp; data roaming seharian penuh.</p>
+          <h2 class="section-title">3. Rank Bateri &amp; Pengecasan + Ciri Eksklusif</h2>
+          <p class="section-desc">Termasuk pengecas dalam kotak, tempoh kemas kini OS, dan jenis pengimbas cap jari.</p>
         </div>
-        <button class="btn-fullview" onclick="openFullView('tblBattery')">Full View Table</button>
+        <button class="btn-fullview" type="button" onclick="openFullView('tblBattery')">Full View Table</button>
       </div>
       <div class="table-viewport" id="tblBattery">
         <div class="fullscreen-toolbar">
-          <span>3. Battery &amp; Charging Rank vs Huawei Pura 80 Ultra</span>
-          <button class="btn-close-full" onclick="closeFullView('tblBattery')">✕ Tutup</button>
+          <span>3. Battery, OS, Fingerprint &amp; Exclusive</span>
+          <button class="btn-close-full" type="button" onclick="closeFullView('tblBattery')">✕ Tutup</button>
         </div>
         <div class="fullscreen-scroll-area">
-          <table class="rank-table">
+          <table class="rank-table" style="min-width:1280px;">
             <thead>
               <tr>
                 <th class="sticky-rank-col">Battery Rank</th>
-                <th>Model (512GB)</th>
-                <th>Kapasiti Bateri</th>
-                <th>Kelajuan Caj (Kabel / Wireless)</th>
-                <th>Anggaran Ketahanan Travel</th>
-                <th>Banding Bateri vs Pura 80 Ultra (5,170mAh)</th>
+                <th>Model</th>
+                <th>Bateri (visual)</th>
+                <th>Caj (Kabel / Wireless)</th>
+                <th>Pengecas Dalam Kotak</th>
+                <th>Kemas Kini OS</th>
+                <th>Cap Jari</th>
+                <th>Ciri Eksklusif</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="row-rank-1">
-                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 Bateri</span></td>
-                <td><strong>OPPO Find X9 Pro</strong></td>
-                <td class="num">7,500 mAh (Si-C)</td>
-                <td>80W SuperVOOC / 50W AirVOOC</td>
-                <td>Sehingga 2 hari penuh (paling besar dalam kelas flagship).</td>
-                <td><span class="badge-gain">+2,330 mAh (+45% lebih besar)</span> daripada Pura 80 Ultra.<br><span class="badge-lose">-Wireless 50W</span> (vs 80W Huawei).</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 Bateri</span></td>
-                <td><strong>Honor Magic8 Pro</strong></td>
-                <td class="num">7,100 mAh (Si-C)</td>
-                <td><strong>100W Kabel / 80W Wireless</strong></td>
-                <td>~1.8 – 2 hari travel; penuh dalam ~47 minit.</td>
-                <td><span class="badge-gain">+1,930 mAh (+37% lebih besar)</span> + kekalkan kelajuan caj <strong>100W/80W</strong> sama seperti Pura 80 Ultra!</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Bateri</span></td>
-                <td><strong>vivo X300 Pro</strong></td>
-                <td class="num">6,510 mAh (BlueVolt)</td>
-                <td>90W FlashCharge / 40W Wireless</td>
-                <td>~1.5 hari penuh ambil gambar &amp; navigasi tanpa henti.</td>
-                <td><span class="badge-gain">+1,340 mAh (+26% lebih besar)</span> daripada Pura 80 Ultra.<br><span class="badge-lose">-Wireless 40W</span> (vs 80W Huawei).</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4 Bateri</span></td>
-                <td><strong>Xiaomi 18 Pro</strong></td>
-                <td class="num">6,000 mAh (Si-C)</td>
-                <td>90W HyperCharge / 50W Wireless</td>
-                <td>~1.3 – 1.5 hari walaupun bersaiz kompak 6.4".</td>
-                <td><span class="badge-gain">+830 mAh lebih besar</span> dalam badan jauh lebih kecil &amp; ringan dari Pura 80 Ultra.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5 Bateri</span></td>
-                <td><strong>iPhone 18 Pro Max</strong></td>
-                <td class="num">~5,100 mAh (45j Video)</td>
-                <td>~40W Kabel (50% 15m) / 25W Qi2</td>
-                <td>~1.5 hari (kecekapan cip A20 Pro sangat tinggi).</td>
-                <td><span class="badge-gain">+Standby &amp; video lebih lama</span> walaupun kapasiti mAh hampir sama.<br><span class="badge-lose">-Caj jauh lebih perlahan</span> dari 100W/80W Huawei.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#6 Bateri</span></td>
-                <td><strong>iPhone 17 Pro Max</strong></td>
-                <td class="num">~4,823 mAh (39j Video)</td>
-                <td>~35W Kabel (50% 20m) / 25W Qi2</td>
-                <td>1 hari penuh penggunaan berat luar negara.</td>
-                <td><span class="badge-gain">+Pengurusan kuasa iOS stabil</span> waktu roaming.<br><span class="badge-lose">-Caj lebih perlahan</span> berbanding Pura 80 Ultra.</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#7 Bateri</span></td>
-                <td><strong>Samsung Galaxy S26 Ultra</strong></td>
-                <td class="num">5,000 mAh</td>
-                <td>60W Kabel / 25W Qi2 Wireless</td>
-                <td>1 hari penuh (cukup hingga malam, tetapi bukan 2 hari).</td>
-                <td><span class="badge-lose">-170 mAh lebih kecil</span> &amp; caj 60W/25W lebih perlahan daripada Pura 80 Ultra (100W/80W).</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#8 Bateri</span></td>
-                <td><strong>iPhone 18 Pro &amp; 17 Pro</strong></td>
-                <td class="num">~3,988–4,250 mAh (31–36j)</td>
-                <td>~30–35W Kabel / 25W Qi2</td>
-                <td>1 hari sederhana (perlu powerbank MagSafe jika ambil video kerap).</td>
-                <td><span class="badge-lose">-Kapasiti &amp; kelajuan caj lebih rendah</span> daripada Pura 80 Ultra (5,170mAh).</td>
-              </tr>
-              <tr class="row-baseline">
-                <td class="sticky-rank-col"><span class="rank-pill rp-base">ASAL</span></td>
-                <td><strong>Huawei Pura 80 Ultra</strong></td>
-                <td class="num">5,170 mAh</td>
-                <td>100W Kabel / 80W Wireless</td>
-                <td>1 hari (caj super pantas, tetapi cip 7nm lebih makan bateri 5G).</td>
-                <td><strong>Rujukan Asal.</strong> Pengecasan 80W wireless masih antara terpantas di pasaran.</td>
-              </tr>
-            </tbody>
+            <tbody id="tbodyBattery"></tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- =========================================================
-         SECTION 4: RANK TRAVEL LUAR NEGARA (eSIM, Wallet, Maps, Signal)
-         ========================================================= -->
     <section class="section">
       <div class="section-header">
         <div>
-          <h2 class="section-title">4. Rank Kegunaan Travel Luar Negara (eSIM, Apple Pay/Google Wallet, Maps &amp; Signal)</h2>
-          <p class="section-desc">Menilai kelancaran ketika berada di Jepun, Korea, China, Eropah atau mana-mana negara luar.</p>
+          <h2 class="section-title">4. Rank Travel Luar Negara (eSIM, Wallet, Maps, Signal)</h2>
+          <p class="section-desc">Kelancaran di Jepun, Korea, China, Eropah: eSIM, bayaran transit, navigasi.</p>
         </div>
-        <button class="btn-fullview" onclick="openFullView('tblTravel')">Full View Table</button>
+        <button class="btn-fullview" type="button" onclick="openFullView('tblTravel')">Full View Table</button>
       </div>
       <div class="table-viewport" id="tblTravel">
         <div class="fullscreen-toolbar">
-          <span>4. Travel Readiness Rank vs Huawei Pura 80 Ultra</span>
-          <button class="btn-close-full" onclick="closeFullView('tblTravel')">✕ Tutup</button>
+          <span>4. Travel Readiness</span>
+          <button class="btn-close-full" type="button" onclick="closeFullView('tblTravel')">✕ Tutup</button>
         </div>
         <div class="fullscreen-scroll-area">
           <table class="rank-table">
             <thead>
               <tr>
                 <th class="sticky-rank-col">Travel Rank</th>
-                <th>Model (512GB)</th>
-                <th>Sokongan eSIM Travel</th>
-                <th>Pembayaran &amp; Kad Transit</th>
-                <th>Navigasi &amp; Ciri Khas Travel</th>
-                <th>Upgrade Travel vs Pura 80 Ultra</th>
+                <th>Model</th>
+                <th>eSIM</th>
+                <th>Pembayaran &amp; Transit</th>
+                <th>Ciri Travel</th>
+                <th>Upgrade vs Pura</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="row-rank-1">
-                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 Travel</span></td>
-                <td><strong>iPhone 17 Pro / 18 Pro (Max)</strong></td>
-                <td><strong>Terbaik:</strong> Simpan 8+ profil eSIM, aktif 2 serentak, tukar 1-tap.</td>
-                <td><strong>Apple Pay + Suica / ICOCA / PASMO</strong> terbina dalam Apple Wallet.</td>
-                <td>Apple CarPlay, Apple Maps transit tepat, Find My bagasi (AirTag).</td>
-                <td><span class="badge-gain">+Lompatan Terbesar:</span> Tiada lagi masalah Google/eSIM; tap terus tren Jepun &amp; kedai global.</td>
+              <tr class="row-rank-1" data-phone="iphone18pro">
+                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1</span></td>
+                <td><a class="ref-link" href="https://www.apple.com/my/shop/buy-iphone/iphone-18-pro" target="_blank" rel="noopener noreferrer"><strong>iPhone 17/18 Pro (Max)</strong></a></td>
+                <td>Simpan 8+ profil, aktif 2 serentak</td>
+                <td><strong>Apple Pay + Suica / ICOCA / PASMO</strong></td>
+                <td>CarPlay, Maps transit, Find My + AirTag</td>
+                <td><span class="badge-gain">+Lompatan terbesar</span> untuk tren Jepun &amp; kedai global</td>
               </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 Travel</span></td>
-                <td><strong>Samsung Galaxy S26 Ultra</strong></td>
-                <td><strong>Dual eSIM</strong> + Physical SIM (fleksibel).</td>
-                <td><strong>Google Wallet + Samsung Pay</strong> global.</td>
-                <td><strong>Privacy Display</strong> (elak orang sebelah baca PIN/pasport dalam flight), S Pen nota/terjemahan, Android Auto.</td>
-                <td><span class="badge-gain">+Sangat Praktikal:</span> Google Maps penuh, Circle to Search terjemah menu bahasa asing serta-merta.</td>
+              <tr data-phone="s26u">
+                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2</span></td>
+                <td><a class="ref-link" href="https://www.senheng.com.my/product/galaxy-s26-ultra-5g/" target="_blank" rel="noopener noreferrer"><strong>Galaxy S26 Ultra</strong></a></td>
+                <td>Dual eSIM + SIM fizikal</td>
+                <td>Google Wallet + Samsung Pay</td>
+                <td><span class="tag-x">Privacy Display</span> S Pen, Android Auto, Circle to Search</td>
+                <td><span class="badge-gain">+Praktikal</span> untuk flight &amp; terjemah menu</td>
               </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Travel</span></td>
-                <td><strong>Honor Magic8 Pro</strong></td>
-                <td><strong>Dual eSIM</strong> + Physical SIM.</td>
-                <td><strong>Google Wallet</strong> natif.</td>
-                <td><strong>Cip Honor C1+ RF</strong> (kuatkan liputan 5G/roaming di kawasan pedalaman/tren laju) + IP68/IP69/IP69K.</td>
-                <td><span class="badge-gain">+Signal &amp; Lasak:</span> Tahan jet air panas/salji ekstrem (IP69K) + bateri 7,100mAh + Google penuh.</td>
+              <tr data-phone="honorm8">
+                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3</span></td>
+                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/spec/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
+                <td>Dual eSIM + SIM</td>
+                <td>Google Wallet</td>
+                <td><span class="tag-x">IP68/IP69/IP69K</span> + 3D ToF Face Unlock</td>
+                <td><span class="badge-gain">+Signal &amp; lasak</span> hujan ekstrem + 7,100mAh</td>
               </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4 Travel</span></td>
-                <td><strong>vivo X300 Pro &amp; OPPO Find X9 Pro</strong></td>
-                <td><strong>Dual eSIM</strong> + Physical SIM.</td>
-                <td><strong>Google Wallet</strong> natif.</td>
-                <td>Google Maps/Android Auto penuh, IP68/IP69 kalis cuaca hujan/salji, bateri 6,510–7,500mAh.</td>
-                <td><span class="badge-gain">+Bebas Risau:</span> Semua app tempahan (Klook, Uber, Grab, Google Maps) jalan tanpa GBox/MicroG.</td>
+              <tr data-phone="vivox300">
+                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4</span></td>
+                <td><a class="ref-link" href="https://shop.vivo.com/my/product/2555" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a> / <a class="ref-link" href="https://www.oppo.com/my/smartphones/series-find-x/find-x9-pro/" target="_blank" rel="noopener noreferrer"><strong>Find X9 Pro</strong></a></td>
+                <td>Dual eSIM + SIM</td>
+                <td>Google Wallet</td>
+                <td>Maps/Auto penuh, IP68/IP69, bateri besar</td>
+                <td><span class="badge-gain">+Bebas risau</span> app tempahan tanpa GBox</td>
               </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5 Travel</span></td>
-                <td><strong>Xiaomi 18 Pro</strong></td>
-                <td><strong>Dual eSIM</strong> + Physical SIM.</td>
-                <td><strong>Google Wallet</strong> natif.</td>
-                <td><strong>AI Translate Button</strong> fizikal (tekan terus terjemah perbualan) + saiz 6.4" ringan berjalan jauh.</td>
-                <td><span class="badge-gain">+Kompak &amp; Pintar:</span> Butang terjemahan pantas &amp; ringan di tangan sepanjang hari melancong.</td>
-              </tr>
-              <tr class="row-baseline">
+              <tr class="row-baseline" data-phone="pura80">
                 <td class="sticky-rank-col"><span class="rank-pill rp-base">ASAL</span></td>
-                <td><strong>Huawei Pura 80 Ultra</strong></td>
-                <td>Terhad (bergantung rantau/perisian).</td>
-                <td>Tiada Google Wallet / Apple Pay.</td>
-                <td>Perlu GBox/MicroG untuk Google Maps/Uber/Grab; tiada Android Auto natif.</td>
-                <td><strong>Kelemahan Utama Anda Sekarang</strong> apabila melancong ke luar negara.</td>
+                <td><a class="ref-link" href="https://consumer.huawei.com/my/phones/pura80-ultra/specs/" target="_blank" rel="noopener noreferrer"><strong>Pura 80 Ultra</strong></a></td>
+                <td>Terhad (ikut rantau/firmware)</td>
+                <td>Tiada Google Wallet / Apple Pay</td>
+                <td>Perlu GBox/MicroG untuk Maps/Uber</td>
+                <td><strong>Kelemahan utama travel sekarang</strong></td>
               </tr>
             </tbody>
           </table>
@@ -1095,173 +848,584 @@
       </div>
     </section>
 
-    <!-- =========================================================
-         SECTION 5: JADUAL PERBANDINGAN LENGKAP & ANSURAN (512GB)
-         ========================================================= -->
     <section class="section">
       <div class="section-header">
         <div>
-          <h2 class="section-title">5. Jadual Perbandingan Spesifikasi, Tarikh Keluar &amp; Ansuran 0% (Semua 512GB)</h2>
-          <p class="section-desc">Kolum pertama (<strong>Rank &amp; Model</strong>) dan header atas melekat (sticky). Top-up dikira selepas anggaran jual Pura 80 Ultra (~RM 3,200).</p>
+          <h2 class="section-title">5. Jadual Spesifikasi Lengkap, Ansuran &amp; Top-Up</h2>
+          <p class="section-desc">Top-up = harga efektif − nilai trade-in slider. Semua pautan model aktif.</p>
         </div>
-        <button class="btn-fullview" onclick="openFullView('tblFullSpec')">Full View Table</button>
+        <button class="btn-fullview" type="button" onclick="openFullView('tblFullSpec')">Full View Table</button>
       </div>
       <div class="table-viewport" id="tblFullSpec">
         <div class="fullscreen-toolbar">
-          <span>5. Jadual Lengkap Semua 10 Model (Varian 512GB Rasmi Malaysia)</span>
-          <button class="btn-close-full" onclick="closeFullView('tblFullSpec')">✕ Tutup</button>
+          <span>5. Full Spec 512GB MY</span>
+          <button class="btn-close-full" type="button" onclick="closeFullView('tblFullSpec')">✕ Tutup</button>
         </div>
         <div class="fullscreen-scroll-area">
-          <table class="rank-table" style="min-width: 1380px;">
+          <table class="rank-table" style="min-width:1480px;" id="tableFull">
             <thead>
               <tr>
-                <th class="sticky-rank-col">Overall Rank &amp; Model</th>
-                <th>Tarikh Keluar MY</th>
-                <th>Harga 512GB (MY)</th>
-                <th>12 Bln / 24 Bln / 36 Bln (0%)</th>
-                <th>Top-Up Lepas Jual Pura (~RM 3.2k)</th>
-                <th>Cip Pemproses</th>
+                <th class="sticky-rank-col">Rank &amp; Model</th>
+                <th>Tarikh MY</th>
+                <th>Harga 512GB</th>
+                <th>12 / 24 / 36 Bln</th>
+                <th>Top-Up</th>
+                <th>Cip</th>
                 <th>Skrin &amp; Berat</th>
-                <th>Kamera Utama &amp; Telefoto</th>
+                <th>Kamera</th>
                 <th>Bateri &amp; Caj</th>
+                <th>Ciri Eksklusif</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="row-rank-1">
-                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1</span> vivo X300 Pro (16+512GB)</td>
-                <td>13 Nov 2025</td>
-                <td class="num">RM 4,699</td>
-                <td class="num">RM 391.58 / 195.79 / 130.53</td>
-                <td><strong>~RM 1,499</strong></td>
-                <td>Dimensity 9500 (3nm)</td>
-                <td>6.78" LTPO AMOLED • 226g</td>
-                <td>50MP f/1.57 LYT-828 + 200MP 3.7x ZEISS APO</td>
-                <td>6,510mAh • 90W / 40W</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2</span> Honor Magic8 Pro (12+512GB)</td>
-                <td>27 Nov 2025</td>
-                <td class="num">RM 4,599</td>
-                <td class="num">RM 383.25 / 191.63 / 127.75</td>
-                <td><strong>~RM 1,399</strong></td>
-                <td>SD 8 Elite Gen 5 (3nm)</td>
-                <td>6.71" LTPO OLED • 219g</td>
-                <td>50MP f/1.6 + 200MP 3.7x Ultra Night (CIPA 5.5)</td>
-                <td>7,100mAh • 100W / 80W</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3</span> OPPO Find X9 Pro (16+512GB)</td>
-                <td>29 Okt 2025</td>
-                <td class="num">RM 4,999 (Promo 4,399)</td>
-                <td class="num">RM 416.58 / 208.29 / 138.86</td>
-                <td><strong>~RM 1,199 – 1,799</strong></td>
-                <td>Dimensity 9500 (3nm)</td>
-                <td>6.78" LTPO AMOLED • 224g</td>
-                <td>50MP f/1.5 Hasselblad + 200MP 3x Telefoto</td>
-                <td>7,500mAh • 80W / 50W</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4</span> Galaxy S26 Ultra (12+512GB)</td>
-                <td>26 Feb 2026</td>
-                <td class="num">RM 5,599 (RRP 6,799)</td>
-                <td class="num">RM 466.58 / 233.29 / 155.53</td>
-                <td><strong>~RM 2,399</strong></td>
-                <td>SD 8 Elite Gen 5 (3nm)</td>
-                <td>6.9" Privacy AMOLED • 214g</td>
-                <td>200MP f/1.4 + 50MP 5x + 10MP 3x</td>
-                <td>5,000mAh • 60W / 25W</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5</span> iPhone 17 Pro (512GB)</td>
-                <td>19 Sep 2025</td>
-                <td class="num">RM 5,899 (RRP 6,499)</td>
-                <td class="num">RM 491.58 / 245.79 / 163.86</td>
-                <td><strong>~RM 2,699</strong></td>
-                <td>Apple A19 Pro (3nm)</td>
-                <td>6.3" ProMotion OLED • 206g</td>
-                <td>48MP f/1.78 + 48MP 4x (8x optical-quality)</td>
-                <td>~3,988mAh (31j video)</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#6</span> iPhone 18 Pro (512GB)</td>
-                <td>18 Sep 2026</td>
-                <td class="num">RM 6,499 (RRP)</td>
-                <td class="num">RM 541.58 / 270.79 / 180.53</td>
-                <td><strong>~RM 3,299</strong></td>
-                <td>Apple A20 Pro</td>
-                <td>6.3" ProMotion OLED • 211g</td>
-                <td>48MP Var. Aperture f/1.48–4.0 + 48MP 4x (8x)</td>
-                <td>~4,250mAh (36j video)</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#7</span> Xiaomi 18 Pro (12+512GB)</td>
-                <td>18 Nov 2026</td>
-                <td class="num">RM 4,999 (RRP 5,299)</td>
-                <td class="num">RM 416.58 / 208.29 / 138.86</td>
-                <td><strong>~RM 1,799</strong></td>
-                <td>SD 8 Elite Gen 6 (2nm)</td>
-                <td>6.4" LTPO + 2.7" Rear • 192g</td>
-                <td>200MP f/1.67 Leica + 200MP 3.2x Leica</td>
-                <td>6,000mAh • 90W / 50W</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#8</span> iPhone 17 Pro Max (512GB)</td>
-                <td>19 Sep 2025</td>
-                <td class="num">RM 6,399 (RRP 6,999)</td>
-                <td class="num">RM 533.25 / 266.63 / 177.75</td>
-                <td><strong>~RM 3,199</strong></td>
-                <td>Apple A19 Pro (3nm)</td>
-                <td>6.9" ProMotion OLED • 233g</td>
-                <td>48MP f/1.78 + 48MP 4x (8x optical-quality)</td>
-                <td>~4,823mAh (39j video)</td>
-              </tr>
-              <tr>
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#9</span> iPhone 18 Pro Max (512GB)</td>
-                <td>18 Sep 2026</td>
-                <td class="num">RM 6,999 (RRP)</td>
-                <td class="num">RM 583.25 / 291.63 / 194.42</td>
-                <td><strong>~RM 3,799</strong></td>
-                <td>Apple A20 Pro</td>
-                <td>6.9" ProMotion OLED • 249g</td>
-                <td>48MP Var. Aperture f/1.48–4.0 + 48MP 4x (8x)</td>
-                <td>~5,100mAh (45j video)</td>
-              </tr>
-              <tr class="row-baseline">
-                <td class="sticky-rank-col"><span class="rank-pill rp-base">ASAL</span> Pura 80 Ultra (16+512GB)</td>
-                <td>24 Jul 2025</td>
-                <td class="num">RM 6,099 (RRP 6,599)</td>
-                <td class="num">RM 508.25 / 254.13 / 169.42</td>
-                <td>Phone Semasa Anda</td>
-                <td>Kirin 9020 (7nm)</td>
-                <td>6.8" LTPO OLED • 233g</td>
-                <td>50MP 1" RYYB Var. Aperture + 3.7x/9.4x</td>
-                <td>5,170mAh • 100W / 80W</td>
-              </tr>
-            </tbody>
+            <tbody id="tbodyFull"></tbody>
           </table>
         </div>
       </div>
       <div class="scroll-hint">
-        <span>↔ Skrol mendatar untuk lihat semua kolum. Kolum kiri (Rank &amp; Model) dan baris header atas sentiasa melekat.</span>
-        <button class="btn-fullview" style="padding: 5px 10px; font-size: 0.74rem;" onclick="openFullView('tblFullSpec')">Buka Skrin Penuh</button>
+        <span>↔ Skrol mendatar. Gunakan carian/penapis di atas untuk tapis kad &amp; baris.</span>
+        <button class="btn-fullview" style="padding:5px 10px;font-size:0.74rem;" type="button" onclick="openFullView('tblFullSpec')">Buka Skrin Penuh</button>
       </div>
     </section>
 
     <div class="footer-note">
-      Sumber Data: Harga rasmi &amp; promosi Malaysia yang disahkan (Apple Store MY / Machines / Switch, vivo MY, Honor MY, OPPO MY / Urban Republic, Samsung MY / Senheng, Xiaomi MY, Huawei MY) serta skor makmal DXOMARK (Nov 2026).
+      Sumber: harga &amp; spek MY yang disahkan (vivo / Honor / OPPO / Senheng / Apple / Huawei). Xiaomi dilabel status semakan. Semak semula halaman rasmi sebelum beli kerana promosi boleh berubah.
     </div>
   </div>
 
   <script>
-    function setDockTenure(months, btn) {
-      document.querySelectorAll('.dock-tab').forEach(tab => tab.classList.remove('active'));
-      btn.classList.add('active');
+    const TRADE_DEFAULT = 3200;
+    let dockMonths = 36;
+    let activeFilter = 'all';
+    let searchQuery = '';
+    let sortMode = 'rank';
+    let selectedCompare = new Set();
 
-      document.querySelectorAll('.dock-phone-monthly').forEach(el => {
-        const price = parseFloat(el.getAttribute('data-price'));
-        const monthly = (price / months).toFixed(2);
-        el.textContent = `RM ${monthly} / bln`;
+    const PHONES = [
+      {
+        id: 'vivox300',
+        name: 'vivo X300 Pro',
+        short: 'vivo X300 Pro (16+512GB)',
+        brand: 'vivo',
+        os: 'android',
+        rank: 1,
+        best: true,
+        baseline: false,
+        date: '13 Nov 2025',
+        rrp: 4699,
+        price: 4699,
+        priceLabel: 'RM 4,699 (Rasmi MY)',
+        chip: 'Dimensity 9500 (3nm)',
+        screen: '6.78" LTPO AMOLED',
+        weight: 226,
+        battery: 6510,
+        charge: '90W kabel / 40W wireless',
+        camera: '50MP utama + 200MP ZEISS APO telefoto',
+        search: 'vivo x300 pro dimensity zeiss esim android kamera telefoto',
+        url: 'https://shop.vivo.com/my/product/2555',
+        chargerInBox: 'Ada (biasanya 90W MY)',
+        osUpdates: '~4–5 tahun OS + patch (ColorOS/Funtouch ikut rantau)',
+        fingerprint: 'Ultrasonic (in-display)',
+        exclusive: ['ZEISS APO 200MP telefoto', 'Natural Color landscape'],
+        why: 'Kamera ZEISS #1 Android + 6,510mAh + Google/eSIM pada harga RM 4,699.',
+        vs: '<span class="badge-gain">+Dapat:</span> Google/eSIM penuh, bateri +1,340mAh, jimat ~RM 1,400.<br><span class="badge-loss">-Hilang:</span> Sensor 1" RYYB &amp; zum optikal 9.4x.'
+      },
+      {
+        id: 'honorm8',
+        name: 'Honor Magic8 Pro',
+        short: 'Honor Magic8 Pro (12+512GB)',
+        brand: 'honor',
+        os: 'android',
+        rank: 2,
+        best: false,
+        baseline: false,
+        date: '27 Nov 2025',
+        rrp: 4599,
+        price: 4599,
+        priceLabel: 'RM 4,599 (Rasmi MY)',
+        chip: 'Snapdragon 8 Elite Gen 5',
+        screen: '6.71" OLED',
+        weight: 219,
+        battery: 7100,
+        charge: '100W kabel / 80W wireless',
+        camera: '50MP utama + 200MP telefoto',
+        search: 'honor magic8 pro snapdragon 3d tof ip69k esim android',
+        url: 'https://www.honor.com/my/phones/honor-magic8-pro/spec/',
+        chargerInBox: 'Ada (biasanya 100W)',
+        osUpdates: '~5 tahun MagicOS / patch keselamatan',
+        fingerprint: 'Ultrasonic (in-display)',
+        exclusive: ['3D ToF Face Unlock', 'IP68 / IP69 / IP69K'],
+        why: 'Paling dekat DNA Huawei (MagicOS + 3D Face) tetapi ada Google, eSIM &amp; 7,100mAh.',
+        vs: '<span class="badge-gain">+Dapat:</span> Bateri +1,930mAh, Google/Wallet, jimat ~RM 1,500.<br><span class="badge-loss">-Hilang:</span> Sensor 1-inci RYYB &amp; dwi-periskop 9.4x.'
+      },
+      {
+        id: 'oppox9',
+        name: 'OPPO Find X9 Pro',
+        short: 'OPPO Find X9 Pro (16+512GB)',
+        brand: 'oppo',
+        os: 'android',
+        rank: 3,
+        best: false,
+        baseline: false,
+        date: '29 Okt 2025',
+        rrp: 4999,
+        price: 4399,
+        priceLabel: 'RRP RM 4,999 (Promo RM 4,399)',
+        chip: 'Dimensity 9500',
+        screen: '6.78" LTPO AMOLED',
+        weight: 224,
+        battery: 7500,
+        charge: '80W kabel / 50W wireless',
+        camera: '50MP Hasselblad + 200MP telefoto',
+        search: 'oppo find x9 pro hasselblad dimensity bateri esim android',
+        url: 'https://www.oppo.com/my/smartphones/series-find-x/find-x9-pro/',
+        chargerInBox: 'Ada (biasanya 80W SUPERVOOC)',
+        osUpdates: '~5 tahun ColorOS + patch',
+        fingerprint: 'Optical (in-display)',
+        exclusive: ['7,500mAh Si-C terbesar dalam set', 'Hasselblad Color Calibration'],
+        why: 'Bateri terbesar 7,500mAh + kamera Hasselblad pada harga promo RM 4,399.',
+        vs: '<span class="badge-gain">+Dapat:</span> Bateri +2,330mAh, eSIM/Google, warna Hasselblad.<br><span class="badge-loss">-Hilang:</span> Wireless 50W (vs 80W) &amp; zum ekstrem 9.4x.'
+      },
+      {
+        id: 's26u',
+        name: 'Galaxy S26 Ultra',
+        short: 'Samsung Galaxy S26 Ultra (12+512GB)',
+        brand: 'samsung',
+        os: 'android',
+        rank: 4,
+        best: false,
+        baseline: false,
+        date: '26 Feb 2026',
+        rrp: 6799,
+        price: 5599,
+        priceLabel: 'RRP RM 6,799 (Promo RM 5,599–5,999)',
+        chip: 'Snapdragon 8 Elite Gen 5 (For Galaxy)',
+        screen: '6.9" Privacy Display AMOLED',
+        weight: 214,
+        battery: 5000,
+        charge: '60W kabel / 25W wireless',
+        camera: '200MP f/1.4 utama + zoom 3x/5x',
+        search: 'samsung galaxy s26 ultra privacy display s pen esim android',
+        url: 'https://www.senheng.com.my/product/galaxy-s26-ultra-5g/',
+        chargerInBox: 'Tiada (beli berasingan)',
+        osUpdates: '7 tahun OS + keselamatan',
+        fingerprint: 'Ultrasonic (in-display)',
+        exclusive: ['Privacy Display terbina', 'S Pen', '7 tahun kemas kini'],
+        why: 'Produktiviti travel (Privacy Display, S Pen, dual eSIM, 7 tahun OS) + 200MP f/1.4.',
+        vs: '<span class="badge-gain">+Dapat:</span> Skrin anti-silau Privacy, S Pen, Google/eSIM, 7 tahun update.<br><span class="badge-loss">-Hilang:</span> Skor kamera DXO lebih rendah &amp; bateri 5,000mAh.'
+      },
+      {
+        id: 'iphone17pro',
+        name: 'iPhone 17 Pro',
+        short: 'iPhone 17 Pro (512GB)',
+        brand: 'apple',
+        os: 'ios',
+        rank: 5,
+        best: false,
+        baseline: false,
+        date: '19 Sep 2025',
+        rrp: 6499,
+        price: 5899,
+        priceLabel: 'RRP RM 6,499 (Promo RM 5,899)',
+        chip: 'Apple A19 Pro',
+        screen: '6.3" ProMotion OLED',
+        weight: 206,
+        battery: 3988,
+        charge: '~31 jam video · caj USB-C',
+        camera: '48MP f/1.78 + 48MP 4x',
+        search: 'iphone 17 pro apple a19 ios esim suica wallet video',
+        url: 'https://www.apple.com/my/iphone-17-pro/',
+        chargerInBox: 'Tiada',
+        osUpdates: '~6–7 tahun iOS',
+        fingerprint: 'Tiada (Face ID)',
+        exclusive: ['Apple Wallet transit (Suica dsb.)', 'ProRes video ecosystem'],
+        why: 'iPhone Pro paling berbaloi (diskaun ~RM 600 vs 18 Pro), eSIM/Apple Pay/Suica &amp; video ProRes.',
+        vs: '<span class="badge-gain">+Dapat:</span> Video 4K120 ProRes, Apple Pay/Suica, eSIM lancar, resale tinggi.<br><span class="badge-loss">-Hilang:</span> Foto malam 1" &amp; caj pantas 100W/80W.'
+      },
+      {
+        id: 'iphone18pro',
+        name: 'iPhone 18 Pro',
+        short: 'iPhone 18 Pro (512GB)',
+        brand: 'apple',
+        os: 'ios',
+        rank: 6,
+        best: false,
+        baseline: false,
+        date: '18 Sep 2026',
+        rrp: 6499,
+        price: 6499,
+        priceLabel: 'RM 6,499 (Rasmi MY)',
+        chip: 'Apple A20 Pro (2nm)',
+        screen: '6.3" ProMotion OLED',
+        weight: 211,
+        battery: 4250,
+        charge: '~36 jam video · caj USB-C',
+        camera: '48MP Fusion Main Variable Aperture f/1.48–f/4.0',
+        search: 'iphone 18 pro apple a20 variable aperture ios esim',
+        url: 'https://www.apple.com/my/shop/buy-iphone/iphone-18-pro',
+        chargerInBox: 'Tiada',
+        osUpdates: '~6–7 tahun iOS',
+        fingerprint: 'Tiada (Face ID)',
+        exclusive: ['Variable Aperture f/1.48–f/4.0', 'Apple Wallet / Suica'],
+        why: 'Kamera utama Variable Aperture (DXOMARK tinggi) + A20 Pro, tetapi tambah ~RM 600 vs 17 Pro.',
+        vs: '<span class="badge-gain">+Dapat:</span> Video ProRes RAW, Variable Aperture, eSIM &amp; resale #1.<br><span class="badge-loss">-Hilang:</span> Skrin 6.3" lebih kecil, caj perlahan, tambah ~RM 400 vs promo Pura.'
+      },
+      {
+        id: 'xiaomi17',
+        name: 'Xiaomi 17/18 Pro',
+        short: 'Xiaomi 17 Pro / 18 Pro (512GB)',
+        brand: 'xiaomi',
+        os: 'android',
+        rank: 7,
+        best: false,
+        baseline: false,
+        date: 'Semak MY',
+        rrp: 5299,
+        price: 4999,
+        priceLabel: 'Anggaran promo ~RM 4,999 (semak semula)',
+        chip: 'Snapdragon flagship (ikut varian)',
+        screen: 'Utama ~6.4" LTPO (varian tertentu)',
+        weight: 192,
+        battery: 6000,
+        charge: '~90W / 50W (ikut varian)',
+        camera: 'Leica (ikut varian rasmi)',
+        search: 'xiaomi 17 18 pro leica android esim',
+        url: 'https://www.mi.com/my/',
+        chargerInBox: 'Ada (biasanya HyperCharge)',
+        osUpdates: '~4–5 tahun HyperOS (ikut rantau)',
+        fingerprint: 'Optical / ultrasonic (ikut varian)',
+        exclusive: ['Saiz kompak (varian tertentu)', 'AI translate (jika ada pada unit MY)'],
+        why: 'Saiz ringan &amp; harga kompetitif, tetapi status MY perlu disahkan.',
+        vs: '<div class="status-note">Jangan claim skrin belakang 2.7" pada semua varian. Sahkan spek unit MY rasmi sebelum banding.</div>',
+        caution: true
+      },
+      {
+        id: 'iphone17promax',
+        name: 'iPhone 17 Pro Max',
+        short: 'iPhone 17 Pro Max (512GB)',
+        brand: 'apple',
+        os: 'ios',
+        rank: 8,
+        best: false,
+        baseline: false,
+        date: '19 Sep 2025',
+        rrp: 6999,
+        price: 6399,
+        priceLabel: 'RRP RM 6,999 (Promo RM 6,399)',
+        chip: 'Apple A19 Pro',
+        screen: '6.9" ProMotion OLED',
+        weight: 233,
+        battery: 4823,
+        charge: '~39 jam video',
+        camera: '48MP f/1.78 + 48MP 4x',
+        search: 'iphone 17 pro max apple ios esim',
+        url: 'https://www.apple.com/my/iphone-17-pro/',
+        chargerInBox: 'Tiada',
+        osUpdates: '~6–7 tahun iOS',
+        fingerprint: 'Tiada (Face ID)',
+        exclusive: ['Skrin besar 6.9" + bateri video ~39j', 'Apple Wallet transit'],
+        why: 'Skrin besar 6.9" + bateri ~39 jam video dengan diskaun ~RM 600 vs 18 Pro Max.',
+        vs: '<span class="badge-gain">+Dapat:</span> Skrin 6.9", video ProRes, eSIM travel.<br><span class="badge-loss">-Hilang:</span> Foto malam ekstrem 1" &amp; caj pantas.'
+      },
+      {
+        id: 'iphone18promax',
+        name: 'iPhone 18 Pro Max',
+        short: 'iPhone 18 Pro Max (512GB)',
+        brand: 'apple',
+        os: 'ios',
+        rank: 9,
+        best: false,
+        baseline: false,
+        date: '18 Sep 2026',
+        rrp: 6999,
+        price: 6999,
+        priceLabel: 'RM 6,999 (Rasmi MY)',
+        chip: 'Apple A20 Pro (2nm)',
+        screen: '6.9" ProMotion OLED',
+        weight: 249,
+        battery: 5100,
+        charge: '~45 jam video',
+        camera: '48MP Variable Aperture f/1.48–f/4.0',
+        search: 'iphone 18 pro max apple a20 variable aperture ios',
+        url: 'https://www.apple.com/my/shop/buy-iphone/iphone-18-pro',
+        chargerInBox: 'Tiada',
+        osUpdates: '~6–7 tahun iOS',
+        fingerprint: 'Tiada (Face ID)',
+        exclusive: ['Variable Aperture + bateri iOS ~45j video', 'Ekosistem travel iOS'],
+        why: 'Bateri iOS paling lama (~45 jam video) + Variable Aperture, tetapi harga hampir RM 7,000.',
+        vs: '<span class="badge-gain">+Dapat:</span> Bateri iOS terlama, video ProRes RAW, eSIM.<br><span class="badge-loss">-Hilang:</span> Paling mahal (~RM 7k) &amp; tiada zum optikal jarah jauh 9.4x.'
+      },
+      {
+        id: 'pura80',
+        name: 'Huawei Pura 80 Ultra',
+        short: 'Huawei Pura 80 Ultra (16+512GB)',
+        brand: 'huawei',
+        os: 'android',
+        rank: 99,
+        best: false,
+        baseline: true,
+        date: '24 Jul 2025',
+        rrp: 6599,
+        price: 6099,
+        priceLabel: 'RRP RM 6,599 (Promo RM 6,099)',
+        chip: 'Kirin 9020',
+        screen: '6.8" LTPO OLED',
+        weight: 233.5,
+        battery: 5170,
+        charge: '100W kabel / 80W wireless',
+        camera: '50MP 1" RYYB Variable Aperture + 3.7x &amp; 9.4x',
+        search: 'huawei pura 80 ultra kirin kamera ryyb',
+        url: 'https://consumer.huawei.com/my/phones/pura80-ultra/specs/',
+        chargerInBox: 'Ada (biasanya 100W)',
+        osUpdates: 'HarmonyOS / patch (ikut rantau; tiada Google Play natif)',
+        fingerprint: 'Optical (in-display)',
+        exclusive: ['Sensor 1" RYYB Variable Aperture', 'Dwi-telefoto 3.7x &amp; 9.4x'],
+        why: 'Telefon semasa anda. Masih #1 untuk foto malam, tetapi travel Google/eSIM terhad.',
+        vs: '<strong>Rujukan Asal</strong> (anggaran jual semula dikawal slider trade-in).'
+      }
+    ];
+
+    const money = (n) => 'RM ' + Number(n).toLocaleString('en-MY', { maximumFractionDigits: 0 });
+    const money2 = (n) => 'RM ' + Number(n).toFixed(2);
+
+    function getTrade() {
+      return Number(document.getElementById('tradeSlider').value);
+    }
+
+    function topUp(phone) {
+      return Math.max(0, phone.price - getTrade());
+    }
+
+    function monthly(phone, months = dockMonths) {
+      return phone.price / months;
+    }
+
+    function matchesFilter(phone) {
+      if (activeFilter === 'price5000' && phone.price > 5000) return false;
+      if (activeFilter === 'battery6500' && phone.battery < 6500) return false;
+      if (activeFilter === 'ios' && phone.os !== 'ios') return false;
+      if (activeFilter === 'android' && phone.os !== 'android') return false;
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        const blob = (phone.search + ' ' + phone.name + ' ' + phone.chip + ' ' + phone.camera + ' ' + phone.exclusive.join(' ')).toLowerCase();
+        if (!blob.includes(q)) return false;
+      }
+      return true;
+    }
+
+    function sortedPhones() {
+      const list = PHONES.filter(matchesFilter).slice();
+      switch (sortMode) {
+        case 'price-asc': list.sort((a, b) => a.price - b.price || a.rank - b.rank); break;
+        case 'monthly-asc': list.sort((a, b) => monthly(a) - monthly(b) || a.rank - b.rank); break;
+        case 'battery-desc': list.sort((a, b) => b.battery - a.battery || a.rank - b.rank); break;
+        case 'weight-asc': list.sort((a, b) => a.weight - b.weight || a.rank - b.rank); break;
+        default: list.sort((a, b) => a.rank - b.rank); break;
+      }
+      return list;
+    }
+
+    function battBar(mah) {
+      const pct = Math.min(100, Math.round((mah / 7500) * 100));
+      return `<div class="batt-wrap"><div class="batt-bar"><div class="batt-fill" style="width:${pct}%"></div></div><span class="batt-label">${mah.toLocaleString()} mAh</span></div>`;
+    }
+
+    function exclusiveTags(phone) {
+      return phone.exclusive.map(t => `<span class="tag-x">${t}</span>`).join(' ');
+    }
+
+    function renderDock() {
+      const el = document.getElementById('dockPhones');
+      el.innerHTML = sortedPhones().map(p => {
+        const checked = selectedCompare.has(p.id) ? 'checked' : '';
+        return `
+          <div class="dock-pill ${p.best ? 'best' : ''} ${p.baseline ? 'baseline' : ''}" data-phone="${p.id}">
+            <a class="dock-name ref-link" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.name}</a>
+            <span class="dock-monthly">${p.baseline ? money2(monthly(p)) + ' / bln' : money2(monthly(p)) + ' / bln'}</span>
+            <span class="dock-full">${p.priceLabel}</span>
+            <div class="dock-actions">
+              <label class="compare-check"><input type="checkbox" ${checked} onchange="toggleCompare('${p.id}', this.checked)" /> Banding</label>
+              <a class="ref-link" style="font-size:0.68rem;" href="${p.url}" target="_blank" rel="noopener noreferrer">Rujukan</a>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function rankPill(phone) {
+      if (phone.baseline) return '<span class="rank-pill rp-base">ASAL</span>';
+      if (phone.rank === 1) return '<span class="rank-pill rp-1">#1 Overall</span>';
+      if (phone.rank === 2) return '<span class="rank-pill rp-2">#2 Overall</span>';
+      if (phone.rank === 3) return '<span class="rank-pill rp-3">#3 Overall</span>';
+      return `<span class="rank-pill rp-mid">#${phone.rank} Overall</span>`;
+    }
+
+    function renderOverall() {
+      const tb = document.getElementById('tbodyOverall');
+      const visible = new Set(sortedPhones().map(p => p.id));
+      tb.innerHTML = PHONES.slice().sort((a,b)=>a.rank-b.rank).map(p => {
+        const hidden = visible.has(p.id) ? '' : 'hidden-by-filter';
+        const rowClass = p.baseline ? 'row-baseline' : (p.rank === 1 ? 'row-rank-1' : '');
+        return `<tr class="${rowClass} ${hidden}" data-phone="${p.id}">
+          <td class="sticky-rank-col">${rankPill(p)}</td>
+          <td><a class="ref-link" href="${p.url}" target="_blank" rel="noopener noreferrer"><strong>${p.short}</strong></a>
+            ${p.caution ? '<div class="status-note">Status pelancaran/spek MY: semak semula. Jangan anggap skrin belakang 2.7" pada semua varian.</div>' : ''}
+          </td>
+          <td>${p.date}</td>
+          <td class="num">${p.priceLabel}</td>
+          <td class="num">${money2(monthly(p, 36))}/bln</td>
+          <td class="num topup-cell" data-id="${p.id}"><strong>${p.baseline ? 'Phone Semasa' : '~' + money(topUp(p))}</strong></td>
+          <td>${p.why}</td>
+          <td>${p.vs}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    function renderBattery() {
+      const order = ['oppox9','honorm8','vivox300','xiaomi17','iphone18promax','iphone17promax','iphone18pro','s26u','iphone17pro','pura80'];
+      const map = Object.fromEntries(PHONES.map(p => [p.id, p]));
+      const visible = new Set(sortedPhones().map(p => p.id));
+      const tb = document.getElementById('tbodyBattery');
+      tb.innerHTML = order.map((id, idx) => {
+        const p = map[id];
+        if (!p) return '';
+        const hidden = visible.has(p.id) ? '' : 'hidden-by-filter';
+        const pill = p.baseline ? '<span class="rank-pill rp-base">ASAL</span>'
+          : idx === 0 ? '<span class="rank-pill rp-1">#1 Bateri</span>'
+          : idx === 1 ? '<span class="rank-pill rp-2">#2 Bateri</span>'
+          : idx === 2 ? '<span class="rank-pill rp-3">#3 Bateri</span>'
+          : `<span class="rank-pill rp-mid">#${idx + 1}</span>`;
+        const rowClass = p.baseline ? 'row-baseline' : (idx === 0 ? 'row-rank-1' : '');
+        return `<tr class="${rowClass} ${hidden}" data-phone="${p.id}">
+          <td class="sticky-rank-col">${pill}</td>
+          <td><a class="ref-link" href="${p.url}" target="_blank" rel="noopener noreferrer"><strong>${p.name}</strong></a></td>
+          <td>${battBar(p.battery)}</td>
+          <td>${p.charge}</td>
+          <td>${p.chargerInBox}</td>
+          <td>${p.osUpdates}</td>
+          <td>${p.fingerprint}</td>
+          <td>${exclusiveTags(p)}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    function renderFull() {
+      const tb = document.getElementById('tbodyFull');
+      const visible = new Set(sortedPhones().map(p => p.id));
+      tb.innerHTML = PHONES.slice().sort((a,b)=>a.rank-b.rank).map(p => {
+        const hidden = visible.has(p.id) ? '' : 'hidden-by-filter';
+        const rowClass = p.baseline ? 'row-baseline' : (p.rank === 1 ? 'row-rank-1' : '');
+        const m12 = money2(monthly(p,12));
+        const m24 = money2(monthly(p,24));
+        const m36 = money2(monthly(p,36));
+        return `<tr class="${rowClass} ${hidden}" data-phone="${p.id}">
+          <td class="sticky-rank-col">${rankPill(p)} <a class="ref-link" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.short}</a>
+            <div style="margin-top:6px;"><label class="compare-check" style="color:#334155;"><input type="checkbox" ${selectedCompare.has(p.id)?'checked':''} onchange="toggleCompare('${p.id}', this.checked)" /> Banding</label></div>
+          </td>
+          <td>${p.date}</td>
+          <td class="num">${p.priceLabel}</td>
+          <td class="num">${m12} / ${m24} / ${m36}</td>
+          <td class="num topup-cell" data-id="${p.id}"><strong>${p.baseline ? '—' : '~' + money(topUp(p))}</strong></td>
+          <td>${p.chip}</td>
+          <td>${p.screen} · ${p.weight}g</td>
+          <td>${p.camera}</td>
+          <td>${battBar(p.battery)}<div style="margin-top:4px;font-size:0.75rem;">${p.charge}</div></td>
+          <td>${exclusiveTags(p)}<div style="margin-top:6px;font-size:0.75rem;"><strong>Kotak:</strong> ${p.chargerInBox}<br><strong>OS:</strong> ${p.osUpdates}<br><strong>FP:</strong> ${p.fingerprint}</div></td>
+        </tr>`;
+      }).join('');
+    }
+
+    function updateTradePreview() {
+      const trade = getTrade();
+      document.getElementById('tradeValue').textContent = money(trade);
+      const first = sortedPhones().find(p => !p.baseline) || PHONES[0];
+      const tu = topUp(first);
+      document.getElementById('tradeTopupPreview').textContent = `${first.name}: ~${money(tu)}`;
+      document.getElementById('tradeMonthlyPreview').textContent =
+        `Ansuran baki @ ${dockMonths} bln (0%): ~${money2(tu / dockMonths)} / bln (anggaran top-up ÷ bulan)`;
+      document.querySelectorAll('.topup-cell').forEach(cell => {
+        const id = cell.getAttribute('data-id');
+        const phone = PHONES.find(p => p.id === id);
+        if (!phone) return;
+        cell.innerHTML = phone.baseline ? '<strong>Phone Semasa</strong>' : `<strong>~${money(topUp(phone))}</strong>`;
       });
+    }
+
+    function refreshAll() {
+      renderDock();
+      renderOverall();
+      renderBattery();
+      renderFull();
+      updateTradePreview();
+      syncTableFilters();
+      renderCompare();
+    }
+
+    function syncTableFilters() {
+      const visible = new Set(sortedPhones().map(p => p.id));
+      document.querySelectorAll('tr[data-phone]').forEach(tr => {
+        const id = tr.getAttribute('data-phone');
+        // Travel/camera rows may map multiple phones; keep row if any id matches filter via data-phone
+        if (!id) return;
+        // special: row with combined ids handled as single id
+        if (visible.has(id)) tr.classList.remove('hidden-by-filter');
+        else tr.classList.add('hidden-by-filter');
+      });
+    }
+
+    function setDockTenure(months, btn) {
+      dockMonths = months;
+      document.querySelectorAll('.dock-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      refreshAll();
+    }
+
+    function toggleCompare(id, checked) {
+      if (checked) {
+        if (selectedCompare.size >= 3) {
+          alert('Pilih maksimum 3 telefon untuk banding.');
+          refreshAll();
+          return;
+        }
+        selectedCompare.add(id);
+      } else {
+        selectedCompare.delete(id);
+      }
+      renderCompare();
+      refreshAll();
+    }
+
+    function clearCompare() {
+      selectedCompare.clear();
+      refreshAll();
+    }
+
+    function renderCompare() {
+      const panel = document.getElementById('comparePanel');
+      const grid = document.getElementById('compareGrid');
+      if (selectedCompare.size < 2) {
+        panel.classList.remove('open');
+        grid.innerHTML = '';
+        return;
+      }
+      panel.classList.add('open');
+      const phones = [...selectedCompare].map(id => PHONES.find(p => p.id === id)).filter(Boolean);
+      grid.innerHTML = phones.map(p => `
+        <article class="compare-card">
+          <h3><a class="ref-link" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.name}</a></h3>
+          <dl>
+            <dt>Harga efektif</dt><dd class="num">${p.priceLabel}</dd>
+            <dt>Ansuran ${dockMonths} bln</dt><dd class="num">${money2(monthly(p))} / bln</dd>
+            <dt>Top-up (trade-in ${money(getTrade())})</dt><dd class="num">${p.baseline ? '—' : '~' + money(topUp(p))}</dd>
+            <dt>Bateri</dt><dd>${battBar(p.battery)}</dd>
+            <dt>Berat</dt><dd>${p.weight}g</dd>
+            <dt>Cip</dt><dd>${p.chip}</dd>
+            <dt>Kamera</dt><dd>${p.camera}</dd>
+            <dt>Pengecas kotak</dt><dd>${p.chargerInBox}</dd>
+            <dt>OS updates</dt><dd>${p.osUpdates}</dd>
+            <dt>Cap jari</dt><dd>${p.fingerprint}</dd>
+            <dt>Ciri eksklusif</dt><dd>${exclusiveTags(p)}</dd>
+          </dl>
+        </article>
+      `).join('');
     }
 
     function openFullView(viewportId) {
@@ -1270,30 +1434,46 @@
       el.classList.add('fullscreen-active');
       document.body.style.overflow = 'hidden';
     }
-
     function closeFullView(viewportId) {
       const el = document.getElementById(viewportId);
       if (!el) return;
       el.classList.remove('fullscreen-active');
       document.body.style.overflow = '';
     }
+    function downloadPDF() {
+      document.querySelectorAll('.table-viewport.fullscreen-active').forEach(el => el.classList.remove('fullscreen-active'));
+      document.body.style.overflow = '';
+      window.print();
+    }
 
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      refreshAll();
+    });
+    document.getElementById('sortSelect').addEventListener('change', (e) => {
+      sortMode = e.target.value;
+      refreshAll();
+    });
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.getAttribute('data-filter');
+        refreshAll();
+      });
+    });
+    document.getElementById('tradeSlider').addEventListener('input', () => {
+      updateTradePreview();
+      renderCompare();
+    });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        document.querySelectorAll('.table-viewport.fullscreen-active').forEach(el => {
-          el.classList.remove('fullscreen-active');
-        });
+        document.querySelectorAll('.table-viewport.fullscreen-active').forEach(el => el.classList.remove('fullscreen-active'));
         document.body.style.overflow = '';
       }
     });
 
-    function downloadPDF() {
-      document.querySelectorAll('.table-viewport.fullscreen-active').forEach(el => {
-        el.classList.remove('fullscreen-active');
-      });
-      document.body.style.overflow = '';
-      window.print();
-    }
+    refreshAll();
   </script>
 </body>
 </html>
