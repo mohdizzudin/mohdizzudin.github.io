@@ -199,15 +199,21 @@
       }
       #masterTable thead th { top: var(--sticky-h); font-size: .68rem; padding: 8px 6px; }
       #masterTable th.sticky-a, #masterTable td.sticky-a {
-        min-width: 40px; max-width: 44px; width: 40px; padding: 6px 3px; text-align: center;
+        min-width: 28px; max-width: 30px; width: 28px;
+        padding: 6px 0; text-align: center;
       }
       #masterTable th.sticky-b, #masterTable td.sticky-b {
-        left: 40px; min-width: 52px; max-width: 64px; width: 58px; padding: 6px 5px;
+        left: 28px; min-width: 42px; max-width: 48px; width: 44px;
+        padding: 6px 0; text-align: center;
       }
-      #masterTable tbody td.sticky-b { font-size: .72rem; }
+      #masterTable thead th.sticky-a,
+      #masterTable thead th.sticky-b { padding-left: 0; padding-right: 0; font-size: .62rem; }
+      #masterTable tbody td.sticky-a,
+      #masterTable tbody td.sticky-b { font-size: .62rem; line-height: 1.15; }
       .rank-full, .model-full { display: none !important; }
       .rank-short, .model-short { display: inline !important; }
-      .rank-pill { padding: 2px 5px; font-size: .68rem; }
+      .rank-pill { padding: 1px 0; font-size: .6rem; border-radius: 3px; min-width: 0; }
+      .sticky-b .ref { text-underline-offset: 1px; }
       .sticky-b .note { display: none; }
     }
     @media print {
