@@ -20,6 +20,7 @@
       --loss-bg: #fff1f2;
       --accent: #2563eb;
       --section-head-h: 78px;
+      --sticky-tools-h: 52px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -340,19 +341,19 @@
       white-space: nowrap;
     }
 
+    /* Normal: page scroll only. Full View: internal scroll. */
     .table-viewport {
       position: relative;
       width: 100%;
-      max-height: 72vh;
-      overflow: auto;
+      max-height: none;
+      overflow: visible;
       border-radius: 12px;
       border: 1px solid var(--border);
       background: #fff;
-      -webkit-overflow-scrolling: touch;
     }
     .section-sticky-head {
       position: sticky;
-      top: 0;
+      top: var(--sticky-tools-h);
       z-index: 40;
       background: var(--bg-card);
       box-shadow: 0 1px 0 var(--border);
@@ -368,6 +369,8 @@
       border: none;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      -webkit-overflow-scrolling: touch;
     }
     .fullscreen-toolbar {
       display: none;
@@ -381,9 +384,15 @@
     }
     .table-viewport.fullscreen-active .fullscreen-toolbar { display: flex; }
     .table-viewport.fullscreen-active .section-sticky-head { display: none; }
-    .fullscreen-scroll-area { width: 100%; overflow: auto; flex: 1; }
-    .table-viewport:not(.fullscreen-active) .fullscreen-scroll-area {
-      overflow: visible;
+    .fullscreen-scroll-area {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: clip;
+    }
+    .table-viewport.fullscreen-active .fullscreen-scroll-area {
+      overflow: auto;
+      flex: 1;
+      -webkit-overflow-scrolling: touch;
     }
     .btn-close-full {
       background: #ef4444;
@@ -406,7 +415,7 @@
     }
     table.rank-table thead th {
       position: sticky;
-      top: var(--section-head-h);
+      top: calc(var(--sticky-tools-h) + var(--section-head-h));
       z-index: 20;
       background: #0f172a;
       color: #fff;
@@ -1773,10 +1782,16 @@
     }
 
     function syncSectionHeadHeights() {
+      const tools = document.getElementById('stickyTools');
+      if (tools) {
+        document.documentElement.style.setProperty('--sticky-tools-h', `${tools.offsetHeight}px`);
+      }
       document.querySelectorAll('.table-viewport').forEach(vp => {
         const head = vp.querySelector('.section-sticky-head');
         if (!head) return;
-        vp.style.setProperty('--section-head-h', `${head.offsetHeight}px`);
+        const h = `${head.offsetHeight}px`;
+        vp.style.setProperty('--section-head-h', h);
+        document.documentElement.style.setProperty('--section-head-h', h);
       });
     }
 
@@ -1801,6 +1816,7 @@
       btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
       btn.textContent = collapsed ? 'Buka' : 'Tutup';
       btn.title = collapsed ? 'Buka ansuran' : 'Tutup ansuran';
+      requestAnimationFrame(syncSectionHeadHeights);
     }
     function downloadPDF() {
       document.querySelectorAll('.table-viewport.fullscreen-active').forEach(el => el.classList.remove('fullscreen-active'));
