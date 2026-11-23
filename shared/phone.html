@@ -95,7 +95,7 @@
       font-size: 0.75rem;
       font-weight: 700;
       flex: 0 0 auto;
-      max-width: 118px;
+      max-width: 108px;
     }
     #sortSelect option { color: #0f172a; }
     .btn-pdf {
@@ -154,7 +154,7 @@
 
     @media (max-width: 560px) {
       .header-title { font-size: 0.74rem; }
-      #sortSelect { max-width: 96px; font-size: 0.7rem; padding: 6px 6px; }
+      #sortSelect { max-width: 92px; font-size: 0.7rem; padding: 6px 6px; }
       .dock-toggle { padding: 0 8px; font-size: 0.68rem; }
       .tools-inner { padding: 7px 10px; }
     }
@@ -564,6 +564,8 @@
         <div class="header-title" title="Compare phone vs Huawei Pura 80">Compare phone vs Huawei Pura 80</div>
         <select id="sortSelect" aria-label="Susun">
           <option value="rank">Rank</option>
+          <option value="camera">Kamera</option>
+          <option value="cpu">CPU</option>
           <option value="price-asc">Harga ↑</option>
           <option value="monthly-asc">Ansuran</option>
           <option value="battery-desc">Bateri</option>
@@ -1222,6 +1224,8 @@
         brand: 'vivo',
         os: 'android',
         rank: 1,
+        cameraRank: 3,
+        cpuRank: 3,
         best: true,
         baseline: false,
         date: '13 Nov 2025',
@@ -1250,6 +1254,8 @@
         brand: 'honor',
         os: 'android',
         rank: 2,
+        cameraRank: 5,
+        cpuRank: 2,
         best: false,
         baseline: false,
         date: '27 Nov 2025',
@@ -1278,6 +1284,8 @@
         brand: 'oppo',
         os: 'android',
         rank: 3,
+        cameraRank: 4,
+        cpuRank: 3,
         best: false,
         baseline: false,
         date: '29 Okt 2025',
@@ -1306,6 +1314,8 @@
         brand: 'samsung',
         os: 'android',
         rank: 4,
+        cameraRank: 6,
+        cpuRank: 2,
         best: false,
         baseline: false,
         date: '26 Feb 2026',
@@ -1334,6 +1344,8 @@
         brand: 'apple',
         os: 'ios',
         rank: 5,
+        cameraRank: 7,
+        cpuRank: 4,
         best: false,
         baseline: false,
         date: '19 Sep 2025',
@@ -1362,6 +1374,8 @@
         brand: 'apple',
         os: 'ios',
         rank: 6,
+        cameraRank: 2,
+        cpuRank: 1,
         best: false,
         baseline: false,
         date: '18 Sep 2026',
@@ -1390,6 +1404,8 @@
         brand: 'xiaomi',
         os: 'android',
         rank: 7,
+        cameraRank: 8,
+        cpuRank: 5,
         best: false,
         baseline: false,
         date: 'Semak MY',
@@ -1419,6 +1435,8 @@
         brand: 'apple',
         os: 'ios',
         rank: 8,
+        cameraRank: 7,
+        cpuRank: 4,
         best: false,
         baseline: false,
         date: '19 Sep 2025',
@@ -1447,6 +1465,8 @@
         brand: 'apple',
         os: 'ios',
         rank: 9,
+        cameraRank: 2,
+        cpuRank: 1,
         best: false,
         baseline: false,
         date: '18 Sep 2026',
@@ -1475,6 +1495,8 @@
         brand: 'huawei',
         os: 'android',
         rank: 99,
+        cameraRank: 1,
+        cpuRank: 6,
         best: false,
         baseline: true,
         date: '24 Jul 2025',
@@ -1535,6 +1557,8 @@
     function sortedPhones() {
       const list = PHONES.filter(matchesFilter).slice();
       switch (sortMode) {
+        case 'camera': list.sort((a, b) => a.cameraRank - b.cameraRank || a.rank - b.rank); break;
+        case 'cpu': list.sort((a, b) => a.cpuRank - b.cpuRank || a.rank - b.rank); break;
         case 'price-asc': list.sort((a, b) => a.price - b.price || a.rank - b.rank); break;
         case 'monthly-asc': list.sort((a, b) => monthly(a) - monthly(b) || a.rank - b.rank); break;
         case 'battery-desc': list.sort((a, b) => b.battery - a.battery || a.rank - b.rank); break;
