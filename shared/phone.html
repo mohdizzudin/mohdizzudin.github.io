@@ -3,1866 +3,735 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Perbandingan Flagship 512GB MY vs Huawei Pura 80 Ultra</title>
+  <title>Compare phone vs Huawei Pura 80</title>
   <style>
     :root {
-      --bg-page: #eef2f7;
-      --bg-card: #ffffff;
-      --bg-subtle: #f8fafc;
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #64748b;
+      --bg: #eef2f7;
+      --card: #fff;
+      --text: #0f172a;
+      --muted: #64748b;
       --border: #e2e8f0;
-      --dock: #0f172a;
-      --gain: #059669;
-      --gain-bg: #ecfdf5;
-      --loss: #be123c;
-      --loss-bg: #fff1f2;
-      --accent: #2563eb;
-      --section-head-h: 78px;
-      --sticky-tools-h: 52px;
+      --navy: #0f172a;
+      --blue: #2563eb;
+      --green: #059669;
+      --amber: #d97706;
+      --red: #be123c;
+      --sticky-h: 52px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg-page);
-      color: var(--text-primary);
-      line-height: 1.55;
-      -webkit-print-color-adjust: exact !important;
-      print-color-adjust: exact !important;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
     }
-
     a { color: inherit; }
-    a.ref-link {
-      color: #1d4ed8;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      font-weight: 700;
+    .ref { color: #1d4ed8; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+    .sticky-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,23,42,.97); color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 8px 24px rgba(15,23,42,.22);
     }
-    a.ref-link:hover { color: #1e40af; }
-
-    .btn {
-      border: none;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .bar-inner {
+      max-width: 1400px; margin: 0 auto; padding: 8px 12px;
+      display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; min-width: 0;
     }
-
-    .sticky-tools {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(15, 23, 42, 0.97);
-      backdrop-filter: blur(10px);
-      color: #fff;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+    .bar-title {
+      flex: 1 1 auto; min-width: 0; font-size: .82rem; font-weight: 700;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-
-    .tools-inner, .dock-inner, .trade-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 8px 12px;
+    #rankSelect {
+      flex: 0 0 auto; max-width: 150px; border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08); color: #fff; border-radius: 8px;
+      padding: 7px 8px; font-size: .72rem; font-weight: 700;
     }
-
-    .header-row {
-      display: flex;
-      flex-wrap: nowrap;
-      align-items: center;
-      gap: 8px;
-      min-width: 0;
+    #rankSelect option { color: #0f172a; }
+    .icon-btn, .text-btn {
+      border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.08);
+      color: #fff; border-radius: 8px; height: 36px; cursor: pointer; font-weight: 800;
+      display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .header-title {
-      flex: 1 1 auto;
-      min-width: 0;
-      font-size: 0.82rem;
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: #f8fafc;
+    .icon-btn { width: 36px; }
+    .text-btn { padding: 0 10px; font-size: .7rem; white-space: nowrap; }
+    .text-btn.active { background: var(--blue); border-color: var(--blue); }
+    .icon-btn svg { width: 18px; height: 18px; }
+    .calc-wrap {
+      max-width: 1400px; margin: 0 auto; padding: 14px 12px 0;
     }
-    #sortSelect {
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      border-radius: 8px;
-      padding: 7px 8px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      flex: 0 0 auto;
-      max-width: 108px;
+    .calc-card, .panel, .table-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(15,23,42,.03);
     }
-    #sortSelect option { color: #0f172a; }
-    .btn-pdf {
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: #fff;
-      width: 36px;
-      height: 36px;
-      padding: 0;
-      justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    .calc-grid {
+      display: grid; grid-template-columns: 1.2fr 1fr 1.3fr; gap: 12px;
     }
-    .btn-pdf svg { width: 18px; height: 18px; }
-    .dock-toggle {
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      border-radius: 8px;
-      height: 36px;
-      padding: 0 10px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      flex-shrink: 0;
-      font-size: 0.72rem;
-      font-weight: 800;
-      white-space: nowrap;
+    .label {
+      font-size: .68rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .04em; color: var(--muted); margin-bottom: 6px;
     }
-    .dock-toggle:hover { background: rgba(255,255,255,0.16); }
-    .sticky-tools.dock-collapsed .dock-inner {
-      display: none;
-    }
-
-    .dock-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-    }
-    .dock-tab {
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.06);
-      color: #cbd5e1;
-      border-radius: 999px;
-      padding: 5px 11px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .dock-tab.active {
-      background: #2563eb;
-      border-color: #2563eb;
-      color: #fff;
-    }
-
-    @media (max-width: 560px) {
-      .header-title { font-size: 0.74rem; }
-      #sortSelect { max-width: 92px; font-size: 0.7rem; padding: 6px 6px; }
-      .dock-toggle { padding: 0 8px; font-size: 0.68rem; }
-      .tools-inner { padding: 7px 10px; }
-    }
-
-    .dock-phones {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 8px 0 4px;
-      scrollbar-width: thin;
-    }
-    .dock-pill {
-      min-width: 168px;
-      flex: 0 0 auto;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 10px;
-      padding: 8px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .dock-pill.best { border-color: #38bdf8; background: rgba(2,132,199,0.28); }
-    .dock-pill.baseline { border-color: #fda4af; background: rgba(190,18,60,0.25); }
-    .dock-pill.hidden-by-filter { display: none; }
-    .dock-name { font-size: 0.72rem; font-weight: 700; color: #f8fafc; }
-    .dock-monthly { font-size: 0.88rem; font-weight: 800; color: #34d399; font-variant-numeric: tabular-nums; }
-    .dock-pill.baseline .dock-monthly { color: #fda4af; }
-    .dock-full { font-size: 0.64rem; color: #94a3b8; }
-    .dock-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 6px;
-      margin-top: 4px;
-    }
-    .compare-check {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.68rem;
-      color: #cbd5e1;
-      cursor: pointer;
-      user-select: none;
-    }
-    .compare-check input { accent-color: #2563eb; }
-
-    .trade-bar {
-      background: #fff;
-      border-bottom: 1px solid var(--border);
-    }
-    .trade-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 12px;
-      align-items: end;
-    }
-    .trade-label {
-      font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-    .trade-value {
-      font-size: 1.15rem;
-      font-weight: 800;
-      font-variant-numeric: tabular-nums;
-    }
-    #tradeSlider { width: 100%; accent-color: var(--accent); }
+    #tradeSlider { width: 100%; accent-color: var(--blue); }
     #tradeInput {
-      width: 100%;
-      max-width: 180px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 8px 10px;
-      font-size: 1.1rem;
-      font-weight: 800;
-      font-variant-numeric: tabular-nums;
-      color: var(--text-primary);
-      background: #fff;
+      width: 100%; max-width: 160px; border: 1px solid var(--border); border-radius: 8px;
+      padding: 8px 10px; font-size: 1.05rem; font-weight: 800;
     }
-    .trade-hint { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
-
-    .container { max-width: 1280px; margin: 18px auto 60px; padding: 0 14px; }
-
-    .compare-panel {
-      display: none;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+    .bank-row, .tenure-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .chip {
+      border: 1px solid var(--border); background: #f8fafc; border-radius: 999px;
+      padding: 5px 10px; font-size: .72rem; font-weight: 700; cursor: pointer; color: #334155;
     }
-    .compare-panel.open { display: block; }
-    .compare-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-top: 12px;
+    .chip.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .summary-banner {
+      margin-top: 12px; background: linear-gradient(135deg,#0f172a,#1e293b); color: #fff;
+      border-radius: 12px; padding: 12px 14px; display: grid; gap: 4px;
     }
-    .compare-card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      background: var(--bg-subtle);
+    .summary-banner strong { color: #93c5fd; }
+    .hint { font-size: .72rem; color: var(--muted); margin-top: 4px; }
+    .cards {
+      display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 6px; scrollbar-width: thin;
     }
-    .compare-card h3 { font-size: 0.95rem; margin-bottom: 8px; }
-    .compare-card dl { display: grid; gap: 6px; }
-    .compare-card dt { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
-    .compare-card dd { font-size: 0.82rem; margin-bottom: 4px; }
-
-    .report-header {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      color: #fff;
-      border-radius: 14px;
-      padding: 22px;
-      margin-bottom: 18px;
+    .card {
+      min-width: 168px; flex: 0 0 auto; border: 1px solid var(--border); border-radius: 12px;
+      padding: 10px; background: #fff; display: flex; flex-direction: column; gap: 4px;
     }
-    .report-eyebrow {
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #93c5fd;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .report-header h1 {
-      font-size: 1.4rem;
-      font-weight: 800;
-      line-height: 1.25;
-      margin-bottom: 10px;
-    }
-    .report-subtitle { color: #cbd5e1; font-size: 0.9rem; max-width: 960px; }
-    .winner-strip {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 9px;
-      margin-top: 14px;
-    }
-    .winner-chip {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 10px;
-      padding: 9px 10px;
-    }
-    .winner-chip-cat { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.04em; color: #93c5fd; font-weight: 700; }
-    .winner-chip-phone { font-size: 0.84rem; font-weight: 800; margin-top: 2px; }
-    .winner-chip-why { font-size: 0.68rem; color: #cbd5e1; margin-top: 2px; }
-
-    .section {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 8px rgba(15,23,42,0.03);
-    }
-    .section-header {
-      margin-bottom: 0;
-      border-bottom: 1px solid var(--border);
-      padding: 12px 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 10px;
-      flex-wrap: wrap;
-      background: var(--bg-card);
-    }
-    .section-title { font-size: 1.1rem; font-weight: 800; }
-    .section-desc { font-size: 0.83rem; color: var(--text-muted); margin-top: 2px; }
-    .btn-fullview {
-      background: #0f172a;
-      color: #fff;
-      border: 1px solid #334155;
-      padding: 7px 12px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    /* Normal: page scroll only. Full View: internal scroll. */
-    .table-viewport {
-      position: relative;
-      width: 100%;
-      max-height: none;
-      overflow: visible;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: #fff;
-    }
-    .section-sticky-head {
-      position: sticky;
-      top: var(--sticky-tools-h);
-      z-index: 40;
-      background: var(--bg-card);
-      box-shadow: 0 1px 0 var(--border);
-    }
-    .table-viewport.fullscreen-active {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      width: 100vw;
-      height: 100vh;
-      max-height: 100vh;
-      border-radius: 0;
-      border: none;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      -webkit-overflow-scrolling: touch;
-    }
-    .fullscreen-toolbar {
-      display: none;
-      background: #0f172a;
-      color: #fff;
-      padding: 10px 16px;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-    .table-viewport.fullscreen-active .fullscreen-toolbar { display: flex; }
-    .table-viewport.fullscreen-active .section-sticky-head { display: none; }
-    .fullscreen-scroll-area {
-      width: 100%;
-      overflow-x: auto;
-      overflow-y: clip;
-    }
-    .table-viewport.fullscreen-active .fullscreen-scroll-area {
-      overflow: auto;
-      flex: 1;
-      -webkit-overflow-scrolling: touch;
-    }
-    .btn-close-full {
-      background: #ef4444;
-      color: #fff;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 7px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    table.rank-table {
-      width: 100%;
-      min-width: 1120px;
-      border-collapse: separate;
-      border-spacing: 0;
-      font-size: 0.82rem;
-      text-align: left;
-    }
-    table.rank-table thead th {
-      position: sticky;
-      top: calc(var(--sticky-tools-h) + var(--section-head-h));
-      z-index: 20;
-      background: #0f172a;
-      color: #fff;
-      font-weight: 700;
-      padding: 11px;
-      font-size: 0.77rem;
-      white-space: nowrap;
-      border-bottom: 2px solid #334155;
-      border-right: 1px solid rgba(255,255,255,0.08);
-    }
-    .table-viewport.fullscreen-active table.rank-table thead th {
-      top: 0;
-    }
-    table.rank-table thead th.sticky-rank-col {
-      left: 0;
-      z-index: 35;
-      background: #020617;
-      box-shadow: 3px 0 6px rgba(0,0,0,0.25);
-      min-width: 84px;
-    }
-    table.rank-table tbody td {
-      padding: 10px 11px;
-      border-bottom: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      vertical-align: top;
-      color: var(--text-secondary);
-      background: #fff;
-    }
-    table.rank-table tbody tr:nth-child(even) td { background: #f8fafc; }
-    table.rank-table tbody tr.row-rank-1 td { background: #f0f9ff; }
-    table.rank-table tbody tr.row-baseline td { background: #fff1f2; }
-    table.rank-table tbody td.sticky-rank-col {
-      position: sticky;
-      left: 0;
-      z-index: 15;
-      font-weight: 900;
-      color: var(--text-primary);
-      background: #f1f5f9 !important;
-      white-space: nowrap;
-      box-shadow: 3px 0 6px rgba(15,23,42,0.07);
-    }
-    table.rank-table tbody tr.row-rank-1 td.sticky-rank-col { background: #dbeafe !important; color: #1e3a8a; }
-    table.rank-table tbody tr.row-baseline td.sticky-rank-col { background: #ffe4e6 !important; color: #9f1239; }
-    table.rank-table tbody tr.hidden-by-filter { display: none; }
-
+    .card.best { border-color: #38bdf8; background: #f0f9ff; }
+    .card.baseline { border-color: #fda4af; background: #fff1f2; }
+    .card.hidden, tr.hidden { display: none !important; }
     .rank-pill {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 0.76rem;
-      font-weight: 900;
+      display: inline-block; padding: 2px 7px; border-radius: 6px; font-size: .72rem; font-weight: 900;
+      background: #e2e8f0; color: #1e293b; width: fit-content;
     }
-    .rp-1 { background: #1d4ed8; color: #fff; }
-    .rp-2 { background: #0284c7; color: #fff; }
-    .rp-3 { background: #059669; color: #fff; }
-    .rp-mid { background: #e2e8f0; color: #1e293b; }
-    .rp-base { background: #be123c; color: #fff; }
-    .num { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text-primary); }
-
-    .badge-gain, .badge-loss, .tag-x, .badge-pd-ok, .badge-pd-limit {
-      display: inline-block;
-      font-weight: 700;
-      font-size: 0.69rem;
-      padding: 2px 6px;
-      border-radius: 5px;
-      margin-bottom: 2px;
+    .rank-pill.r1 { background: #1d4ed8; color: #fff; }
+    .rank-pill.r2 { background: #0284c7; color: #fff; }
+    .rank-pill.r3 { background: #059669; color: #fff; }
+    .rank-pill.base { background: #be123c; color: #fff; }
+    .card-name { font-size: .78rem; font-weight: 800; }
+    .card-month { font-size: .9rem; font-weight: 800; color: var(--green); font-variant-numeric: tabular-nums; }
+    .card-price { font-size: .68rem; color: var(--muted); }
+    .compare-lab {
+      display: inline-flex; align-items: center; gap: 4px; font-size: .7rem; font-weight: 700;
+      color: #475569; cursor: pointer; user-select: none;
     }
-    .badge-gain { background: var(--gain-bg); color: var(--gain); }
-    .badge-loss { background: var(--loss-bg); color: var(--loss); }
-    .tag-x {
-      background: #eef2ff;
-      color: #4338ca;
-      margin-right: 4px;
-      margin-bottom: 4px;
+    .compare-lab input { accent-color: var(--blue); }
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px;
     }
-    .badge-pd-ok {
-      background: rgba(34, 197, 94, 0.12);
-      color: #16a34a;
-      border: 1px solid rgba(34, 197, 94, 0.28);
+    .toolbar .ghost {
+      border: 1px solid var(--border); background: #fff; border-radius: 8px;
+      padding: 7px 10px; font-size: .75rem; font-weight: 700; cursor: pointer;
     }
-    .badge-pd-limit {
-      background: rgba(234, 179, 8, 0.12);
-      color: #ca8a04;
-      border: 1px solid rgba(234, 179, 8, 0.28);
+    .toolbar .ghost.active { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
+    #colDrawer {
+      display: none; margin-bottom: 10px; padding: 12px; border: 1px dashed #cbd5e1;
+      border-radius: 12px; background: #f8fafc;
     }
-
-    .batt-wrap { display: flex; align-items: center; gap: 8px; min-width: 140px; }
-    .batt-bar {
-      flex: 1;
-      height: 8px;
-      background: #e2e8f0;
-      border-radius: 999px;
-      overflow: hidden;
+    #colDrawer.open { display: block; }
+    .col-groups { display: flex; flex-wrap: wrap; gap: 8px; }
+    .col-groups label {
+      display: inline-flex; align-items: center; gap: 6px; background: #fff;
+      border: 1px solid var(--border); border-radius: 999px; padding: 6px 10px;
+      font-size: .72rem; font-weight: 700; cursor: pointer;
     }
-    .batt-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #34d399, #059669);
-      border-radius: 999px;
+    .table-scroll { overflow-x: auto; overflow-y: clip; border: 1px solid var(--border); border-radius: 12px; }
+    table#masterTable {
+      width: 100%; min-width: 1600px; border-collapse: separate; border-spacing: 0;
+      font-size: .8rem; background: #fff;
     }
-    .batt-label { font-size: 0.75rem; font-weight: 800; white-space: nowrap; }
-
-    .status-note {
-      background: #fff7ed;
-      border: 1px solid #fdba74;
-      color: #9a3412;
-      border-radius: 8px;
-      padding: 8px 10px;
-      font-size: 0.78rem;
-      margin-top: 6px;
+    #masterTable thead th {
+      position: sticky; top: var(--sticky-h); z-index: 20; background: var(--navy); color: #fff;
+      padding: 10px; text-align: left; white-space: nowrap; font-size: .74rem;
+      border-right: 1px solid rgba(255,255,255,.08);
     }
-
-    .scroll-hint {
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      margin-top: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
+    #masterTable th.sticky-a, #masterTable td.sticky-a {
+      position: sticky; left: 0; z-index: 25; min-width: 78px;
     }
-    .footer-note {
-      text-align: center;
-      font-size: 0.76rem;
-      color: var(--text-muted);
-      margin-top: 18px;
+    #masterTable th.sticky-b, #masterTable td.sticky-b {
+      position: sticky; left: 78px; z-index: 25; min-width: 210px;
     }
-
-    @media (max-width: 960px) {
-      .winner-strip { grid-template-columns: repeat(2, 1fr); }
-      .trade-grid { grid-template-columns: 1fr; }
+    #masterTable thead th.sticky-a { background: #020617; z-index: 35; }
+    #masterTable thead th.sticky-b { background: #0b1220; z-index: 35; box-shadow: 3px 0 6px rgba(0,0,0,.2); }
+    #masterTable tbody td {
+      padding: 9px 10px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);
+      vertical-align: top; background: #fff; color: #475569;
     }
-    @media (max-width: 560px) {
-      .winner-strip { grid-template-columns: 1fr; }
-      .report-header h1 { font-size: 1.2rem; }
-      .section { padding: 14px; }
+    #masterTable tbody tr:nth-child(even) td { background: #f8fafc; }
+    #masterTable tbody tr.row-1 td { background: #f0f9ff; }
+    #masterTable tbody tr.row-base td { background: #fff1f2; }
+    #masterTable tbody td.sticky-a { background: #f1f5f9 !important; font-weight: 900; color: var(--text); box-shadow: 2px 0 4px rgba(15,23,42,.05); }
+    #masterTable tbody td.sticky-b { background: #f8fafc !important; box-shadow: 3px 0 6px rgba(15,23,42,.06); }
+    #masterTable tbody tr.row-1 td.sticky-a, #masterTable tbody tr.row-1 td.sticky-b { background: #dbeafe !important; }
+    #masterTable tbody tr.row-base td.sticky-a, #masterTable tbody tr.row-base td.sticky-b { background: #ffe4e6 !important; }
+    .num { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text); }
+    .badge-ok { display:inline-block; background: rgba(34,197,94,.12); color:#16a34a; border:1px solid rgba(34,197,94,.28); border-radius:5px; padding:2px 6px; font-size:.68rem; font-weight:800; }
+    .badge-warn { display:inline-block; background: rgba(234,179,8,.12); color:#ca8a04; border:1px solid rgba(234,179,8,.28); border-radius:5px; padding:2px 6px; font-size:.68rem; font-weight:800; }
+    .tag { display:inline-block; background:#eef2ff; color:#4338ca; border-radius:5px; padding:2px 6px; font-size:.68rem; font-weight:700; margin:0 3px 3px 0; }
+    .note { background:#fff7ed; border:1px solid #fdba74; color:#9a3412; border-radius:8px; padding:6px 8px; font-size:.74rem; margin-top:4px; }
+    .footer { text-align:center; font-size:.74rem; color:var(--muted); padding: 8px 12px 40px; }
+    @media (max-width: 900px) {
+      .calc-grid { grid-template-columns: 1fr; }
+      #rankSelect { max-width: 120px; }
+      .bar-title { font-size: .74rem; }
     }
-
     @media print {
-      @page { size: A4 landscape; margin: 9mm 8mm; }
-      body { background: #fff !important; font-size: 8.2pt; }
-      .sticky-tools, .trade-bar, .btn-fullview, .scroll-hint, .fullscreen-toolbar, .compare-panel { display: none !important; }
-      .container { max-width: 100%; margin: 0; padding: 0; }
-      .report-header, .section { box-shadow: none; padding: 12px; margin-bottom: 10px; border-radius: 8px; }
-      .table-viewport, .fullscreen-scroll-area { max-height: none !important; overflow: visible !important; }
-      table.rank-table { min-width: 100% !important; font-size: 7pt; }
-      table.rank-table thead th, table.rank-table tbody td { position: static !important; box-shadow: none !important; padding: 4px 5px; }
+      .sticky-bar, .toolbar, #colDrawer, .text-btn, .icon-btn { display:none !important; }
+      .table-scroll { overflow: visible !important; }
+      #masterTable { min-width: 100% !important; }
+      #masterTable thead th, #masterTable td.sticky-a, #masterTable td.sticky-b { position: static !important; }
     }
   </style>
 </head>
 <body>
-  <div class="sticky-tools" id="stickyTools">
-    <div class="tools-inner">
-      <div class="header-row">
-        <div class="header-title" title="Compare phone vs Huawei Pura 80">Compare phone vs Huawei Pura 80</div>
-        <select id="sortSelect" aria-label="Susun">
-          <option value="rank">Rank</option>
-          <option value="camera">Kamera</option>
-          <option value="cpu">CPU</option>
-          <option value="price-asc">Harga ↑</option>
-          <option value="monthly-asc">Ansuran</option>
-          <option value="battery-desc">Bateri</option>
-          <option value="weight-asc">Berat</option>
-        </select>
-        <button class="btn btn-pdf" type="button" onclick="downloadPDF()" title="Simpan PDF" aria-label="Download PDF">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3v12"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <path d="M5 19h14"></path>
-          </svg>
-        </button>
-        <button type="button" class="dock-toggle" id="dockToggle" aria-expanded="true" aria-controls="dockInner" title="Tutup ansuran">Tutup</button>
-      </div>
-    </div>
-    <div class="dock-inner" id="dockInner">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-        <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#93c5fd;">Ansuran 0% rasmi MY (512GB)</span>
-        <div class="dock-tabs" role="tablist" aria-label="Tempoh ansuran">
-          <button type="button" class="dock-tab" data-months="12" onclick="setDockTenure(12, this)">12 Bln</button>
-          <button type="button" class="dock-tab" data-months="24" onclick="setDockTenure(24, this)">24 Bln</button>
-          <button type="button" class="dock-tab active" data-months="36" onclick="setDockTenure(36, this)">36 Bln</button>
-        </div>
-      </div>
-      <div class="dock-phones" id="dockPhones"></div>
+  <div class="sticky-bar" id="stickyBar">
+    <div class="bar-inner">
+      <div class="bar-title" title="Compare phone vs Huawei Pura 80">Compare phone vs Huawei Pura 80</div>
+      <select id="rankSelect" aria-label="Ranking">
+        <option value="overall">Overall</option>
+        <option value="camera">Kamera</option>
+        <option value="cpu">CPU/GPU</option>
+        <option value="battery">Bateri mAh</option>
+        <option value="sot">SoT</option>
+        <option value="charge">Caj/PD</option>
+        <option value="travel">Travel</option>
+        <option value="price">Harga ↑</option>
+        <option value="weight">Ringan</option>
+      </select>
+      <button type="button" class="text-btn" id="bandingOnlyBtn">Banding (<span id="compareCount">0</span>)</button>
+      <button type="button" class="text-btn" id="clearCompareBtn">Kosongkan</button>
+      <button type="button" class="text-btn" id="colPickerBtn">Kolum</button>
+      <button type="button" class="icon-btn" id="pdfBtn" title="Simpan PDF" aria-label="Download PDF">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><polyline points="7 10 12 15 17 10"/><path d="M5 19h14"/></svg>
+      </button>
+      <button type="button" class="text-btn" id="cardsToggle">Tutup</button>
     </div>
   </div>
 
-  <div class="trade-bar">
-    <div class="trade-inner">
-      <div class="trade-grid">
+  <div class="calc-wrap">
+    <section class="calc-card">
+      <div class="calc-grid">
         <div>
-          <div class="trade-label">Kalkulator Trade-In Pura 80 Ultra</div>
-          <input id="tradeSlider" type="range" min="2000" max="3000" step="50" value="2500" />
-          <div class="trade-hint">Seret untuk anggaran jual semula (RM 2,000 – RM 3,000). Atau taip terus di kotak nilai.</div>
+          <div class="label">Trade-in Pura 80 Ultra (RM)</div>
+          <input id="tradeSlider" type="range" min="1500" max="3500" step="50" value="2500" />
+          <div class="hint">Julat RM 1,500 – RM 3,500. Top-Up = harga baharu − nilai jual Pura.</div>
+          <div style="margin-top:8px;">
+            <input id="tradeInput" type="number" min="1500" max="3500" step="50" value="2500" inputmode="numeric" />
+          </div>
         </div>
         <div>
-          <div class="trade-label">Nilai Trade-In (RM)</div>
-          <input id="tradeInput" type="number" min="2000" max="3000" step="50" value="2500" inputmode="numeric" aria-label="Nilai trade-in Ringgit" />
+          <div class="label">Bank 0% Installment</div>
+          <div class="bank-row" id="bankRow">
+            <button type="button" class="chip active" data-bank="Maybank EzyPay">Maybank</button>
+            <button type="button" class="chip" data-bank="HSBC 0% CIP">HSBC</button>
+            <button type="button" class="chip" data-bank="RHB Smart Instalment">RHB</button>
+          </div>
+          <div class="label" style="margin-top:10px;">Tempoh</div>
+          <div class="tenure-row" id="tenureRow">
+            <button type="button" class="chip" data-months="12">12 Bln</button>
+            <button type="button" class="chip" data-months="24">24 Bln</button>
+            <button type="button" class="chip active" data-months="36">36 Bln</button>
+          </div>
         </div>
         <div>
-          <div class="trade-label">Contoh Top-Up (harga baharu − jual Pura)</div>
-          <div class="trade-value" id="tradeTopupPreview">—</div>
-          <div class="trade-hint" id="tradeMonthlyPreview"></div>
+          <div class="label">Ringkasan ansuran</div>
+          <div class="summary-banner" id="bankSummary">—</div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section class="panel" id="cardsPanel">
+      <div class="label">Kad ringkas (ikut ranking aktif)</div>
+      <div class="cards" id="cardsGrid"></div>
+    </section>
+
+    <section class="table-card">
+      <div class="toolbar">
+        <button type="button" class="ghost" id="colPickerBtn2">Pilih kolum</button>
+        <span class="hint" id="rankModeHint">Ranking: Overall</span>
+      </div>
+      <div id="colDrawer">
+        <div class="label">Tunjuk / sembunyi kluster kolum</div>
+        <div class="col-groups" id="colGroups"></div>
+      </div>
+      <div class="table-scroll">
+        <table id="masterTable">
+          <thead id="masterHead"></thead>
+          <tbody id="masterBody"></tbody>
+        </table>
+      </div>
+    </section>
   </div>
 
-  <div class="container">
-    <div class="compare-panel" id="comparePanel">
-      <div class="section-header" style="border:none;margin:0;padding:0;">
-        <div>
-          <h2 class="section-title">Head-to-Head Compare</h2>
-          <p class="section-desc">Pilih 2–3 telefon melalui kotak “Banding” pada kad sticky. Maksimum 3.</p>
-        </div>
-        <button type="button" class="btn-fullview" onclick="clearCompare()">Kosongkan</button>
-      </div>
-      <div class="compare-grid" id="compareGrid"></div>
-    </div>
-
-    <header class="report-header">
-      <div class="report-eyebrow">Verified Malaysia Market Data (Nov 2026) · Semua varian 512GB rasmi</div>
-      <h1>Ranking Mengikut Kategori (Kamera, CPU/GPU, Bateri SoT, Caj &amp; Ugreen, Travel) vs Huawei Pura 80 Ultra</h1>
-      <p class="report-subtitle">
-        Setiap model ada pautan rujukan aktif. Harga &amp; spesifikasi di bawah mengikuti data yang disahkan untuk pasaran Malaysia.
-        Xiaomi dilabel status semakan supaya tidak mengelirukan. Cari “A20 Pro”, “Snapdragon”, “PD 3.0” atau “Ugreen” untuk tapis cepat.
-      </p>
-      <div class="winner-strip">
-        <div class="winner-chip">
-          <div class="winner-chip-cat">Juara Overall</div>
-          <div class="winner-chip-phone">vivo X300 Pro</div>
-          <div class="winner-chip-why">Kamera Android kuat + 6,510mAh + RM 4,699</div>
-        </div>
-        <div class="winner-chip">
-          <div class="winner-chip-cat">Juara CPU/GPU</div>
-          <div class="winner-chip-phone">iPhone 18 Pro / Pro Max</div>
-          <div class="winner-chip-why">A20 Pro 2nm · SC ~4,707 / MC ~12,598</div>
-        </div>
-        <div class="winner-chip">
-          <div class="winner-chip-cat">Juara Bateri SoT</div>
-          <div class="winner-chip-phone">OPPO Find X9 Pro</div>
-          <div class="winner-chip-why">7,500mAh · ~11–13 jam SoT</div>
-        </div>
-        <div class="winner-chip">
-          <div class="winner-chip-cat">Juara Ugreen/PD</div>
-          <div class="winner-chip-phone">S26 Ultra / iPhone</div>
-          <div class="winner-chip-why">USB-PD 3.0 / PPS penuh</div>
-        </div>
-        <div class="winner-chip">
-          <div class="winner-chip-cat">Nilai Terbaik</div>
-          <div class="winner-chip-phone">Honor Magic8 Pro</div>
-          <div class="winner-chip-why">RM 4,599 + 7,100mAh + IP69K</div>
-        </div>
-      </div>
-    </header>
-
-    <section class="section">
-      <div class="table-viewport" id="tblOverall">
-        <div class="section-sticky-head">
-          <div class="section-header">
-            <div>
-              <h2 class="section-title">1. Overall Rank (Kamera, Bateri, Travel &amp; Nilai Harga 512GB)</h2>
-              <p class="section-desc">Ansuran 0% untuk 12 / 24 / 36 bulan. Top-Up = harga telefon baharu − nilai jual Pura 80 Ultra semasa (slider trade-in), bukan trade-in telefon baharu.</p>
-            </div>
-            <button class="btn-fullview" type="button" onclick="openFullView('tblOverall')">Full View Table</button>
-          </div>
-        </div>
-        <div class="fullscreen-toolbar">
-          <span>1. Overall Rank · 512GB vs Pura 80 Ultra</span>
-          <button class="btn-close-full" type="button" onclick="closeFullView('tblOverall')">✕ Tutup</button>
-        </div>
-        <div class="fullscreen-scroll-area">
-          <table class="rank-table" id="tableOverall" style="min-width:1280px;">
-            <thead>
-              <tr>
-                <th class="sticky-rank-col">Rank</th>
-                <th>Model (512GB)</th>
-                <th>Tarikh Keluar MY</th>
-                <th>Harga Rasmi / Promo MY</th>
-                <th>12 Bln (0%)</th>
-                <th>24 Bln (0%)</th>
-                <th>36 Bln (0%)</th>
-                <th>Top-Up (lepas jual Pura)</th>
-                <th>Sebab Utama Menang</th>
-                <th>vs Pura 80 Ultra</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyOverall"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="table-viewport" id="tblCamera">
-        <div class="section-sticky-head">
-          <div class="section-header">
-            <div>
-              <h2 class="section-title">2. Rank Berdasarkan Kamera (Cantik Gambar, Detail, Warna &amp; Video)</h2>
-              <p class="section-desc">Menilai kualiti imej sebenar, bukan sekadar zum. Pura 80 Ultra kekal rujukan foto malam ekstrem.</p>
-            </div>
-            <button class="btn-fullview" type="button" onclick="openFullView('tblCamera')">Full View Table</button>
-          </div>
-        </div>
-        <div class="fullscreen-toolbar">
-          <span>2. Camera Rank vs Pura 80 Ultra</span>
-          <button class="btn-close-full" type="button" onclick="closeFullView('tblCamera')">✕ Tutup</button>
-        </div>
-        <div class="fullscreen-scroll-area">
-          <table class="rank-table">
-            <thead>
-              <tr>
-                <th class="sticky-rank-col">Camera Rank</th>
-                <th>Model</th>
-                <th>Sensor &amp; Optik</th>
-                <th>Kekuatan Warna / Detail</th>
-                <th>Video</th>
-                <th>Banding vs Pura 80 Ultra</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="row-baseline" data-phone="pura80">
-                <td class="sticky-rank-col"><span class="rank-pill rp-base">Rujukan #1</span></td>
-                <td><a class="ref-link" href="https://consumer.huawei.com/my/phones/pura80-ultra/specs/" target="_blank" rel="noopener noreferrer"><strong>Huawei Pura 80 Ultra</strong></a></td>
-                <td>50MP 1" RYYB Variable Aperture + dwi-telefoto 3.7x &amp; 9.4x</td>
-                <td>Warna XMAGÉ kaya; detail malam paling bersih pada sensor 1".</td>
-                <td>4K HDR Vivid (bagus, tapi di belakang iPhone &amp; vivo untuk ProRes/RAW).</td>
-                <td><strong>Penanda aras foto malam anda.</strong></td>
-              </tr>
-              <tr class="row-rank-1" data-phone="iphone18pro">
-                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 Pengganti</span></td>
-                <td><a class="ref-link" href="https://www.apple.com/my/shop/buy-iphone/iphone-18-pro" target="_blank" rel="noopener noreferrer"><strong>iPhone 18 Pro / Pro Max</strong></a></td>
-                <td>48MP Fusion Main Variable Aperture f/1.48–f/4.0 + 48MP 4x</td>
-                <td>Warna konsisten; aperture berubah ikut cahaya tanpa tukar lensa.</td>
-                <td><strong>#1:</strong> 4K120 Dolby Vision &amp; ProRes RAW.</td>
-                <td><span class="badge-gain">+Menang:</span> Video &amp; warna konsisten.<br><span class="badge-loss">-Kalah:</span> Detail malam 1" RYYB Huawei masih lebih dalam.</td>
-              </tr>
-              <tr data-phone="vivox300">
-                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 Pengganti</span></td>
-                <td><a class="ref-link" href="https://www.vivo.com/my/products/param/x300-pro" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a></td>
-                <td>50MP utama + 200MP ZEISS APO telefoto</td>
-                <td><strong>ZEISS Natural Color:</strong> warna langsing &amp; landscape bersih; potret ZEISS cantik.</td>
-                <td>8K 30fps &amp; 4K 120fps 10-bit Log (terbaik di Android).</td>
-                <td><span class="badge-gain">+Menang:</span> Detail potret 85mm &amp; video 4K120.<br><span class="badge-loss">-Kalah:</span> Julat dinamik malam ekstrem masih di belakang Huawei.</td>
-              </tr>
-              <tr data-phone="oppox9">
-                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Pengganti</span></td>
-                <td><a class="ref-link" href="https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb" target="_blank" rel="noopener noreferrer"><strong>OPPO Find X9 Pro</strong></a></td>
-                <td>50MP Hasselblad + 200MP telefoto</td>
-                <td><strong>Hasselblad Color:</strong> tone ala filem medium-format, cantik untuk street.</td>
-                <td>4K 120fps Dolby Vision &amp; Master Mode.</td>
-                <td><span class="badge-gain">+Menang:</span> Warna Hasselblad natural.<br><span class="badge-loss">-Kalah:</span> Cahaya sangat malap masih kalah sensor 1".</td>
-              </tr>
-              <tr data-phone="honorm8">
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4</span></td>
-                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/buy/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
-                <td>50MP utama + 200MP telefoto Ultra Night (CIPA 5.5)</td>
-                <td>Warna terang untuk sosial; mode Harcourt Portrait cantik.</td>
-                <td>4K 120fps Magic Log.</td>
-                <td><span class="badge-gain">+Menang:</span> Penstabilan gegaran CIPA 5.5.<br><span class="badge-loss">-Kalah:</span> Pemprosesan AI kadangkala nampak buatan vs Pura.</td>
-              </tr>
-              <tr data-phone="s26u">
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5</span></td>
-                <td><a class="ref-link" href="https://www.senheng.com.my/product/galaxy-s26-ultra-5g/" target="_blank" rel="noopener noreferrer"><strong>Galaxy S26 Ultra</strong></a></td>
-                <td>200MP f/1.4 utama + 50MP 5x + 10MP 3x</td>
-                <td>Warna cerah; kadangkala washed/oversharpened vs vivo/Apple.</td>
-                <td>8K 30fps &amp; 4K 120fps Log.</td>
-                <td><span class="badge-gain">+Menang:</span> Zoom jarak jauh &amp; AI sunting objek.<br><span class="badge-loss">-Kalah:</span> Potret malam &amp; foto pegun di belakang Pura.</td>
-              </tr>
-              <tr data-phone="iphone17pro">
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#6</span></td>
-                <td><a class="ref-link" href="https://www.apple.com/my/iphone-17-pro/" target="_blank" rel="noopener noreferrer"><strong>iPhone 17 Pro / Pro Max</strong></a></td>
-                <td>48MP f/1.78 + 48MP 4x (8x optical-quality)</td>
-                <td>Tone hangat &amp; semula jadi (Photonic Engine).</td>
-                <td>Top 2: 4K120 Dolby Vision &amp; ProRes Log.</td>
-                <td><span class="badge-gain">+Menang:</span> Video &amp; shutter travel.<br><span class="badge-loss">-Kalah:</span> Tiada variable aperture seperti 18 Pro; malam ekstrem kalah 1".</td>
-              </tr>
-              <tr data-phone="xiaomi17">
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#7</span></td>
-                <td><a class="ref-link" href="https://www.mi.com/my/" target="_blank" rel="noopener noreferrer"><strong>Xiaomi 17 Pro / 18 Pro</strong></a></td>
-                <td>Leica Light Fusion (ikut varian). Semak unit rasmi MY.</td>
-                <td>Leica Authentic/Vibrant (bergantung firmware).</td>
-                <td>8K / 4K120 (ikut varian).</td>
-                <td><div class="status-note">Status: maklumat MY &amp; skrin belakang 2.7" <strong>bukan universal</strong>. Sahkan varian sebelum beli.</div></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="table-viewport" id="tblCpu">
-        <div class="section-sticky-head">
-          <div class="section-header">
-            <div>
-              <h2 class="section-title">3. Prestasi Cip (CPU &amp; GPU Performance Ranking)</h2>
-              <p class="section-desc">Peak skor vs kestabilan thermal. Pautan penanda aras Geekbench / NanoReview / perbandingan SoC disertakan.</p>
-            </div>
-            <button class="btn-fullview" type="button" onclick="openFullView('tblCpu')">Full View Table</button>
-          </div>
-        </div>
-        <div class="fullscreen-toolbar">
-          <span>3. CPU &amp; GPU Performance Rank</span>
-          <button class="btn-close-full" type="button" onclick="closeFullView('tblCpu')">✕ Tutup</button>
-        </div>
-        <div class="fullscreen-scroll-area">
-          <table class="rank-table">
-            <thead>
-              <tr>
-                <th class="sticky-rank-col">CPU/GPU Rank</th>
-                <th>Model</th>
-                <th>Cip &amp; Benchmark</th>
-                <th>Kekuatan</th>
-                <th>Nota Thermal / Gaming</th>
-                <th>Rujukan Luaran</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="row-rank-1" data-phone="iphone18pro">
-                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 Overall</span></td>
-                <td>
-                  <a class="ref-link" href="https://www.apple.com/my/shop/buy-iphone/iphone-18-pro" target="_blank" rel="noopener noreferrer"><strong>iPhone 18 Pro / Pro Max</strong></a>
-                </td>
-                <td>
-                  <strong>Apple A20 Pro (2nm)</strong><br>
-                  Single-Core: ~4,707 · Multi-Core: ~12,598
-                </td>
-                <td>Paling tinggi overall CPU/GPU dalam set ini. Vapor chamber ~3× saiz gen sebelumnya.</td>
-                <td><span class="badge-gain">+Stabil</span> untuk sesi gaming panjang; throttling paling terkawal.</td>
-                <td><a class="ref-link" href="https://nanoreview.net/en/soc-compare/mediatek-dimensity-9500-vs-apple-a20-pro" target="_blank" rel="noopener noreferrer">NanoReview: Dimensity 9500 vs A20 Pro</a></td>
-              </tr>
-              <tr data-phone="s26u">
-                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 Android Peak</span></td>
-                <td>
-                  <a class="ref-link" href="https://www.senheng.com.my/product/galaxy-s26-ultra-5g/" target="_blank" rel="noopener noreferrer"><strong>Galaxy S26 Ultra</strong></a>
-                  /
-                  <a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/buy/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a>
-                </td>
-                <td>
-                  <strong>Snapdragon 8 Elite Gen 5 (3nm)</strong><br>
-                  Multi-core AnTuTu v11 &gt;4.0M
-                </td>
-                <td>Peak Android tertinggi untuk frame rate &amp; multi-core burst.</td>
-                <td><span class="badge-loss">-Thermal</span> throttling pada beban grafik berterusan (lebih ketara vs A20 Pro).</td>
-                <td><a class="ref-link" href="https://www.91mobiles.com/processor/qualcomm-snapdragon-8-elite-gen-5-vs-mediatek-dimensity-9500" target="_blank" rel="noopener noreferrer">91mobiles: SD 8 Elite Gen 5 vs Dimensity 9500</a></td>
-              </tr>
-              <tr data-phone="vivox300">
-                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Thermal Balance</span></td>
-                <td>
-                  <a class="ref-link" href="https://www.vivo.com/my/products/param/x300-pro" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a>
-                  /
-                  <a class="ref-link" href="https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb" target="_blank" rel="noopener noreferrer"><strong>OPPO Find X9 Pro</strong></a>
-                </td>
-                <td>
-                  <strong>MediaTek Dimensity 9500 (3nm)</strong><br>
-                  Ray tracing &amp; sustained load lebih seimbang
-                </td>
-                <td>Imbangan prestasi + pengurusan haba sangat baik untuk Android.</td>
-                <td><span class="badge-gain">+Haba terkawal</span> semasa gaming &amp; editing panjang.</td>
-                <td><a class="ref-link" href="https://gadgets.beebom.com/guides/apple-a20-pro-vs-dimensity-9500-benchmark-specs" target="_blank" rel="noopener noreferrer">Beebom: A20 Pro vs Dimensity 9500</a></td>
-              </tr>
-              <tr class="row-baseline" data-phone="pura80">
-                <td class="sticky-rank-col"><span class="rank-pill rp-base">ASAL</span></td>
-                <td><a class="ref-link" href="https://consumer.huawei.com/my/phones/pura80-ultra/specs/" target="_blank" rel="noopener noreferrer"><strong>Huawei Pura 80 Ultra</strong></a></td>
-                <td>
-                  <strong>Kirin 9020</strong><br>
-                  Cukup untuk harian &amp; XMAGE
-                </td>
-                <td>Baik untuk foto/video pipeline XMAGE &amp; tugas harian.</td>
-                <td><span class="badge-loss">-Gaming 3D berat</span> di belakang Snapdragon 8 Elite Gen 5 &amp; A20 Pro.</td>
-                <td><a class="ref-link" href="https://unite4buy.com/cpu/HiSilicon-Kirin-9020-vs-Qualcomm-Snapdragon-8-Elite-Gen-5/" target="_blank" rel="noopener noreferrer">Unite4Buy: Kirin 9020 vs SD 8 Elite Gen 5</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="table-viewport" id="tblBattery">
-        <div class="section-sticky-head">
-          <div class="section-header">
-            <div>
-              <h2 class="section-title">4. Rank Bateri Kapasiti &amp; Ciri Eksklusif</h2>
-              <p class="section-desc">Termasuk pengecas dalam kotak, tempoh kemas kini OS, dan jenis pengimbas cap jari. (SoT sebenar ada di seksyen seterusnya.)</p>
-            </div>
-            <button class="btn-fullview" type="button" onclick="openFullView('tblBattery')">Full View Table</button>
-          </div>
-        </div>
-        <div class="fullscreen-toolbar">
-          <span>4. Battery Capacity, OS, Fingerprint &amp; Exclusive</span>
-          <button class="btn-close-full" type="button" onclick="closeFullView('tblBattery')">✕ Tutup</button>
-        </div>
-        <div class="fullscreen-scroll-area">
-          <table class="rank-table" style="min-width:1280px;">
-            <thead>
-              <tr>
-                <th class="sticky-rank-col">Battery Rank</th>
-                <th>Model</th>
-                <th>Bateri (visual)</th>
-                <th>Caj (Kabel / Wireless)</th>
-                <th>Pengecas Dalam Kotak</th>
-                <th>Kemas Kini OS</th>
-                <th>Cap Jari</th>
-                <th>Ciri Eksklusif</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyBattery"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="table-viewport" id="tblSot">
-        <div class="section-sticky-head">
-          <div class="section-header">
-            <div>
-              <h2 class="section-title">5. Kecekapan Bateri (Battery Performance &amp; Real-World SoT)</h2>
-              <p class="section-desc">mAh besar tidak semestinya paling tahan. Cip cekap + OS boleh menyamai ketahanan bateri lebih besar.</p>
-            </div>
-            <button class="btn-fullview" type="button" onclick="openFullView('tblSot')">Full View Table</button>
-          </div>
-        </div>
-        <div class="fullscreen-toolbar">
-          <span>5. Real-World Screen-on-Time Rank</span>
-          <button class="btn-close-full" type="button" onclick="closeFullView('tblSot')">✕ Tutup</button>
-        </div>
-        <div class="fullscreen-scroll-area">
-          <table class="rank-table">
-            <thead>
-              <tr>
-                <th class="sticky-rank-col">SoT Rank</th>
-                <th>Model</th>
-                <th>Kapasiti</th>
-                <th>Anggaran Screen-on-Time</th>
-                <th>Kenapa ranking begini</th>
-                <th>vs Pura 80 Ultra</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="row-rank-1" data-phone="oppox9">
-                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 Android</span></td>
-                <td><a class="ref-link" href="https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb" target="_blank" rel="noopener noreferrer"><strong>OPPO Find X9 Pro</strong></a></td>
-                <td>7,500mAh Si-C</td>
-                <td class="num">~11–13 jam SoT</td>
-                <td>Kapasiti terbesar + Dimensity 9500 cekap haba/kuasa.</td>
-                <td><span class="badge-gain">+Dapat:</span> Lonjakan ketahanan harian paling besar.</td>
-              </tr>
-              <tr data-phone="honorm8">
-                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 Fizikal</span></td>
-                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/buy/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
-                <td>7,100mAh Si-C</td>
-                <td class="num">~10–12 jam SoT</td>
-                <td>Bateri besar + pengurusan MagicOS; hampir setanding Find X9 Pro.</td>
-                <td><span class="badge-gain">+Dapat:</span> Sehari+ berat tanpa powerbank.</td>
-              </tr>
-              <tr data-phone="iphone18promax">
-                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Per-mAh</span></td>
-                <td>
-                  <a class="ref-link" href="https://www.apple.com/my/shop/buy-iphone/iphone-18-pro" target="_blank" rel="noopener noreferrer"><strong>iPhone 18 Pro Max</strong></a>
-                  (~5,100mAh) &amp;
-                  <a class="ref-link" href="https://www.apple.com/my/iphone-17-pro/" target="_blank" rel="noopener noreferrer"><strong>17 Pro Max</strong></a>
-                  (~4,823mAh)
-                </td>
-                <td>~4,823–5,100mAh</td>
-                <td class="num">Menyamai Android ~7,000mAh</td>
-                <td>iOS + transistor A19/A20 Pro 2nm/3nm: kecekapan per-mAh tertinggi.</td>
-                <td><span class="badge-gain">+Dapat:</span> Ketahanan tinggi walaupun mAh lebih kecil.</td>
-              </tr>
-              <tr data-phone="vivox300">
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4 Imbangan</span></td>
-                <td><a class="ref-link" href="https://www.vivo.com/my/products/param/x300-pro" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a></td>
-                <td>6,510mAh</td>
-                <td class="num">~9.5–11 jam SoT</td>
-                <td>Imbangan kamera berat + bateri besar tanpa ekstrem 7,500mAh.</td>
-                <td><span class="badge-gain">+Dapat:</span> Lebih tahan dari Pura pada penggunaan campuran.</td>
-              </tr>
-              <tr data-phone="s26u">
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5 Standard</span></td>
-                <td><a class="ref-link" href="https://www.senheng.com.my/product/galaxy-s26-ultra-5g/" target="_blank" rel="noopener noreferrer"><strong>Galaxy S26 Ultra</strong></a></td>
-                <td>5,000mAh</td>
-                <td class="num">~7.5–9 jam SoT</td>
-                <td>Flagship standard; Privacy Display &amp; S Pen lebih tumpu produktiviti berbanding ketahanan ekstrem.</td>
-                <td><span class="badge-gain">+Dapat:</span> Sedikit lebih cekap dari Kirin pada beban campuran.</td>
-              </tr>
-              <tr class="row-baseline" data-phone="pura80">
-                <td class="sticky-rank-col"><span class="rank-pill rp-base">ASAL</span></td>
-                <td><a class="ref-link" href="https://consumer.huawei.com/my/phones/pura80-ultra/specs/" target="_blank" rel="noopener noreferrer"><strong>Huawei Pura 80 Ultra</strong></a></td>
-                <td>5,170mAh</td>
-                <td class="num">~6.5–7.5 jam SoT</td>
-                <td>Kirin 9020 memerlukan lebih kuasa pada beban 5G/kamera berat.</td>
-                <td><strong>Rujukan semasa anda.</strong></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="table-viewport" id="tblCharge">
-        <div class="section-sticky-head">
-          <div class="section-header">
-            <div>
-              <h2 class="section-title">6. Kelajuan Cas &amp; Kesesuaian Pengecas Third-Party (Ugreen / Anker / Baseus)</h2>
-              <p class="section-desc">Peak watt rasmi vs kelajuan sebenar jika guna Ugreen/Anker PD. Cari “Ugreen”, “PD 3.0” atau “PPS” di kotak carian atas.</p>
-            </div>
-            <button class="btn-fullview" type="button" onclick="openFullView('tblCharge')">Full View Table</button>
-          </div>
-        </div>
-        <div class="fullscreen-toolbar">
-          <span>6. Charge Speed &amp; Ugreen/Anker Compatibility</span>
-          <button class="btn-close-full" type="button" onclick="closeFullView('tblCharge')">✕ Tutup</button>
-        </div>
-        <div class="fullscreen-scroll-area">
-          <table class="rank-table" style="min-width:1180px;">
-            <thead>
-              <tr>
-                <th class="sticky-rank-col">Charge Rank</th>
-                <th>Model</th>
-                <th>Kelajuan Rasmi</th>
-                <th>Kesesuaian Charger Ugreen/Anker</th>
-                <th>Standard</th>
-                <th>Nota Praktikal</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="row-rank-1" data-phone="s26u">
-                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 PD Bebas</span></td>
-                <td><a class="ref-link" href="https://www.senheng.com.my/product/galaxy-s26-ultra-5g/" target="_blank" rel="noopener noreferrer"><strong>Galaxy S26 Ultra</strong></a></td>
-                <td>60W kabel / 25W wireless</td>
-                <td><span class="badge-pd-ok">Menyokong Ugreen 100% (PD/PPS)</span><br>BEBAS / MENYOKONG PENUH</td>
-                <td>USB-PD 3.0 / PPS</td>
-                <td>Ugreen 65W/100W boleh cas pada kelajuan maksimum ~60W.</td>
-              </tr>
-              <tr data-phone="iphone18pro">
-                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 PD Bebas</span></td>
-                <td><a class="ref-link" href="https://www.apple.com/my/shop/buy-iphone/iphone-18-pro" target="_blank" rel="noopener noreferrer"><strong>iPhone 17 / 18 Pro Series</strong></a></td>
-                <td>~40W–45W kabel</td>
-                <td><span class="badge-pd-ok">Menyokong Ugreen 100% (PD/PPS)</span><br>BEBAS / MENYOKONG PENUH</td>
-                <td>USB-PD</td>
-                <td>Ugreen/Anker 45W+ cukup untuk kelajuan maksimum iPhone.</td>
-              </tr>
-              <tr data-phone="pura80">
-                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Sederhana</span></td>
-                <td><a class="ref-link" href="https://consumer.huawei.com/my/phones/pura80-ultra/specs/" target="_blank" rel="noopener noreferrer"><strong>Huawei Pura 80 Ultra</strong></a></td>
-                <td>100W kabel / 80W wireless</td>
-                <td><span class="badge-pd-limit">Terhad Pengecas Original (PD Perlahan)</span><br>SEDERHANA</td>
-                <td>SuperCharge rasmi · PD/UFCS sederhana</td>
-                <td>100W rasmi. Ugreen PD/UFCS ~40W sederhana.</td>
-              </tr>
-              <tr data-phone="honorm8">
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4 Terhad</span></td>
-                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/buy/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
-                <td>100W kabel / 80W wireless</td>
-                <td><span class="badge-pd-limit">Terhad Pengecas Original (PD Perlahan)</span><br>TERHAD</td>
-                <td>Honor SuperCharge</td>
-                <td>Perlu kepala + kabel rasmi Honor untuk 100W. Ugreen PD ~18W–30W sahaja.</td>
-              </tr>
-              <tr data-phone="vivox300">
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5 Terhad</span></td>
-                <td><a class="ref-link" href="https://www.vivo.com/my/products/param/x300-pro" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a></td>
-                <td>90W kabel / 40W wireless</td>
-                <td><span class="badge-pd-limit">Terhad Pengecas Original (PD Perlahan)</span><br>TERHAD</td>
-                <td>FlashCharge rasmi</td>
-                <td>Perlu FlashCharge rasmi untuk 90W. Ugreen PD ~18W–30W.</td>
-              </tr>
-              <tr data-phone="oppox9">
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#6 Terhad</span></td>
-                <td><a class="ref-link" href="https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb" target="_blank" rel="noopener noreferrer"><strong>OPPO Find X9 Pro</strong></a></td>
-                <td>80W kabel / 50W wireless</td>
-                <td><span class="badge-pd-limit">Terhad Pengecas Original (PD Perlahan)</span><br>TERHAD</td>
-                <td>SUPERVOOC rasmi</td>
-                <td>Perlu SUPERVOOC rasmi untuk 80W. Ugreen PD ~18W.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="table-viewport" id="tblTravel">
-        <div class="section-sticky-head">
-          <div class="section-header">
-            <div>
-              <h2 class="section-title">7. Rank Travel Luar Negara (eSIM, Wallet, Maps, Signal)</h2>
-              <p class="section-desc">Kelancaran di Jepun, Korea, China, Eropah: eSIM, bayaran transit, navigasi.</p>
-            </div>
-            <button class="btn-fullview" type="button" onclick="openFullView('tblTravel')">Full View Table</button>
-          </div>
-        </div>
-        <div class="fullscreen-toolbar">
-          <span>7. Travel Readiness</span>
-          <button class="btn-close-full" type="button" onclick="closeFullView('tblTravel')">✕ Tutup</button>
-        </div>
-        <div class="fullscreen-scroll-area">
-          <table class="rank-table">
-            <thead>
-              <tr>
-                <th class="sticky-rank-col">Travel Rank</th>
-                <th>Model</th>
-                <th>eSIM</th>
-                <th>Pembayaran &amp; Transit</th>
-                <th>Ciri Travel</th>
-                <th>Upgrade vs Pura</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="row-rank-1" data-phone="iphone18pro">
-                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1</span></td>
-                <td><a class="ref-link" href="https://www.apple.com/my/shop/buy-iphone/iphone-18-pro" target="_blank" rel="noopener noreferrer"><strong>iPhone 17/18 Pro (Max)</strong></a></td>
-                <td>Simpan 8+ profil, aktif 2 serentak</td>
-                <td><strong>Apple Pay + Suica / ICOCA / PASMO</strong></td>
-                <td>CarPlay, Maps transit, Find My + AirTag</td>
-                <td><span class="badge-gain">+Lompatan terbesar</span> untuk tren Jepun &amp; kedai global</td>
-              </tr>
-              <tr data-phone="s26u">
-                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2</span></td>
-                <td><a class="ref-link" href="https://www.senheng.com.my/product/galaxy-s26-ultra-5g/" target="_blank" rel="noopener noreferrer"><strong>Galaxy S26 Ultra</strong></a></td>
-                <td>Dual eSIM + SIM fizikal</td>
-                <td>Google Wallet + Samsung Pay</td>
-                <td><span class="tag-x">Privacy Display</span> S Pen, Android Auto, Circle to Search</td>
-                <td><span class="badge-gain">+Praktikal</span> untuk flight &amp; terjemah menu</td>
-              </tr>
-              <tr data-phone="honorm8">
-                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3</span></td>
-                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/buy/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
-                <td>Dual eSIM + SIM</td>
-                <td>Google Wallet</td>
-                <td><span class="tag-x">IP68/IP69/IP69K</span> + 3D ToF Face Unlock</td>
-                <td><span class="badge-gain">+Signal &amp; lasak</span> hujan ekstrem + 7,100mAh</td>
-              </tr>
-              <tr data-phone="vivox300">
-                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4</span></td>
-                <td><a class="ref-link" href="https://www.vivo.com/my/products/param/x300-pro" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a> / <a class="ref-link" href="https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb" target="_blank" rel="noopener noreferrer"><strong>Find X9 Pro</strong></a></td>
-                <td>Dual eSIM + SIM</td>
-                <td>Google Wallet</td>
-                <td>Maps/Auto penuh, IP68/IP69, bateri besar</td>
-                <td><span class="badge-gain">+Bebas risau</span> app tempahan tanpa GBox</td>
-              </tr>
-              <tr class="row-baseline" data-phone="pura80">
-                <td class="sticky-rank-col"><span class="rank-pill rp-base">ASAL</span></td>
-                <td><a class="ref-link" href="https://consumer.huawei.com/my/phones/pura80-ultra/specs/" target="_blank" rel="noopener noreferrer"><strong>Pura 80 Ultra</strong></a></td>
-                <td>Terhad (ikut rantau/firmware)</td>
-                <td>Tiada Google Wallet / Apple Pay</td>
-                <td>Perlu GBox/MicroG untuk Maps/Uber</td>
-                <td><strong>Kelemahan utama travel sekarang</strong></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="table-viewport" id="tblFullSpec">
-        <div class="section-sticky-head">
-          <div class="section-header">
-            <div>
-              <h2 class="section-title">8. Jadual Spesifikasi Lengkap, Ansuran &amp; Top-Up</h2>
-              <p class="section-desc">Top-up = harga efektif − nilai trade-in slider. Semua pautan model aktif.</p>
-            </div>
-            <button class="btn-fullview" type="button" onclick="openFullView('tblFullSpec')">Full View Table</button>
-          </div>
-        </div>
-        <div class="fullscreen-toolbar">
-          <span>8. Full Spec 512GB MY</span>
-          <button class="btn-close-full" type="button" onclick="closeFullView('tblFullSpec')">✕ Tutup</button>
-        </div>
-        <div class="fullscreen-scroll-area">
-          <table class="rank-table" style="min-width:1480px;" id="tableFull">
-            <thead>
-              <tr>
-                <th class="sticky-rank-col">Rank &amp; Model</th>
-                <th>Tarikh MY</th>
-                <th>Harga 512GB</th>
-                <th>12 / 24 / 36 Bln</th>
-                <th>Top-Up</th>
-                <th>Cip</th>
-                <th>Skrin &amp; Berat</th>
-                <th>Kamera</th>
-                <th>Bateri &amp; Caj</th>
-                <th>Ciri Eksklusif</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyFull"></tbody>
-          </table>
-        </div>
-      </div>
-      <div class="scroll-hint">
-        <span>↔ Skrol mendatar. Gunakan carian/penapis di atas untuk tapis kad &amp; baris.</span>
-        <button class="btn-fullview" style="padding:5px 10px;font-size:0.74rem;" type="button" onclick="openFullView('tblFullSpec')">Buka Skrin Penuh</button>
-      </div>
-    </section>
-
-    <div class="footer-note">
-      Sumber: harga &amp; spek MY yang disahkan (vivo / Honor / OPPO / Senheng / Apple / Huawei). Xiaomi dilabel status semakan. Semak semula halaman rasmi sebelum beli kerana promosi boleh berubah.
-    </div>
-  </div>
+  <div class="footer">Sumber harga/spek MY disahkan di pautan rujukan setiap model. Xiaomi dilabel status semakan. Promosi bank 0% tertakluk syarat bank & kedai.</div>
 
   <script>
-    const TRADE_MIN = 2000;
-    const TRADE_MAX = 3000;
-    const TRADE_DEFAULT = 2500;
-    let dockMonths = 36;
-    let sortMode = 'rank';
-    let selectedCompare = new Set();
+    const TRADE_MIN = 1500, TRADE_MAX = 3500, TRADE_DEFAULT = 2500;
+    let tradeValue = TRADE_DEFAULT;
+    let rankMode = 'overall';
+    let bankName = 'Maybank EzyPay';
+    let tenure = 36;
+    let bandingOnly = false;
+    let cardsOpen = true;
+    const selected = new Set();
+
+    const COLS = [
+      { id: 'basic', label: 'Basic Info', keys: ['date','price'] },
+      { id: 'install', label: 'Installments', keys: ['m12','m24','m36'] },
+      { id: 'topup', label: 'Trade-In Top-Up', keys: ['topup'] },
+      { id: 'camera', label: 'Camera & Video', keys: ['camera'] },
+      { id: 'chip', label: 'Chip & Thermal', keys: ['chip'] },
+      { id: 'battery', label: 'Battery & SoT', keys: ['battery','sot'] },
+      { id: 'charge', label: 'Charging & Ugreen', keys: ['charge','pd'] },
+      { id: 'travel', label: 'Travel & eSIM', keys: ['travel'] },
+      { id: 'physical', label: 'Physical & OS', keys: ['physical'] },
+    ];
+    const colOn = Object.fromEntries(COLS.map(c => [c.id, true]));
+
+    const MODE_LABEL = {
+      overall: 'Overall', camera: 'Kamera', cpu: 'CPU/GPU', battery: 'Bateri',
+      sot: 'SoT', charge: 'Caj/PD', travel: 'Travel', price: 'Harga', weight: 'Berat'
+    };
 
     const PHONES = [
       {
-        id: 'vivox300',
-        name: 'vivo X300 Pro',
-        short: 'vivo X300 Pro (16+512GB)',
-        brand: 'vivo',
-        os: 'android',
-        rank: 1,
-        cameraRank: 3,
-        cpuRank: 3,
-        best: true,
-        baseline: false,
-        date: '13 Nov 2025',
-        rrp: 4699,
-        price: 4699,
-        priceLabel: 'RM 4,699 (Rasmi MY)',
-        chip: 'Dimensity 9500 (3nm)',
-        screen: '6.78" LTPO AMOLED',
-        weight: 226,
-        battery: 6510,
-        charge: '90W kabel / 40W wireless',
-        camera: '50MP utama + 200MP ZEISS APO telefoto',
-        search: 'vivo x300 pro dimensity 9500 zeiss esim android kamera telefoto flashcharge ugreen pd terhad',
-        url: 'https://www.vivo.com/my/products/param/x300-pro',
-        chargerInBox: 'Ada (biasanya 90W MY)',
-        osUpdates: '~4–5 tahun OS + patch (ColorOS/Funtouch ikut rantau)',
-        fingerprint: 'Ultrasonic (in-display)',
-        exclusive: ['ZEISS APO 200MP telefoto', 'Natural Color landscape'],
-        why: 'Kamera ZEISS #1 Android + 6,510mAh + Google/eSIM pada harga RM 4,699.',
-        vs: '<span class="badge-gain">+Dapat:</span> Google/eSIM penuh, bateri +1,340mAh, jimat ~RM 1,400.<br><span class="badge-loss">-Hilang:</span> Sensor 1" RYYB &amp; zum optikal 9.4x.'
+        id:'vivox300', name:'vivo X300 Pro', short:'vivo X300 Pro (16+512GB)', baseline:false, best:true,
+        date:'13 Nov 2025', price:4699, priceLabel:'RM 4,699 (Rasmi MY)', weight:226, battery:6510,
+        chip:'Dimensity 9500 (3nm)', screen:'6.78" LTPO AMOLED', camera:'50MP + 200MP ZEISS APO',
+        charge:'90W / 40W', pd:'limited', pdLabel:'Terhad · FlashCharge rasmi; Ugreen PD ~18–30W',
+        sot:'~9.5–11 jam', travel:'Dual eSIM + Google Wallet', fingerprint:'Ultrasonic',
+        osUpdates:'~4–5 tahun', chargerInBox:'Ada', url:'https://www.vivo.com/my/products/param/x300-pro',
+        ranks:{overall:1,camera:3,cpu:3,battery:3,sot:4,charge:5,travel:4,price:2,weight:6},
+        why:{
+          overall:'Kamera ZEISS kuat + 6,510mAh + Google/eSIM pada RM 4,699.',
+          camera:'ZEISS Natural Color + 200MP APO; video 4K120 Log terbaik Android.',
+          cpu:'Dimensity 9500 · thermal balance bagus untuk gaming/editing.',
+          battery:'6,510mAh BlueVolt · imbangan kamera berat.',
+          sot:'~9.5–11 jam SoT penggunaan campuran.',
+          charge:'90W rasmi; third-party PD terhad.',
+          travel:'Dual eSIM + Google apps penuh.',
+          price:'Antara termurah flagship 512GB MY.',
+          weight:'226g · sederhana.'
+        }
       },
       {
-        id: 'honorm8',
-        name: 'Honor Magic8 Pro',
-        short: 'Honor Magic8 Pro (12+512GB)',
-        brand: 'honor',
-        os: 'android',
-        rank: 2,
-        cameraRank: 5,
-        cpuRank: 2,
-        best: false,
-        baseline: false,
-        date: '27 Nov 2025',
-        rrp: 4599,
-        price: 4599,
-        priceLabel: 'RM 4,599 (Rasmi MY)',
-        chip: 'Snapdragon 8 Elite Gen 5',
-        screen: '6.71" OLED',
-        weight: 219,
-        battery: 7100,
-        charge: '100W kabel / 80W wireless',
-        camera: '50MP utama + 200MP telefoto',
-        search: 'honor magic8 pro snapdragon 8 elite gen 5 3d tof ip69k esim android ugreen pd terhad',
-        url: 'https://www.honor.com/my/phones/honor-magic8-pro/buy/',
-        chargerInBox: 'Ada (biasanya 100W)',
-        osUpdates: '~5 tahun MagicOS / patch keselamatan',
-        fingerprint: 'Ultrasonic (in-display)',
-        exclusive: ['3D ToF Face Unlock', 'IP68 / IP69 / IP69K'],
-        why: 'Paling dekat DNA Huawei (MagicOS + 3D Face) tetapi ada Google, eSIM &amp; 7,100mAh.',
-        vs: '<span class="badge-gain">+Dapat:</span> Bateri +1,930mAh, Google/Wallet, jimat ~RM 1,500.<br><span class="badge-loss">-Hilang:</span> Sensor 1-inci RYYB &amp; dwi-periskop 9.4x.'
+        id:'honorm8', name:'Honor Magic8 Pro', short:'Honor Magic8 Pro (12+512GB)', baseline:false, best:false,
+        date:'27 Nov 2025', price:4599, priceLabel:'RM 4,599 (Rasmi MY)', weight:219, battery:7100,
+        chip:'Snapdragon 8 Elite Gen 5', screen:'6.71" OLED', camera:'50MP + 200MP Ultra Night',
+        charge:'100W / 80W', pd:'limited', pdLabel:'Terhad · Honor SuperCharge; Ugreen PD ~18–30W',
+        sot:'~10–12 jam', travel:'Dual eSIM + IP69K + Google Wallet', fingerprint:'Ultrasonic',
+        osUpdates:'~5 tahun', chargerInBox:'Ada', url:'https://www.honor.com/my/phones/honor-magic8-pro/buy/',
+        ranks:{overall:2,camera:5,cpu:2,battery:2,sot:2,charge:4,travel:3,price:1,weight:5},
+        why:{
+          overall:'DNA Huawei + Google/eSIM + 7,100mAh pada RM 4,599.',
+          camera:'200MP Ultra Night + Harcourt Portrait; AI kadang nampak buatan.',
+          cpu:'SD 8 Elite Gen 5 peak Android; thermal throttling pada beban panjang.',
+          battery:'7,100mAh Si-C · kapasiti hampir teratas.',
+          sot:'~10–12 jam SoT.',
+          charge:'100W rasmi; PD third-party perlahan.',
+          travel:'IP68/69/69K + Dual eSIM + Google Wallet.',
+          price:'Harga efektif paling rendah dalam set.',
+          weight:'219g · agak ringan.'
+        }
       },
       {
-        id: 'oppox9',
-        name: 'OPPO Find X9 Pro',
-        short: 'OPPO Find X9 Pro (16+512GB)',
-        brand: 'oppo',
-        os: 'android',
-        rank: 3,
-        cameraRank: 4,
-        cpuRank: 3,
-        best: false,
-        baseline: false,
-        date: '29 Okt 2025',
-        rrp: 4999,
-        price: 4399,
-        priceLabel: 'RRP RM 4,999 (Promo RM 4,399)',
-        chip: 'Dimensity 9500',
-        screen: '6.78" LTPO AMOLED',
-        weight: 224,
-        battery: 7500,
-        charge: '80W kabel / 50W wireless',
-        camera: '50MP Hasselblad + 200MP telefoto',
-        search: 'oppo find x9 pro hasselblad dimensity 9500 bateri sot esim android supervooc ugreen pd terhad',
-        url: 'https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb',
-        chargerInBox: 'Ada (biasanya 80W SUPERVOOC)',
-        osUpdates: '~5 tahun ColorOS + patch',
-        fingerprint: 'Optical (in-display)',
-        exclusive: ['7,500mAh Si-C terbesar dalam set', 'Hasselblad Color Calibration'],
-        why: 'Bateri terbesar 7,500mAh + kamera Hasselblad pada harga promo RM 4,399.',
-        vs: '<span class="badge-gain">+Dapat:</span> Bateri +2,330mAh, eSIM/Google, warna Hasselblad.<br><span class="badge-loss">-Hilang:</span> Wireless 50W (vs 80W) &amp; zum ekstrem 9.4x.'
+        id:'oppox9', name:'OPPO Find X9 Pro', short:'OPPO Find X9 Pro (16+512GB)', baseline:false, best:false,
+        date:'29 Okt 2025', price:4399, priceLabel:'RRP RM 4,999 (Promo RM 4,399)', weight:224, battery:7500,
+        chip:'Dimensity 9500', screen:'6.78" LTPO AMOLED', camera:'50MP Hasselblad + 200MP tele',
+        charge:'80W / 50W', pd:'limited', pdLabel:'Terhad · SUPERVOOC rasmi; Ugreen PD ~18W',
+        sot:'~11–13 jam', travel:'Dual eSIM + Google Wallet', fingerprint:'Optical',
+        osUpdates:'~5 tahun', chargerInBox:'Ada', url:'https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb',
+        ranks:{overall:3,camera:4,cpu:3,battery:1,sot:1,charge:6,travel:4,price:0,weight:4},
+        why:{
+          overall:'7,500mAh + Hasselblad pada promo RM 4,399.',
+          camera:'Hasselblad Color natural untuk street.',
+          cpu:'Dimensity 9500 thermal balance.',
+          battery:'7,500mAh Si-C terbesar dalam set.',
+          sot:'#1 Android SoT ~11–13 jam.',
+          charge:'80W SUPERVOOC; PD third-party sangat terhad.',
+          travel:'Google penuh + eSIM.',
+          price:'Promo kompetitif (efektif ~RM 4,399).',
+          weight:'224g.'
+        }
       },
       {
-        id: 's26u',
-        name: 'Galaxy S26 Ultra',
-        short: 'Samsung Galaxy S26 Ultra (12+512GB)',
-        brand: 'samsung',
-        os: 'android',
-        rank: 4,
-        cameraRank: 6,
-        cpuRank: 2,
-        best: false,
-        baseline: false,
-        date: '26 Feb 2026',
-        rrp: 6799,
-        price: 5599,
-        priceLabel: 'RRP RM 6,799 (Promo RM 5,599–5,999)',
-        chip: 'Snapdragon 8 Elite Gen 5 (For Galaxy)',
-        screen: '6.9" Privacy Display AMOLED',
-        weight: 214,
-        battery: 5000,
-        charge: '60W kabel / 25W wireless',
-        camera: '200MP f/1.4 utama + zoom 3x/5x',
-        search: 'samsung galaxy s26 ultra privacy display s pen esim android snapdragon ugreen anker pd 3.0 pps menyokong',
-        url: 'https://www.senheng.com.my/product/galaxy-s26-ultra-5g/',
-        chargerInBox: 'Tiada (beli berasingan)',
-        osUpdates: '7 tahun OS + keselamatan',
-        fingerprint: 'Ultrasonic (in-display)',
-        exclusive: ['Privacy Display terbina', 'S Pen', '7 tahun kemas kini'],
-        why: 'Produktiviti travel (Privacy Display, S Pen, dual eSIM, 7 tahun OS) + 200MP f/1.4.',
-        vs: '<span class="badge-gain">+Dapat:</span> Skrin anti-silau Privacy, S Pen, Google/eSIM, 7 tahun update.<br><span class="badge-loss">-Hilang:</span> Skor kamera DXO lebih rendah &amp; bateri 5,000mAh.'
+        id:'s26u', name:'Galaxy S26 Ultra', short:'Samsung Galaxy S26 Ultra (12+512GB)', baseline:false, best:false,
+        date:'26 Feb 2026', price:5599, priceLabel:'RRP RM 6,799 (Promo RM 5,599–5,999)', weight:214, battery:5000,
+        chip:'Snapdragon 8 Elite Gen 5 (For Galaxy)', screen:'6.9" Privacy AMOLED', camera:'200MP f/1.4 + 3x/5x',
+        charge:'60W / 25W', pd:'full', pdLabel:'Menyokong Ugreen 100% (PD/PPS) · max ~60W',
+        sot:'~7.5–9 jam', travel:'Dual eSIM + Privacy Display + S Pen', fingerprint:'Ultrasonic',
+        osUpdates:'7 tahun', chargerInBox:'Tiada', url:'https://www.senheng.com.my/product/galaxy-s26-ultra-5g/',
+        ranks:{overall:4,camera:6,cpu:2,battery:8,sot:5,charge:1,travel:2,price:5,weight:3},
+        why:{
+          overall:'Produktiviti travel + Privacy Display + 7 tahun OS.',
+          camera:'Zoom jauh bagus; foto pegun di belakang vivo/Pura.',
+          cpu:'Peak Android bersama Honor.',
+          battery:'5,000mAh standard flagship.',
+          sot:'~7.5–9 jam.',
+          charge:'#1 PD/PPS bebas dengan Ugreen/Anker.',
+          travel:'Privacy Display + S Pen + Dual eSIM.',
+          price:'Promo ~RM 5,599.',
+          weight:'214g · ringan untuk Ultra.'
+        }
       },
       {
-        id: 'iphone17pro',
-        name: 'iPhone 17 Pro',
-        short: 'iPhone 17 Pro (512GB)',
-        brand: 'apple',
-        os: 'ios',
-        rank: 5,
-        cameraRank: 7,
-        cpuRank: 4,
-        best: false,
-        baseline: false,
-        date: '19 Sep 2025',
-        rrp: 6499,
-        price: 5899,
-        priceLabel: 'RRP RM 6,499 (Promo RM 5,899)',
-        chip: 'Apple A19 Pro',
-        screen: '6.3" ProMotion OLED',
-        weight: 206,
-        battery: 3988,
-        charge: '~31 jam video · caj USB-C',
-        camera: '48MP f/1.78 + 48MP 4x',
-        search: 'iphone 17 pro apple a19 ios esim suica wallet video ugreen anker pd 3.0 menyokong',
-        url: 'https://www.apple.com/my/iphone-17-pro/',
-        chargerInBox: 'Tiada',
-        osUpdates: '~6–7 tahun iOS',
-        fingerprint: 'Tiada (Face ID)',
-        exclusive: ['Apple Wallet transit (Suica dsb.)', 'ProRes video ecosystem'],
-        why: 'iPhone Pro paling berbaloi (diskaun ~RM 600 vs 18 Pro), eSIM/Apple Pay/Suica &amp; video ProRes.',
-        vs: '<span class="badge-gain">+Dapat:</span> Video 4K120 ProRes, Apple Pay/Suica, eSIM lancar, resale tinggi.<br><span class="badge-loss">-Hilang:</span> Foto malam 1" &amp; caj pantas 100W/80W.'
+        id:'iphone17pro', name:'iPhone 17 Pro', short:'iPhone 17 Pro (512GB)', baseline:false, best:false,
+        date:'19 Sep 2025', price:5899, priceLabel:'RRP RM 6,499 (Promo RM 5,899)', weight:206, battery:3988,
+        chip:'Apple A19 Pro', screen:'6.3" ProMotion OLED', camera:'48MP f/1.78 + 48MP 4x',
+        charge:'~40–45W USB-C', pd:'full', pdLabel:'Menyokong Ugreen 100% (USB-PD)',
+        sot:'Menyamai Android ~6.5–8j (cekap per-mAh)', travel:'eSIM + Apple Pay/Suica', fingerprint:'Face ID',
+        osUpdates:'~6–7 tahun', chargerInBox:'Tiada', url:'https://www.apple.com/my/iphone-17-pro/',
+        ranks:{overall:5,camera:7,cpu:4,battery:10,sot:7,charge:2,travel:1,price:6,weight:2},
+        why:{
+          overall:'iPhone Pro paling berbaloi vs 18 Pro; travel & video kuat.',
+          camera:'Video ProRes top; malam ekstrem kalah 1" RYYB.',
+          cpu:'A19 Pro sangat cekap; di belakang A20 Pro.',
+          battery:'~3,988mAh · kecil tapi cekap.',
+          sot:'Kecekapan iOS tinggi untuk mAh kecil.',
+          charge:'PD penuh dengan Ugreen/Anker.',
+          travel:'#1 eSIM + Apple Wallet transit.',
+          price:'Promo RM 5,899.',
+          weight:'206g · sangat ringan.'
+        }
       },
       {
-        id: 'iphone18pro',
-        name: 'iPhone 18 Pro',
-        short: 'iPhone 18 Pro (512GB)',
-        brand: 'apple',
-        os: 'ios',
-        rank: 6,
-        cameraRank: 2,
-        cpuRank: 1,
-        best: false,
-        baseline: false,
-        date: '18 Sep 2026',
-        rrp: 6499,
-        price: 6499,
-        priceLabel: 'RM 6,499 (Rasmi MY)',
-        chip: 'Apple A20 Pro (2nm)',
-        screen: '6.3" ProMotion OLED',
-        weight: 211,
-        battery: 4250,
-        charge: '~36 jam video · caj USB-C',
-        camera: '48MP Fusion Main Variable Aperture f/1.48–f/4.0',
-        search: 'iphone 18 pro apple a20 pro variable aperture ios esim ugreen anker pd 3.0 geekbench nanoreview menyokong',
-        url: 'https://www.apple.com/my/shop/buy-iphone/iphone-18-pro',
-        chargerInBox: 'Tiada',
-        osUpdates: '~6–7 tahun iOS',
-        fingerprint: 'Tiada (Face ID)',
-        exclusive: ['Variable Aperture f/1.48–f/4.0', 'Apple Wallet / Suica'],
-        why: 'Kamera utama Variable Aperture (DXOMARK tinggi) + A20 Pro, tetapi tambah ~RM 600 vs 17 Pro.',
-        vs: '<span class="badge-gain">+Dapat:</span> Video ProRes RAW, Variable Aperture, eSIM &amp; resale #1.<br><span class="badge-loss">-Hilang:</span> Skrin 6.3" lebih kecil, caj perlahan, tambah ~RM 400 vs promo Pura.'
+        id:'iphone18pro', name:'iPhone 18 Pro', short:'iPhone 18 Pro (512GB)', baseline:false, best:false,
+        date:'18 Sep 2026', price:6499, priceLabel:'RM 6,499 (Rasmi MY)', weight:211, battery:4250,
+        chip:'Apple A20 Pro (2nm)', screen:'6.3" ProMotion OLED', camera:'48MP Variable Aperture f/1.48–4.0',
+        charge:'~40–45W USB-C', pd:'full', pdLabel:'Menyokong Ugreen 100% (USB-PD)',
+        sot:'Menyamai Android ~7–8.5j', travel:'eSIM + Apple Pay/Suica', fingerprint:'Face ID',
+        osUpdates:'~6–7 tahun', chargerInBox:'Tiada', url:'https://www.apple.com/my/shop/buy-iphone/iphone-18-pro',
+        ranks:{overall:6,camera:2,cpu:1,battery:9,sot:6,charge:2,travel:1,price:7,weight:3},
+        why:{
+          overall:'A20 Pro + Variable Aperture; harga premium.',
+          camera:'#1 pengganti kamera (variable aperture + video).',
+          cpu:'#1 overall CPU/GPU · SC~4707 / MC~12598.',
+          battery:'~4,250mAh.',
+          sot:'Cekap per-mAh.',
+          charge:'PD penuh.',
+          travel:'#1 travel iOS.',
+          price:'RM 6,499 rasmi.',
+          weight:'211g.'
+        }
       },
       {
-        id: 'xiaomi17',
-        name: 'Xiaomi 17/18 Pro',
-        short: 'Xiaomi 17 Pro / 18 Pro (512GB)',
-        brand: 'xiaomi',
-        os: 'android',
-        rank: 7,
-        cameraRank: 8,
-        cpuRank: 5,
-        best: false,
-        baseline: false,
-        date: 'Semak MY',
-        rrp: 5299,
-        price: 4999,
-        priceLabel: 'Anggaran promo ~RM 4,999 (semak semula)',
-        chip: 'Snapdragon flagship (ikut varian)',
-        screen: 'Utama ~6.4" LTPO (varian tertentu)',
-        weight: 192,
-        battery: 6000,
-        charge: '~90W / 50W (ikut varian)',
-        camera: 'Leica (ikut varian rasmi)',
-        search: 'xiaomi 17 18 pro leica android esim snapdragon',
-        url: 'https://www.mi.com/my/',
-        chargerInBox: 'Ada (biasanya HyperCharge)',
-        osUpdates: '~4–5 tahun HyperOS (ikut rantau)',
-        fingerprint: 'Optical / ultrasonic (ikut varian)',
-        exclusive: ['Saiz kompak (varian tertentu)', 'AI translate (jika ada pada unit MY)'],
-        why: 'Saiz ringan &amp; harga kompetitif, tetapi status MY perlu disahkan.',
-        vs: '<div class="status-note">Jangan claim skrin belakang 2.7" pada semua varian. Sahkan spek unit MY rasmi sebelum banding.</div>',
-        caution: true
+        id:'xiaomi17', name:'Xiaomi 17/18 Pro', short:'Xiaomi 17 Pro / 18 Pro (512GB)', baseline:false, best:false, caution:true,
+        date:'Semak MY', price:4999, priceLabel:'Anggaran ~RM 4,999 (semak)', weight:192, battery:6000,
+        chip:'Snapdragon flagship (ikut varian)', screen:'~6.4" LTPO (varian)', camera:'Leica (ikut varian)',
+        charge:'~90W / 50W (ikut varian)', pd:'limited', pdLabel:'Semak varian MY · biasanya HyperCharge rasmi',
+        sot:'~9–10.5 jam (anggaran)', travel:'Dual eSIM (jika unit global/MY)', fingerprint:'Optical/Ultrasonic',
+        osUpdates:'~4–5 tahun', chargerInBox:'Ada', url:'https://www.mi.com/my/',
+        ranks:{overall:7,camera:8,cpu:5,battery:4,sot:8,charge:7,travel:5,price:3,weight:1},
+        why:{
+          overall:'Kompak & harga; status MY perlu disahkan.',
+          camera:'Leica bergantung varian · jangan claim spek universal.',
+          cpu:'Flagship Snapdragon (ikut unit).',
+          battery:'~6,000mAh.',
+          sot:'Anggaran sederhana.',
+          charge:'Bergantung protokol HyperCharge.',
+          travel:'OK jika unit Google/eSIM MY.',
+          price:'Anggaran kompetitif.',
+          weight:'#1 paling ringan (~192g).'
+        }
       },
       {
-        id: 'iphone17promax',
-        name: 'iPhone 17 Pro Max',
-        short: 'iPhone 17 Pro Max (512GB)',
-        brand: 'apple',
-        os: 'ios',
-        rank: 8,
-        cameraRank: 7,
-        cpuRank: 4,
-        best: false,
-        baseline: false,
-        date: '19 Sep 2025',
-        rrp: 6999,
-        price: 6399,
-        priceLabel: 'RRP RM 6,999 (Promo RM 6,399)',
-        chip: 'Apple A19 Pro',
-        screen: '6.9" ProMotion OLED',
-        weight: 233,
-        battery: 4823,
-        charge: '~39 jam video',
-        camera: '48MP f/1.78 + 48MP 4x',
-        search: 'iphone 17 pro max apple a19 ios esim ugreen anker pd 3.0 sot kecekapan menyokong',
-        url: 'https://www.apple.com/my/iphone-17-pro/',
-        chargerInBox: 'Tiada',
-        osUpdates: '~6–7 tahun iOS',
-        fingerprint: 'Tiada (Face ID)',
-        exclusive: ['Skrin besar 6.9" + bateri video ~39j', 'Apple Wallet transit'],
-        why: 'Skrin besar 6.9" + bateri ~39 jam video dengan diskaun ~RM 600 vs 18 Pro Max.',
-        vs: '<span class="badge-gain">+Dapat:</span> Skrin 6.9", video ProRes, eSIM travel.<br><span class="badge-loss">-Hilang:</span> Foto malam ekstrem 1" &amp; caj pantas.'
+        id:'iphone17promax', name:'iPhone 17 Pro Max', short:'iPhone 17 Pro Max (512GB)', baseline:false, best:false,
+        date:'19 Sep 2025', price:6399, priceLabel:'RRP RM 6,999 (Promo RM 6,399)', weight:233, battery:4823,
+        chip:'Apple A19 Pro', screen:'6.9" ProMotion OLED', camera:'48MP f/1.78 + 48MP 4x',
+        charge:'~40–45W USB-C', pd:'full', pdLabel:'Menyokong Ugreen 100% (USB-PD)',
+        sot:'Menyamai Android ~7k mAh class', travel:'eSIM + Apple Pay/Suica', fingerprint:'Face ID',
+        osUpdates:'~6–7 tahun', chargerInBox:'Tiada', url:'https://www.apple.com/my/iphone-17-pro/',
+        ranks:{overall:8,camera:7,cpu:4,battery:7,sot:3,charge:2,travel:1,price:8,weight:7},
+        why:{
+          overall:'Skrin besar + bateri video panjang; lebih mahal.',
+          camera:'Video top; foto malam kalah Pura.',
+          cpu:'A19 Pro.',
+          battery:'~4,823mAh.',
+          sot:'Kecekapan iOS menyamai Android 7,000mAh class.',
+          charge:'PD penuh.',
+          travel:'#1 travel.',
+          price:'Promo RM 6,399.',
+          weight:'233g.'
+        }
       },
       {
-        id: 'iphone18promax',
-        name: 'iPhone 18 Pro Max',
-        short: 'iPhone 18 Pro Max (512GB)',
-        brand: 'apple',
-        os: 'ios',
-        rank: 9,
-        cameraRank: 2,
-        cpuRank: 1,
-        best: false,
-        baseline: false,
-        date: '18 Sep 2026',
-        rrp: 6999,
-        price: 6999,
-        priceLabel: 'RM 6,999 (Rasmi MY)',
-        chip: 'Apple A20 Pro (2nm)',
-        screen: '6.9" ProMotion OLED',
-        weight: 249,
-        battery: 5100,
-        charge: '~45 jam video',
-        camera: '48MP Variable Aperture f/1.48–f/4.0',
-        search: 'iphone 18 pro max apple a20 pro variable aperture ios ugreen anker pd 3.0 sot kecekapan geekbench menyokong',
-        url: 'https://www.apple.com/my/shop/buy-iphone/iphone-18-pro',
-        chargerInBox: 'Tiada',
-        osUpdates: '~6–7 tahun iOS',
-        fingerprint: 'Tiada (Face ID)',
-        exclusive: ['Variable Aperture + bateri iOS ~45j video', 'Ekosistem travel iOS'],
-        why: 'Bateri iOS paling lama (~45 jam video) + Variable Aperture, tetapi harga hampir RM 7,000.',
-        vs: '<span class="badge-gain">+Dapat:</span> Bateri iOS terlama, video ProRes RAW, eSIM.<br><span class="badge-loss">-Hilang:</span> Paling mahal (~RM 7k) &amp; tiada zum optikal jarah jauh 9.4x.'
+        id:'iphone18promax', name:'iPhone 18 Pro Max', short:'iPhone 18 Pro Max (512GB)', baseline:false, best:false,
+        date:'18 Sep 2026', price:6999, priceLabel:'RM 6,999 (Rasmi MY)', weight:249, battery:5100,
+        chip:'Apple A20 Pro (2nm)', screen:'6.9" ProMotion OLED', camera:'48MP Variable Aperture',
+        charge:'~40–45W USB-C', pd:'full', pdLabel:'Menyokong Ugreen 100% (USB-PD)',
+        sot:'Menyamai Android ~7k mAh class (~45j video)', travel:'eSIM + Apple Pay/Suica', fingerprint:'Face ID',
+        osUpdates:'~6–7 tahun', chargerInBox:'Tiada', url:'https://www.apple.com/my/shop/buy-iphone/iphone-18-pro',
+        ranks:{overall:9,camera:2,cpu:1,battery:6,sot:3,charge:2,travel:1,price:9,weight:9},
+        why:{
+          overall:'A20 Pro + bateri iOS terlama; paling mahal.',
+          camera:'Variable Aperture + video ProRes RAW.',
+          cpu:'#1 bersama 18 Pro.',
+          battery:'~5,100mAh.',
+          sot:'Ketahanan iOS teratas dalam set.',
+          charge:'PD penuh.',
+          travel:'#1 travel.',
+          price:'RM 6,999.',
+          weight:'249g · paling berat.'
+        }
       },
       {
-        id: 'pura80',
-        name: 'Huawei Pura 80 Ultra',
-        short: 'Huawei Pura 80 Ultra (16+512GB)',
-        brand: 'huawei',
-        os: 'android',
-        rank: 99,
-        cameraRank: 1,
-        cpuRank: 6,
-        best: false,
-        baseline: true,
-        date: '24 Jul 2025',
-        rrp: 6599,
-        price: 6099,
-        priceLabel: 'RRP RM 6,599 (Promo RM 6,099)',
-        chip: 'Kirin 9020',
-        screen: '6.8" LTPO OLED',
-        weight: 233.5,
-        battery: 5170,
-        charge: '100W kabel / 80W wireless',
-        camera: '50MP 1" RYYB Variable Aperture + 3.7x &amp; 9.4x',
-        search: 'huawei pura 80 ultra kirin 9020 kamera ryyb ugreen ufcs pd sederhana',
-        url: 'https://consumer.huawei.com/my/phones/pura80-ultra/specs/',
-        chargerInBox: 'Ada (biasanya 100W)',
-        osUpdates: 'HarmonyOS / patch (ikut rantau; tiada Google Play natif)',
-        fingerprint: 'Optical (in-display)',
-        exclusive: ['Sensor 1" RYYB Variable Aperture', 'Dwi-telefoto 3.7x &amp; 9.4x'],
-        why: 'Telefon semasa anda. Masih #1 untuk foto malam, tetapi travel Google/eSIM terhad.',
-        vs: '<strong>Rujukan Asal</strong> (anggaran jual semula dikawal slider trade-in).'
+        id:'pura80', name:'Huawei Pura 80 Ultra', short:'Huawei Pura 80 Ultra (16+512GB)', baseline:true, best:false,
+        date:'24 Jul 2025', price:6099, priceLabel:'RRP RM 6,599 (Promo RM 6,099)', weight:233.5, battery:5170,
+        chip:'Kirin 9020', screen:'6.8" LTPO OLED', camera:'50MP 1" RYYB + 3.7x/9.4x',
+        charge:'100W / 80W', pd:'mid', pdLabel:'Sederhana · SuperCharge 100W; Ugreen PD/UFCS ~40W',
+        sot:'~6.5–7.5 jam', travel:'eSIM/Google terhad', fingerprint:'Optical',
+        osUpdates:'HarmonyOS / patch', chargerInBox:'Ada', url:'https://consumer.huawei.com/my/phones/pura80-ultra/specs/',
+        ranks:{overall:99,camera:1,cpu:6,battery:5,sot:9,charge:3,travel:6,price:4,weight:8},
+        why:{
+          overall:'Telefon semasa · rujukan baseline.',
+          camera:'#1 foto malam · sensor 1" RYYB + 9.4x.',
+          cpu:'Kirin 9020 cukup harian; gaming 3D di belakang.',
+          battery:'5,170mAh.',
+          sot:'~6.5–7.5 jam · cip kurang cekap.',
+          charge:'100W rasmi; PD sederhana ~40W.',
+          travel:'Kelemahan utama · Google/eSIM terhad.',
+          price:'Promo RM 6,099 (dijual = trade-in).',
+          weight:'233.5g.'
+        }
       }
     ];
 
-    const money = (n) => 'RM ' + Number(n).toLocaleString('en-MY', { maximumFractionDigits: 0 });
-    const money2 = (n) => 'RM ' + Number(n).toFixed(2);
+    // Fix OPPO price rank (lowest price should be best) - use actual sort by price for price mode
+    // ranks.price used only as tiebreak; price mode sorts by price asc
 
-    function clampTrade(n) {
+    const money = n => 'RM ' + Number(n).toLocaleString('en-MY', { maximumFractionDigits: 0 });
+    const money2 = n => 'RM ' + Number(n).toFixed(2);
+    const clampTrade = n => {
       const v = Number(n);
       if (!Number.isFinite(v)) return TRADE_DEFAULT;
       return Math.min(TRADE_MAX, Math.max(TRADE_MIN, Math.round(v)));
-    }
+    };
+    const topUp = p => p.baseline ? 0 : Math.max(0, p.price - tradeValue);
+    const monthlyTopUp = (p, m) => topUp(p) / m;
+    const monthlyFull = (p, m) => p.price / m;
 
-    function getTrade() {
-      return clampTrade(document.getElementById('tradeInput').value);
-    }
-
-    function setTrade(n, from) {
-      const v = clampTrade(n);
-      const slider = document.getElementById('tradeSlider');
-      const input = document.getElementById('tradeInput');
-      if (from !== 'slider') slider.value = String(v);
-      if (from !== 'input') input.value = String(v);
-      return v;
-    }
-
-    function topUp(phone) {
-      return Math.max(0, phone.price - getTrade());
-    }
-
-    function monthly(phone, months = dockMonths) {
-      return phone.price / months;
-    }
-
-    function matchesFilter() {
-      return true;
+    function sortKey(p) {
+      if (rankMode === 'price') return p.price;
+      if (rankMode === 'weight') return p.weight;
+      if (rankMode === 'battery') return -p.battery;
+      return p.ranks[rankMode] ?? 999;
     }
 
     function sortedPhones() {
-      const list = PHONES.filter(matchesFilter).slice();
-      switch (sortMode) {
-        case 'camera': list.sort((a, b) => a.cameraRank - b.cameraRank || a.rank - b.rank); break;
-        case 'cpu': list.sort((a, b) => a.cpuRank - b.cpuRank || a.rank - b.rank); break;
-        case 'price-asc': list.sort((a, b) => a.price - b.price || a.rank - b.rank); break;
-        case 'monthly-asc': list.sort((a, b) => monthly(a) - monthly(b) || a.rank - b.rank); break;
-        case 'battery-desc': list.sort((a, b) => b.battery - a.battery || a.rank - b.rank); break;
-        case 'weight-asc': list.sort((a, b) => a.weight - b.weight || a.rank - b.rank); break;
-        default: list.sort((a, b) => a.rank - b.rank); break;
-      }
-      return list;
-    }
-
-    function battBar(mah) {
-      const pct = Math.min(100, Math.round((mah / 7500) * 100));
-      return `<div class="batt-wrap"><div class="batt-bar"><div class="batt-fill" style="width:${pct}%"></div></div><span class="batt-label">${mah.toLocaleString()} mAh</span></div>`;
-    }
-
-    function exclusiveTags(phone) {
-      return phone.exclusive.map(t => `<span class="tag-x">${t}</span>`).join(' ');
-    }
-
-    function renderDock() {
-      const el = document.getElementById('dockPhones');
-      el.innerHTML = sortedPhones().map(p => {
-        const checked = selectedCompare.has(p.id) ? 'checked' : '';
-        return `
-          <div class="dock-pill ${p.best ? 'best' : ''} ${p.baseline ? 'baseline' : ''}" data-phone="${p.id}">
-            <a class="dock-name ref-link" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.name}</a>
-            <span class="dock-monthly">${p.baseline ? money2(monthly(p)) + ' / bln' : money2(monthly(p)) + ' / bln'}</span>
-            <span class="dock-full">${p.priceLabel}</span>
-            <div class="dock-actions">
-              <label class="compare-check"><input type="checkbox" ${checked} onchange="toggleCompare('${p.id}', this.checked)" /> Banding</label>
-              <a class="ref-link" style="font-size:0.68rem;" href="${p.url}" target="_blank" rel="noopener noreferrer">Rujukan</a>
-            </div>
-          </div>`;
-      }).join('');
-    }
-
-    function rankPill(phone) {
-      if (phone.baseline) return '<span class="rank-pill rp-base">ASAL</span>';
-      if (phone.rank === 1) return '<span class="rank-pill rp-1">#1 Overall</span>';
-      if (phone.rank === 2) return '<span class="rank-pill rp-2">#2 Overall</span>';
-      if (phone.rank === 3) return '<span class="rank-pill rp-3">#3 Overall</span>';
-      return `<span class="rank-pill rp-mid">#${phone.rank} Overall</span>`;
-    }
-
-    function renderOverall() {
-      const tb = document.getElementById('tbodyOverall');
-      const visible = new Set(sortedPhones().map(p => p.id));
-      tb.innerHTML = PHONES.slice().sort((a,b)=>a.rank-b.rank).map(p => {
-        const hidden = visible.has(p.id) ? '' : 'hidden-by-filter';
-        const rowClass = p.baseline ? 'row-baseline' : (p.rank === 1 ? 'row-rank-1' : '');
-        return `<tr class="${rowClass} ${hidden}" data-phone="${p.id}">
-          <td class="sticky-rank-col">${rankPill(p)}</td>
-          <td><a class="ref-link" href="${p.url}" target="_blank" rel="noopener noreferrer"><strong>${p.short}</strong></a>
-            ${p.caution ? '<div class="status-note">Status pelancaran/spek MY: semak semula. Jangan anggap skrin belakang 2.7" pada semua varian.</div>' : ''}
-          </td>
-          <td>${p.date}</td>
-          <td class="num">${p.priceLabel}</td>
-          <td class="num">${money2(monthly(p, 12))}/bln</td>
-          <td class="num">${money2(monthly(p, 24))}/bln</td>
-          <td class="num">${money2(monthly(p, 36))}/bln</td>
-          <td class="num topup-cell" data-id="${p.id}"><strong>${p.baseline ? 'Phone Semasa (dijual)' : '~' + money(topUp(p))}</strong></td>
-          <td>${p.why}</td>
-          <td>${p.vs}</td>
-        </tr>`;
-      }).join('');
-    }
-
-    function renderBattery() {
-      const order = ['oppox9','honorm8','vivox300','xiaomi17','iphone18promax','iphone17promax','iphone18pro','s26u','iphone17pro','pura80'];
-      const map = Object.fromEntries(PHONES.map(p => [p.id, p]));
-      const visible = new Set(sortedPhones().map(p => p.id));
-      const tb = document.getElementById('tbodyBattery');
-      tb.innerHTML = order.map((id, idx) => {
-        const p = map[id];
-        if (!p) return '';
-        const hidden = visible.has(p.id) ? '' : 'hidden-by-filter';
-        const pill = p.baseline ? '<span class="rank-pill rp-base">ASAL</span>'
-          : idx === 0 ? '<span class="rank-pill rp-1">#1 Bateri</span>'
-          : idx === 1 ? '<span class="rank-pill rp-2">#2 Bateri</span>'
-          : idx === 2 ? '<span class="rank-pill rp-3">#3 Bateri</span>'
-          : `<span class="rank-pill rp-mid">#${idx + 1}</span>`;
-        const rowClass = p.baseline ? 'row-baseline' : (idx === 0 ? 'row-rank-1' : '');
-        return `<tr class="${rowClass} ${hidden}" data-phone="${p.id}">
-          <td class="sticky-rank-col">${pill}</td>
-          <td><a class="ref-link" href="${p.url}" target="_blank" rel="noopener noreferrer"><strong>${p.name}</strong></a></td>
-          <td>${battBar(p.battery)}</td>
-          <td>${p.charge}</td>
-          <td>${p.chargerInBox}</td>
-          <td>${p.osUpdates}</td>
-          <td>${p.fingerprint}</td>
-          <td>${exclusiveTags(p)}</td>
-        </tr>`;
-      }).join('');
-    }
-
-    function renderFull() {
-      const tb = document.getElementById('tbodyFull');
-      const visible = new Set(sortedPhones().map(p => p.id));
-      tb.innerHTML = PHONES.slice().sort((a,b)=>a.rank-b.rank).map(p => {
-        const hidden = visible.has(p.id) ? '' : 'hidden-by-filter';
-        const rowClass = p.baseline ? 'row-baseline' : (p.rank === 1 ? 'row-rank-1' : '');
-        const m12 = money2(monthly(p,12));
-        const m24 = money2(monthly(p,24));
-        const m36 = money2(monthly(p,36));
-        return `<tr class="${rowClass} ${hidden}" data-phone="${p.id}">
-          <td class="sticky-rank-col">${rankPill(p)} <a class="ref-link" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.short}</a>
-            <div style="margin-top:6px;"><label class="compare-check" style="color:#334155;"><input type="checkbox" ${selectedCompare.has(p.id)?'checked':''} onchange="toggleCompare('${p.id}', this.checked)" /> Banding</label></div>
-          </td>
-          <td>${p.date}</td>
-          <td class="num">${p.priceLabel}</td>
-          <td class="num">${m12} / ${m24} / ${m36}</td>
-          <td class="num topup-cell" data-id="${p.id}"><strong>${p.baseline ? '—' : '~' + money(topUp(p))}</strong></td>
-          <td>${p.chip}</td>
-          <td>${p.screen} · ${p.weight}g</td>
-          <td>${p.camera}</td>
-          <td>${battBar(p.battery)}<div style="margin-top:4px;font-size:0.75rem;">${p.charge}</div></td>
-          <td>${exclusiveTags(p)}<div style="margin-top:6px;font-size:0.75rem;"><strong>Kotak:</strong> ${p.chargerInBox}<br><strong>OS:</strong> ${p.osUpdates}<br><strong>FP:</strong> ${p.fingerprint}</div></td>
-        </tr>`;
-      }).join('');
-    }
-
-    function updateTradePreview() {
-      const trade = getTrade();
-      const first = sortedPhones().find(p => !p.baseline) || PHONES[0];
-      const tu = topUp(first);
-      document.getElementById('tradeTopupPreview').textContent = `${first.name}: ~${money(tu)}`;
-      document.getElementById('tradeMonthlyPreview').textContent =
-        `Ansuran baki @ ${dockMonths} bln (0%): ~${money2(tu / dockMonths)} / bln (anggaran top-up ÷ bulan)`;
-      document.querySelectorAll('.topup-cell').forEach(cell => {
-        const id = cell.getAttribute('data-id');
-        const phone = PHONES.find(p => p.id === id);
-        if (!phone) return;
-        cell.innerHTML = phone.baseline ? '<strong>Phone Semasa</strong>' : `<strong>~${money(topUp(phone))}</strong>`;
+      return PHONES.slice().sort((a, b) => {
+        const d = sortKey(a) - sortKey(b);
+        if (d !== 0) return d;
+        return a.ranks.overall - b.ranks.overall;
       });
     }
 
-    function refreshAll() {
-      renderDock();
-      renderOverall();
-      renderBattery();
-      renderFull();
-      updateTradePreview();
-      syncTableFilters();
-      renderCompare();
-      syncSectionHeadHeights();
+    function visiblePhones() {
+      const list = sortedPhones();
+      if (!bandingOnly) return list;
+      return list.filter(p => selected.has(p.id));
     }
 
-    function syncTableFilters() {
-      const visible = new Set(sortedPhones().map(p => p.id));
-      document.querySelectorAll('tr[data-phone]').forEach(tr => {
-        const id = tr.getAttribute('data-phone');
-        // Travel/camera rows may map multiple phones; keep row if any id matches filter via data-phone
-        if (!id) return;
-        // special: row with combined ids handled as single id
-        if (visible.has(id)) tr.classList.remove('hidden-by-filter');
-        else tr.classList.add('hidden-by-filter');
-      });
+    function displayRank(p, index) {
+      if (p.baseline && rankMode === 'overall') return { n: 'ASAL', cls: 'base', label: 'ASAL' };
+      const n = index + 1;
+      const cls = n === 1 ? 'r1' : n === 2 ? 'r2' : n === 3 ? 'r3' : '';
+      return { n: '#' + n, cls, label: '#' + n + ' ' + MODE_LABEL[rankMode] };
     }
 
-    function setDockTenure(months, btn) {
-      dockMonths = months;
-      document.querySelectorAll('.dock-tab').forEach(t => t.classList.remove('active'));
-      btn.classList.add('active');
-      refreshAll();
+    function syncStickyH() {
+      const bar = document.getElementById('stickyBar');
+      if (bar) document.documentElement.style.setProperty('--sticky-h', bar.offsetHeight + 'px');
     }
 
-    function toggleCompare(id, checked) {
-      if (checked) {
-        if (selectedCompare.size >= 3) {
-          alert('Pilih maksimum 3 telefon untuk banding.');
-          refreshAll();
-          return;
-        }
-        selectedCompare.add(id);
-      } else {
-        selectedCompare.delete(id);
-      }
-      renderCompare();
-      refreshAll();
+    function setTrade(v, from) {
+      tradeValue = clampTrade(v);
+      if (from !== 'slider') document.getElementById('tradeSlider').value = String(tradeValue);
+      if (from !== 'input') document.getElementById('tradeInput').value = String(tradeValue);
+      renderAll();
     }
 
-    function clearCompare() {
-      selectedCompare.clear();
-      refreshAll();
+    function updateSummary() {
+      const list = visiblePhones().filter(p => !p.baseline);
+      const focus = list[0] || sortedPhones().find(p => !p.baseline);
+      if (!focus) return;
+      const tu = topUp(focus);
+      const m = monthlyTopUp(focus, tenure);
+      document.getElementById('bankSummary').innerHTML =
+        `<div><strong>Telefon:</strong> ${focus.name}</div>` +
+        `<div><strong>Top-Up lepas jual Pura (${money(tradeValue)}):</strong> ${money(tu)}</div>` +
+        `<div><strong>${bankName} ${tenure} Bln 0%:</strong> ~${money2(m)} / bulan</div>` +
+        `<div style="opacity:.85;font-size:.78rem;">Formula: (harga − trade-in Pura) ÷ ${tenure}</div>`;
     }
 
-    function renderCompare() {
-      const panel = document.getElementById('comparePanel');
-      const grid = document.getElementById('compareGrid');
-      if (selectedCompare.size < 2) {
-        panel.classList.remove('open');
-        grid.innerHTML = '';
-        return;
-      }
-      panel.classList.add('open');
-      const phones = [...selectedCompare].map(id => PHONES.find(p => p.id === id)).filter(Boolean);
-      grid.innerHTML = phones.map(p => `
-        <article class="compare-card">
-          <h3><a class="ref-link" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.name}</a></h3>
-          <dl>
-            <dt>Harga efektif</dt><dd class="num">${p.priceLabel}</dd>
-            <dt>Ansuran ${dockMonths} bln</dt><dd class="num">${money2(monthly(p))} / bln</dd>
-            <dt>Top-up (trade-in ${money(getTrade())})</dt><dd class="num">${p.baseline ? '—' : '~' + money(topUp(p))}</dd>
-            <dt>Bateri</dt><dd>${battBar(p.battery)}</dd>
-            <dt>Berat</dt><dd>${p.weight}g</dd>
-            <dt>Cip</dt><dd>${p.chip}</dd>
-            <dt>Kamera</dt><dd>${p.camera}</dd>
-            <dt>Pengecas kotak</dt><dd>${p.chargerInBox}</dd>
-            <dt>OS updates</dt><dd>${p.osUpdates}</dd>
-            <dt>Cap jari</dt><dd>${p.fingerprint}</dd>
-            <dt>Ciri eksklusif</dt><dd>${exclusiveTags(p)}</dd>
-          </dl>
-        </article>
-      `).join('');
+    function renderCards() {
+      const grid = document.getElementById('cardsGrid');
+      const list = visiblePhones();
+      grid.innerHTML = list.map((p, i) => {
+        const r = displayRank(p, i);
+        const checked = selected.has(p.id) ? 'checked' : '';
+        return `<article class="card ${p.best ? 'best' : ''} ${p.baseline ? 'baseline' : ''}">
+          <span class="rank-pill ${r.cls}">${r.label}</span>
+          <a class="card-name ref" href="${p.url}" target="_blank" rel="noopener noreferrer">${p.name}</a>
+          <div class="card-month">${money2(monthlyTopUp(p, tenure))}/bln*</div>
+          <div class="card-price">${p.priceLabel}</div>
+          <label class="compare-lab"><input type="checkbox" ${checked} data-id="${p.id}" class="band-check" /> Banding</label>
+        </article>`;
+      }).join('');
+      document.getElementById('compareCount').textContent = String(selected.size);
     }
 
-    function syncSectionHeadHeights() {
-      const tools = document.getElementById('stickyTools');
-      if (tools) {
-        document.documentElement.style.setProperty('--sticky-tools-h', `${tools.offsetHeight}px`);
-      }
-      document.querySelectorAll('.table-viewport').forEach(vp => {
-        const head = vp.querySelector('.section-sticky-head');
-        if (!head) return;
-        const h = `${head.offsetHeight}px`;
-        vp.style.setProperty('--section-head-h', h);
-        document.documentElement.style.setProperty('--section-head-h', h);
-      });
+    function colVisible(key) {
+      const map = {
+        date:'basic', price:'basic', m12:'install', m24:'install', m36:'install', topup:'topup',
+        camera:'camera', chip:'chip', battery:'battery', sot:'battery', charge:'charge', pd:'charge',
+        travel:'travel', physical:'physical'
+      };
+      return colOn[map[key]];
     }
 
-    function openFullView(viewportId) {
-      const el = document.getElementById(viewportId);
-      if (!el) return;
-      el.classList.add('fullscreen-active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeFullView(viewportId) {
-      const el = document.getElementById(viewportId);
-      if (!el) return;
-      el.classList.remove('fullscreen-active');
-      document.body.style.overflow = '';
-      syncSectionHeadHeights();
-    }
-
-    function toggleDockCollapse() {
-      const tools = document.getElementById('stickyTools');
-      const btn = document.getElementById('dockToggle');
-      const collapsed = tools.classList.toggle('dock-collapsed');
-      btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-      btn.textContent = collapsed ? 'Buka' : 'Tutup';
-      btn.title = collapsed ? 'Buka ansuran' : 'Tutup ansuran';
-      requestAnimationFrame(syncSectionHeadHeights);
-    }
-    function downloadPDF() {
-      document.querySelectorAll('.table-viewport.fullscreen-active').forEach(el => el.classList.remove('fullscreen-active'));
-      document.body.style.overflow = '';
-      window.print();
+    function renderHead() {
+      const cells = [
+        `<th class="sticky-a">Rank</th>`,
+        `<th class="sticky-b">Model</th>`,
+        `<th>Rank Highlights</th>`,
+        colVisible('date') ? `<th>Tarikh MY</th>` : '',
+        colVisible('price') ? `<th>Harga MY</th>` : '',
+        colVisible('m12') ? `<th>12 Bln (0%)*</th>` : '',
+        colVisible('m24') ? `<th>24 Bln (0%)*</th>` : '',
+        colVisible('m36') ? `<th>36 Bln (0%)*</th>` : '',
+        colVisible('topup') ? `<th>Top-Up (lepas jual Pura)</th>` : '',
+        colVisible('camera') ? `<th>Kamera</th>` : '',
+        colVisible('chip') ? `<th>Cip</th>` : '',
+        colVisible('battery') ? `<th>Bateri</th>` : '',
+        colVisible('sot') ? `<th>SoT</th>` : '',
+        colVisible('charge') ? `<th>Caj</th>` : '',
+        colVisible('pd') ? `<th>Ugreen / PD</th>` : '',
+        colVisible('travel') ? `<th>Travel</th>` : '',
+        colVisible('physical') ? `<th>Skrin / Berat / OS / FP</th>` : '',
+      ].join('');
+      document.getElementById('masterHead').innerHTML = `<tr>${cells}</tr>`;
     }
 
-    document.getElementById('sortSelect').addEventListener('change', (e) => {
-      sortMode = e.target.value;
-      refreshAll();
+    function renderBody() {
+      const list = visiblePhones();
+      document.getElementById('masterBody').innerHTML = list.map((p, i) => {
+        const r = displayRank(p, i);
+        const rowCls = p.baseline ? 'row-base' : (i === 0 ? 'row-1' : '');
+        const checked = selected.has(p.id) ? 'checked' : '';
+        const pdBadge = p.pd === 'full'
+          ? `<span class="badge-ok">Menyokong Ugreen 100% (PD/PPS)</span>`
+          : p.pd === 'mid'
+            ? `<span class="badge-warn">Sederhana (PD/UFCS)</span>`
+            : `<span class="badge-warn">Terhad Pengecas Original</span>`;
+        const cells = [
+          `<td class="sticky-a"><span class="rank-pill ${r.cls}">${r.label}</span></td>`,
+          `<td class="sticky-b">
+            <a class="ref" href="${p.url}" target="_blank" rel="noopener noreferrer"><strong>${p.short}</strong></a>
+            <div style="margin-top:6px;"><label class="compare-lab"><input type="checkbox" ${checked} data-id="${p.id}" class="band-check" /> Banding</label></div>
+            ${p.caution ? '<div class="note">Status MY: semak semula. Skrin belakang 2.7" bukan universal.</div>' : ''}
+          </td>`,
+          `<td>${p.why[rankMode] || p.why.overall}</td>`,
+          colVisible('date') ? `<td>${p.date}</td>` : '',
+          colVisible('price') ? `<td class="num">${p.priceLabel}</td>` : '',
+          colVisible('m12') ? `<td class="num">${money2(monthlyTopUp(p,12))}/bln</td>` : '',
+          colVisible('m24') ? `<td class="num">${money2(monthlyTopUp(p,24))}/bln</td>` : '',
+          colVisible('m36') ? `<td class="num">${money2(monthlyTopUp(p,36))}/bln</td>` : '',
+          colVisible('topup') ? `<td class="num"><strong>${p.baseline ? 'Phone Semasa (dijual)' : '~' + money(topUp(p))}</strong></td>` : '',
+          colVisible('camera') ? `<td>${p.camera}</td>` : '',
+          colVisible('chip') ? `<td>${p.chip}</td>` : '',
+          colVisible('battery') ? `<td class="num">${p.battery.toLocaleString()} mAh</td>` : '',
+          colVisible('sot') ? `<td>${p.sot}</td>` : '',
+          colVisible('charge') ? `<td>${p.charge}</td>` : '',
+          colVisible('pd') ? `<td>${pdBadge}<div class="hint">${p.pdLabel}</div></td>` : '',
+          colVisible('travel') ? `<td>${p.travel}</td>` : '',
+          colVisible('physical') ? `<td>${p.screen} · ${p.weight}g<br>OS: ${p.osUpdates}<br>FP: ${p.fingerprint}<br>Kotak: ${p.chargerInBox}</td>` : '',
+        ].join('');
+        return `<tr class="${rowCls}" data-id="${p.id}">${cells}</tr>`;
+      }).join('');
+    }
+
+    function renderColDrawer() {
+      document.getElementById('colGroups').innerHTML = COLS.map(c =>
+        `<label><input type="checkbox" data-col="${c.id}" ${colOn[c.id] ? 'checked' : ''}/> ${c.label}</label>`
+      ).join('');
+    }
+
+    function renderAll() {
+      document.getElementById('rankModeHint').textContent =
+        `Ranking: ${MODE_LABEL[rankMode]} · *Ansuran = (harga − trade-in Pura) ÷ bulan`;
+      renderCards();
+      renderHead();
+      renderBody();
+      updateSummary();
+      syncStickyH();
+      document.getElementById('bandingOnlyBtn').classList.toggle('active', bandingOnly);
+      document.getElementById('cardsPanel').style.display = cardsOpen ? '' : 'none';
+      document.getElementById('cardsToggle').textContent = cardsOpen ? 'Tutup' : 'Buka';
+    }
+
+    // Events
+    document.getElementById('rankSelect').addEventListener('change', e => {
+      rankMode = e.target.value;
+      renderAll();
     });
-    document.getElementById('tradeSlider').addEventListener('input', (e) => {
-      setTrade(e.target.value, 'slider');
-      updateTradePreview();
-      renderCompare();
-    });
-    document.getElementById('tradeInput').addEventListener('input', (e) => {
+    document.getElementById('tradeSlider').addEventListener('input', e => setTrade(e.target.value, 'slider'));
+    document.getElementById('tradeInput').addEventListener('input', e => {
       const raw = Number(e.target.value);
       if (!Number.isFinite(raw)) return;
       document.getElementById('tradeSlider').value = String(clampTrade(raw));
-      updateTradePreview();
-      renderCompare();
+      tradeValue = clampTrade(raw);
+      renderAll();
     });
-    document.getElementById('tradeInput').addEventListener('change', (e) => {
-      setTrade(e.target.value, 'input');
-      updateTradePreview();
-      renderCompare();
+    document.getElementById('tradeInput').addEventListener('change', e => setTrade(e.target.value, 'input'));
+
+    document.getElementById('bankRow').addEventListener('click', e => {
+      const btn = e.target.closest('[data-bank]');
+      if (!btn) return;
+      document.querySelectorAll('#bankRow .chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      bankName = btn.getAttribute('data-bank');
+      updateSummary();
     });
-    setTrade(TRADE_DEFAULT);
-    document.getElementById('dockToggle').addEventListener('click', toggleDockCollapse);
-    window.addEventListener('resize', syncSectionHeadHeights);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.table-viewport.fullscreen-active').forEach(el => el.classList.remove('fullscreen-active'));
-        document.body.style.overflow = '';
-        syncSectionHeadHeights();
+    document.getElementById('tenureRow').addEventListener('click', e => {
+      const btn = e.target.closest('[data-months]');
+      if (!btn) return;
+      document.querySelectorAll('#tenureRow .chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      tenure = Number(btn.getAttribute('data-months'));
+      renderAll();
+    });
+
+    document.addEventListener('change', e => {
+      if (e.target.classList.contains('band-check')) {
+        const id = e.target.getAttribute('data-id');
+        if (e.target.checked) selected.add(id); else selected.delete(id);
+        renderAll();
+      }
+      if (e.target.matches('#colGroups input[data-col]')) {
+        colOn[e.target.getAttribute('data-col')] = e.target.checked;
+        renderAll();
       }
     });
 
-    refreshAll();
-    syncSectionHeadHeights();
-    requestAnimationFrame(syncSectionHeadHeights);
+    document.getElementById('bandingOnlyBtn').addEventListener('click', () => {
+      bandingOnly = !bandingOnly;
+      renderAll();
+    });
+    document.getElementById('clearCompareBtn').addEventListener('click', () => {
+      selected.clear();
+      bandingOnly = false;
+      renderAll();
+    });
+    const toggleDrawer = () => document.getElementById('colDrawer').classList.toggle('open');
+    document.getElementById('colPickerBtn').addEventListener('click', toggleDrawer);
+    document.getElementById('colPickerBtn2').addEventListener('click', toggleDrawer);
+    document.getElementById('cardsToggle').addEventListener('click', () => {
+      cardsOpen = !cardsOpen;
+      renderAll();
+    });
+    document.getElementById('pdfBtn').addEventListener('click', () => window.print());
+    window.addEventListener('resize', syncStickyH);
+
+    renderColDrawer();
+    setTrade(TRADE_DEFAULT);
+    requestAnimationFrame(syncStickyH);
   </script>
 </body>
 </html>
