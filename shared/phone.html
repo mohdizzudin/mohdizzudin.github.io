@@ -24,15 +24,18 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
+      padding-top: var(--sticky-h);
     }
     a { color: inherit; }
     .ref { color: #1d4ed8; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
     .sticky-bar {
-      position: sticky; top: 0; z-index: 100;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: rgba(15,23,42,.97); color: #fff;
       border-bottom: 1px solid rgba(255,255,255,.12);
       box-shadow: 0 8px 24px rgba(15,23,42,.22);
     }
+    .rank-short, .model-short { display: none; }
+    .rank-full, .model-full { display: inline; }
     .bar-inner {
       max-width: 1400px; margin: 0 auto; padding: 8px 12px;
       display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; min-width: 0;
@@ -183,15 +186,38 @@
     .footer { text-align:center; font-size:.74rem; color:var(--muted); padding: 8px 12px 40px; }
     @media (max-width: 900px) {
       .calc-grid { grid-template-columns: 1fr; }
-      #rankSelect { max-width: 110px; }
-      .bar-title { font-size: .74rem; }
+      #rankSelect { max-width: 100px; font-size: .65rem; padding: 7px 4px; }
+      .bar-title { display: none; }
+      .dd-btn { padding: 0 8px; font-size: .65rem; }
       .dd-menu { right: auto; left: 0; }
+      .table-card { padding: 10px 8px; }
+      .table-scroll {
+        overflow: auto;
+        max-height: calc(100dvh - var(--sticky-h) - 16px);
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+      }
+      #masterTable thead th { top: 0; font-size: .68rem; padding: 8px 6px; }
+      #masterTable th.sticky-a, #masterTable td.sticky-a {
+        min-width: 40px; max-width: 44px; width: 40px; padding: 6px 3px; text-align: center;
+      }
+      #masterTable th.sticky-b, #masterTable td.sticky-b {
+        left: 40px; min-width: 52px; max-width: 64px; width: 58px; padding: 6px 5px;
+      }
+      #masterTable tbody td.sticky-b { font-size: .72rem; }
+      .rank-full, .model-full { display: none !important; }
+      .rank-short, .model-short { display: inline !important; }
+      .rank-pill { padding: 2px 5px; font-size: .68rem; }
+      .sticky-b .note { display: none; }
     }
     @media print {
+      body { padding-top: 0 !important; }
       .sticky-bar, .text-btn, .icon-btn, .dd { display:none !important; }
-      .table-scroll { overflow: visible !important; }
+      .table-scroll { overflow: visible !important; max-height: none !important; }
       #masterTable { min-width: 100% !important; }
       #masterTable thead th, #masterTable td.sticky-a, #masterTable td.sticky-b { position: static !important; }
+      .rank-short, .model-short { display: none !important; }
+      .rank-full, .model-full { display: inline !important; }
     }
   </style>
 </head>
@@ -295,7 +321,7 @@
     let bankName = 'Maybank EzyPay';
     let tenure = 36;
     let cardsOpen = true;
-    const selected = new Set();
+    let selected = new Set();
 
     const COLS = [
       { id: 'date', label: 'MY Launch Date' },
@@ -322,7 +348,7 @@
 
     const PHONES = [
       {
-        id:'vivox300', name:'vivo X300 Pro', short:'vivo X300 Pro (16+512GB)', baseline:false, best:true,
+        id:'vivox300', name:'vivo X300 Pro', short:'vivo X300 Pro (16+512GB)', abbr:'vivo', baseline:false, best:true,
         date:'13 Nov 2025', price:4699, priceLabel:'RM 4,699 (Official MY)', weight:226, battery:6510,
         chip:'Dimensity 9500 (3nm)', screen:'6.78" LTPO AMOLED', camera:'50MP + 200MP ZEISS APO',
         charge:'90W / 40W', pd:'limited', pdLabel:'Limited · official FlashCharge; Ugreen PD ~18–30W',
@@ -342,7 +368,7 @@
         }
       },
       {
-        id:'honorm8', name:'Honor Magic8 Pro', short:'Honor Magic8 Pro (12+512GB)', baseline:false, best:false,
+        id:'honorm8', name:'Honor Magic8 Pro', short:'Honor Magic8 Pro (12+512GB)', abbr:'honor', baseline:false, best:false,
         date:'27 Nov 2025', price:4599, priceLabel:'RM 4,599 (Official MY)', weight:219, battery:7100,
         chip:'Snapdragon 8 Elite Gen 5', screen:'6.71" OLED', camera:'50MP + 200MP Ultra Night',
         charge:'100W / 80W', pd:'limited', pdLabel:'Limited · Honor SuperCharge; Ugreen PD ~18–30W',
@@ -362,7 +388,7 @@
         }
       },
       {
-        id:'oppox9', name:'OPPO Find X9 Pro', short:'OPPO Find X9 Pro (16+512GB)', baseline:false, best:false,
+        id:'oppox9', name:'OPPO Find X9 Pro', short:'OPPO Find X9 Pro (16+512GB)', abbr:'oppo', baseline:false, best:false,
         date:'29 Oct 2025', price:4399, priceLabel:'RRP RM 4,999 (Promo RM 4,399)', weight:224, battery:7500,
         chip:'Dimensity 9500', screen:'6.78" LTPO AMOLED', camera:'50MP Hasselblad + 200MP tele',
         charge:'80W / 50W', pd:'limited', pdLabel:'Limited · official SUPERVOOC; Ugreen PD ~18W',
@@ -382,7 +408,7 @@
         }
       },
       {
-        id:'s26u', name:'Galaxy S26 Ultra', short:'Samsung Galaxy S26 Ultra (12+512GB)', baseline:false, best:false,
+        id:'s26u', name:'Galaxy S26 Ultra', short:'Samsung Galaxy S26 Ultra (12+512GB)', abbr:'samsung', baseline:false, best:false,
         date:'26 Feb 2026', price:5599, priceLabel:'RRP RM 6,799 (Promo RM 5,599–5,999)', weight:214, battery:5000,
         chip:'Snapdragon 8 Elite Gen 5 (For Galaxy)', screen:'6.9" Privacy AMOLED', camera:'200MP f/1.4 + 3x/5x',
         charge:'60W / 25W', pd:'full', pdLabel:'Full Ugreen support (PD/PPS) · max ~60W',
@@ -402,7 +428,7 @@
         }
       },
       {
-        id:'iphone17pro', name:'iPhone 17 Pro', short:'iPhone 17 Pro (512GB)', baseline:false, best:false,
+        id:'iphone17pro', name:'iPhone 17 Pro', short:'iPhone 17 Pro (512GB)', abbr:'i17p', baseline:false, best:false,
         date:'19 Sep 2025', price:5899, priceLabel:'RRP RM 6,499 (Promo RM 5,899)', weight:206, battery:3988,
         chip:'Apple A19 Pro', screen:'6.3" ProMotion OLED', camera:'48MP f/1.78 + 48MP 4x',
         charge:'~40–45W USB-C', pd:'full', pdLabel:'Full Ugreen support (USB-PD)',
@@ -422,7 +448,7 @@
         }
       },
       {
-        id:'iphone18pro', name:'iPhone 18 Pro', short:'iPhone 18 Pro (512GB)', baseline:false, best:false,
+        id:'iphone18pro', name:'iPhone 18 Pro', short:'iPhone 18 Pro (512GB)', abbr:'i18', baseline:false, best:false,
         date:'18 Sep 2026', price:6499, priceLabel:'RM 6,499 (Official MY)', weight:211, battery:4250,
         chip:'Apple A20 Pro (2nm)', screen:'6.3" ProMotion OLED', camera:'48MP Variable Aperture f/1.48–4.0',
         charge:'~40–45W USB-C', pd:'full', pdLabel:'Full Ugreen support (USB-PD)',
@@ -442,7 +468,7 @@
         }
       },
       {
-        id:'xiaomi17', name:'Xiaomi 17/18 Pro', short:'Xiaomi 17 Pro / 18 Pro (512GB)', baseline:false, best:false, caution:true,
+        id:'xiaomi17', name:'Xiaomi 17/18 Pro', short:'Xiaomi 17 Pro / 18 Pro (512GB)', abbr:'xiaomi', baseline:false, best:false, caution:true,
         date:'Verify MY', price:4999, priceLabel:'Estimate ~RM 4,999 (verify)', weight:192, battery:6000,
         chip:'Snapdragon flagship (by variant)', screen:'~6.4" LTPO (variant)', camera:'Leica (by variant)',
         charge:'~90W / 50W (by variant)', pd:'limited', pdLabel:'Verify MY variant · usually official HyperCharge',
@@ -462,7 +488,7 @@
         }
       },
       {
-        id:'iphone17promax', name:'iPhone 17 Pro Max', short:'iPhone 17 Pro Max (512GB)', baseline:false, best:false,
+        id:'iphone17promax', name:'iPhone 17 Pro Max', short:'iPhone 17 Pro Max (512GB)', abbr:'i17pm', baseline:false, best:false,
         date:'19 Sep 2025', price:6399, priceLabel:'RRP RM 6,999 (Promo RM 6,399)', weight:233, battery:4823,
         chip:'Apple A19 Pro', screen:'6.9" ProMotion OLED', camera:'48MP f/1.78 + 48MP 4x',
         charge:'~40–45W USB-C', pd:'full', pdLabel:'Full Ugreen support (USB-PD)',
@@ -482,7 +508,7 @@
         }
       },
       {
-        id:'iphone18promax', name:'iPhone 18 Pro Max', short:'iPhone 18 Pro Max (512GB)', baseline:false, best:false,
+        id:'iphone18promax', name:'iPhone 18 Pro Max', short:'iPhone 18 Pro Max (512GB)', abbr:'i18pm', baseline:false, best:false,
         date:'18 Sep 2026', price:6999, priceLabel:'RM 6,999 (Official MY)', weight:249, battery:5100,
         chip:'Apple A20 Pro (2nm)', screen:'6.9" ProMotion OLED', camera:'48MP Variable Aperture',
         charge:'~40–45W USB-C', pd:'full', pdLabel:'Full Ugreen support (USB-PD)',
@@ -502,7 +528,7 @@
         }
       },
       {
-        id:'pura80', name:'Huawei Pura 80 Ultra', short:'Huawei Pura 80 Ultra (16+512GB)', baseline:true, best:false,
+        id:'pura80', name:'Huawei Pura 80 Ultra', short:'Huawei Pura 80 Ultra (16+512GB)', abbr:'pura', baseline:true, best:false,
         date:'24 Jul 2025', price:6099, priceLabel:'RRP RM 6,599 (Promo RM 6,099)', weight:233.5, battery:5170,
         chip:'Kirin 9020', screen:'6.8" LTPO OLED', camera:'50MP 1" RYYB + 3.7x/9.4x',
         charge:'100W / 80W', pd:'mid', pdLabel:'Moderate · SuperCharge 100W; Ugreen PD/UFCS ~40W',
@@ -553,10 +579,17 @@
     }
 
     function displayRank(p, index) {
-      if (p.baseline && rankMode === 'overall') return { n: 'BASE', cls: 'base', label: 'BASE' };
+      if (p.baseline && rankMode === 'overall') {
+        return { n: 'BASE', cls: 'base', label: 'BASE', shortLabel: 'BASE' };
+      }
       const n = index + 1;
       const cls = n === 1 ? 'r1' : n === 2 ? 'r2' : n === 3 ? 'r3' : '';
-      return { n: '#' + n, cls, label: '#' + n + ' ' + MODE_LABEL[rankMode] };
+      return {
+        n: '#' + n,
+        cls,
+        label: '#' + n + ' ' + MODE_LABEL[rankMode],
+        shortLabel: '#' + n
+      };
     }
 
     function syncStickyH() {
@@ -708,9 +741,12 @@
             ? `<span class="badge-warn">Moderate (PD/UFCS)</span>`
             : `<span class="badge-warn">Limited · official charger</span>`;
         const cells = [
-          `<td class="sticky-a"><span class="rank-pill ${r.cls}">${r.label}</span></td>`,
+          `<td class="sticky-a"><span class="rank-pill ${r.cls}"><span class="rank-full">${r.label}</span><span class="rank-short">${r.shortLabel}</span></span></td>`,
           `<td class="sticky-b">
-            <a class="ref" href="${p.url}" target="_blank" rel="noopener noreferrer"><strong>${p.short}</strong></a>
+            <a class="ref" href="${p.url}" target="_blank" rel="noopener noreferrer" title="${p.short}">
+              <strong class="model-full">${p.short}</strong>
+              <strong class="model-short">${p.abbr || p.name}</strong>
+            </a>
             ${p.caution ? '<div class="note">MY status: verify again. Rear 2.7" screen is not universal.</div>' : ''}
           </td>`,
           `<td>${p.why[rankMode] || p.why.overall}</td>`,
@@ -825,6 +861,7 @@
     document.getElementById('pdfBtn').addEventListener('click', () => window.print());
     window.addEventListener('resize', syncStickyH);
 
+    selected = new Set(PHONES.map(p => p.id));
     setTrade(TRADE_DEFAULT);
     requestAnimationFrame(syncStickyH);
   </script>

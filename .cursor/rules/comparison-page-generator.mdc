@@ -1,0 +1,170 @@
+---
+description: Generate interactive product comparison HTML pages matching shared/phone.html
+alwaysApply: false
+---
+
+# Comparison page generator
+
+Generate interactive HTML/CSS/JS product comparison pages that match the structure and behavior of `shared/phone.html` (`Compare phone vs Huawei Pura 80`).
+
+Deliver a **single self-contained HTML file** (inline CSS and vanilla JS) unless the user names another path. For this GitHub Pages site, place shareable pages under `shared/{slug}.html`.
+
+---
+
+## 1. Single master table and synchronized ranking
+
+- Use **one unified HTML table** (`#masterTable`) for every compared item. Do **not** create separate tables per category or rank domain.
+- Include a **Rank / Sort dropdown** (`#rankSelect`) with multiple criteria. For phone flagship pages, use at least:
+  - `Overall`
+  - `Camera`
+  - `CPU / GPU`
+  - `Battery (mAh)`
+  - `Real SoT`
+  - `Charge / PD`
+  - `Travel`
+  - `Lowest Price`
+  - `Lightest`
+- When the active rank changes:
+  - Re-sort **both** the **Summary Cards** grid and the **Master Table** rows from `#1` to `#N`.
+  - Update each item’s rank badge (`#1 Camera`, `#2 Overall`, and so on).
+  - Use a distinct **`BASE`** badge for the current baseline reference item when that mode treats it as the baseline (for example overall mode with the user’s current device).
+  - Update a **Rank Highlights** column with the reason that item sits at that rank for the active mode.
+
+---
+
+## 2. Sticky top header and multi-select filters
+
+Keep the main controls in a **sticky top header**:
+
+- **Rank dropdown**
+- **Columns multi-select filter**
+  - Place it next to Rank.
+  - Include a clean **funnel filter icon**.
+  - Include **Select All** at the top of the menu.
+  - Default: **all columns checked**.
+  - Toggling a column immediately shows or hides that column in the master table.
+  - Select All must reflect checked / unchecked / indeterminate state.
+- **Compare multi-select filter**
+  - Label shows the active count, for example `Compare (10)`.
+  - List every item with a checkbox, including the baseline item.
+  - Include **Select All** at the top.
+  - Default: **all items selected**.
+- **Card visibility toggle** (`Hide cards` / `Show cards`)
+- Optional export control (for example PDF via print)
+
+Rules:
+
+- Do **not** put per-row compare checkboxes inside table cells or card bodies. Selection lives only in the Compare dropdown.
+- Keep all UI labels, headings, helper notes, empty states, badges, and formulas in natural **English**.
+- Do not leave Malay (or other non-English) chrome such as Banding, Kosongkan, Kolum, Bln, or Tutup.
+
+---
+
+## 3. Empty-state selection behavior
+
+- When **zero items** are selected in Compare:
+  - Render a clear **empty state** in **both** the Summary Cards area and the Master Table.
+  - Do **not** fall back to showing all items.
+  - Use copy such as: `No phones selected. Choose phones from the Compare dropdown or click Select All.`
+- When **one or more items** are selected:
+  - Show **only** the selected items in cards and table.
+  - Sort them by the active rank mode.
+
+---
+
+## 4. Trade-in, bank 0% installment calculator, and tenure columns
+
+- Provide an interactive trade-in / adjustment control:
+  - Range slider plus numeric input
+  - Show the formula in plain English, for example:
+    - `Top-up = new phone price − Pura sell value`
+    - `Installment = (price − trade-in) ÷ months`
+- Include bank / provider selector chips (for example `Maybank`, `HSBC`, `RHB`) and tenure chips (`12 Mo`, `24 Mo`, `36 Mo`).
+- Update the installment summary banner live when trade-in, bank, tenure, rank, or Compare selection changes.
+- Focus the summary on the top-ranked **non-baseline** selected item when available.
+- In the master table, provide **separate columns per tenure**:
+  - `12 Mo (0%)*`
+  - `24 Mo (0%)*`
+  - `36 Mo (0%)*`
+- Also include a **Top-Up** column (after selling / applying the trade-in baseline).
+- For the baseline item, Top-Up may show as the current phone being sold (zero top-up), not a purchase installment target.
+
+---
+
+## 5. Table readability and strict data schema
+
+### Layout and density
+
+- Make the table horizontally scrollable (`overflow-x: auto`). Prefer page vertical scroll; avoid trapping the page inside a nested vertical scroll region unless the user asks for a full-view mode.
+- Keep a **sticky header row** aligned under the sticky app header (`top: var(--sticky-h)`).
+- Keep the **first two columns sticky** on horizontal scroll: `Rank` and `Model`.
+- On small screens, keep Rank/Model sticky columns compact (short rank like `#1` and short model abbrs) and keep the top bar plus table header sticky while scrolling.
+- Keep cells concise.
+- Use compact badges/tags for compatibility (for example `Full Ugreen support (PD/PPS)`, `Moderate (PD/UFCS)`, `Limited · official charger`).
+- Group physical metadata in one column when useful: `Screen / Weight / OS / FP`.
+
+### Item schema
+
+Define each compared item as a strict JS object with at least:
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `id` | string | Stable unique key |
+| `name` | string | Short display name |
+| `short` | string | Table model label (often includes storage) |
+| `abbr` | string | Compact mobile sticky label (e.g. `vivo`, `i17pm`) |
+| `isBase` / `baseline` | boolean | Current baseline reference item |
+| `url` | string | Official or verified reference link |
+| `launchDate` / `date` | string | MY launch or availability date |
+| `priceDisplay` / `priceLabel` | string | Human price string with promo/official context |
+| `numericPrice` / `price` | number | Numeric MY price used for math and price sort |
+| `ranks` | object | Map of rank key → sort rank number |
+| `highlights` / `why` | object | Map of rank key → short English reason |
+| `camera` | string | Camera summary |
+| `chip` | string | SoC / chipset |
+| `batteryMah` / `battery` | number | Capacity in mAh |
+| `sot` | string | Real screen-on-time summary |
+| `charging` / `charge` | string | Wired/wireless charge summary |
+| `ugreenSupport` / `pd` | string enum | e.g. `full` \| `mid` \| `limited` |
+| `ugreenNote` / `pdLabel` | string | Compatibility note shown under the badge |
+| `travel` | string | eSIM / wallet / travel notes |
+| `screen` | string | Display summary |
+| `weightG` / `weight` | number | Weight in grams |
+| `os` / `osUpdates` | string | OS / update policy |
+| `fingerprint` | string | Biometric type |
+| `inBox` / `chargerInBox` | string | Charger-in-box status |
+| `verifyNote` / `caution` | boolean or string | Optional caveat when MY variant must be re-checked |
+
+Adapt field names only if the page keeps a clear alias layer. Prefer the schema above for new pages.
+
+### Evidence rules
+
+- Ground every price, spec, and availability claim in verified sources.
+- Link each model name to its reference URL.
+- When a variant, region, or promo is uncertain, mark it explicitly (estimate, verify MY, caution note). Do not invent universal specs across SKUs.
+
+---
+
+## 6. Implementation checklist
+
+Before finishing a generated page, verify:
+
+- [ ] One master table only
+- [ ] Rank change updates cards, rows, badges, and Rank Highlights together
+- [ ] Sticky header with Rank, Columns (funnel + Select All, all on by default), Compare (count + Select All, all on by default), cards toggle
+- [ ] No compare checkboxes in table cells
+- [ ] Zero Compare selection → empty state in cards and table
+- [ ] Trade-in slider/input + bank + tenure update the summary live
+- [ ] Separate `12 Mo` / `24 Mo` / `36 Mo` columns plus Top-Up
+- [ ] Sticky Rank + Model columns and sticky table header (including mobile)
+- [ ] Full English UI
+- [ ] Data objects follow the schema and cite verified sources
+
+---
+
+## 7. Output location (this repo)
+
+- Write shareable comparison HTML to `shared/{slug}.html`.
+- Public URL shape: `https://mohdizzudin.github.io/shared/{slug}.html`.
+- Do not place new comparison analysis HTML at the repo root unless the user explicitly asks.
+- Commit and push to `master` only when the user asks to deploy, publish, push, or share.
