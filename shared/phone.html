@@ -209,6 +209,18 @@
       font-variant-numeric: tabular-nums;
     }
     #tradeSlider { width: 100%; accent-color: var(--accent); }
+    #tradeInput {
+      width: 100%;
+      max-width: 180px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: var(--text-primary);
+      background: #fff;
+    }
     .trade-hint { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
 
     .container { max-width: 1280px; margin: 18px auto 60px; padding: 0 14px; }
@@ -550,12 +562,12 @@
       <div class="trade-grid">
         <div>
           <div class="trade-label">Kalkulator Trade-In Pura 80 Ultra</div>
-          <input id="tradeSlider" type="range" min="2500" max="4000" step="50" value="3200" />
-          <div class="trade-hint">Seret untuk anggaran jual semula (RM 2,500 – RM 4,000). Lalai RM 3,200.</div>
+          <input id="tradeSlider" type="range" min="2000" max="3000" step="50" value="2500" />
+          <div class="trade-hint">Seret untuk anggaran jual semula (RM 2,000 – RM 3,000). Atau taip terus di kotak nilai.</div>
         </div>
         <div>
-          <div class="trade-label">Nilai Trade-In</div>
-          <div class="trade-value" id="tradeValue">RM 3,200</div>
+          <div class="trade-label">Nilai Trade-In (RM)</div>
+          <input id="tradeInput" type="number" min="2000" max="3000" step="50" value="2500" inputmode="numeric" aria-label="Nilai trade-in Ringgit" />
         </div>
         <div>
           <div class="trade-label">Contoh Top-Up (telefon dipilih pertama)</div>
@@ -893,7 +905,9 @@
   </div>
 
   <script>
-    const TRADE_DEFAULT = 3200;
+    const TRADE_MIN = 2000;
+    const TRADE_MAX = 3000;
+    const TRADE_DEFAULT = 2500;
     let dockMonths = 36;
     let activeFilter = 'all';
     let searchQuery = '';
@@ -1187,8 +1201,23 @@
     const money = (n) => 'RM ' + Number(n).toLocaleString('en-MY', { maximumFractionDigits: 0 });
     const money2 = (n) => 'RM ' + Number(n).toFixed(2);
 
+    function clampTrade(n) {
+      const v = Number(n);
+      if (!Number.isFinite(v)) return TRADE_DEFAULT;
+      return Math.min(TRADE_MAX, Math.max(TRADE_MIN, Math.round(v)));
+    }
+
     function getTrade() {
-      return Number(document.getElementById('tradeSlider').value);
+      return clampTrade(document.getElementById('tradeInput').value);
+    }
+
+    function setTrade(n, from) {
+      const v = clampTrade(n);
+      const slider = document.getElementById('tradeSlider');
+      const input = document.getElementById('tradeInput');
+      if (from !== 'slider') slider.value = String(v);
+      if (from !== 'input') input.value = String(v);
+      return v;
     }
 
     function topUp(phone) {
@@ -1335,7 +1364,6 @@
 
     function updateTradePreview() {
       const trade = getTrade();
-      document.getElementById('tradeValue').textContent = money(trade);
       const first = sortedPhones().find(p => !p.baseline) || PHONES[0];
       const tu = topUp(first);
       document.getElementById('tradeTopupPreview').textContent = `${first.name}: ~${money(tu)}`;
@@ -1462,10 +1490,24 @@
         refreshAll();
       });
     });
-    document.getElementById('tradeSlider').addEventListener('input', () => {
+    document.getElementById('tradeSlider').addEventListener('input', (e) => {
+      setTrade(e.target.value, 'slider');
       updateTradePreview();
       renderCompare();
     });
+    document.getElementById('tradeInput').addEventListener('input', (e) => {
+      const raw = Number(e.target.value);
+      if (!Number.isFinite(raw)) return;
+      document.getElementById('tradeSlider').value = String(clampTrade(raw));
+      updateTradePreview();
+      renderCompare();
+    });
+    document.getElementById('tradeInput').addEventListener('change', (e) => {
+      setTrade(e.target.value, 'input');
+      updateTradePreview();
+      renderCompare();
+    });
+    setTrade(TRADE_DEFAULT);
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         document.querySelectorAll('.table-viewport.fullscreen-active').forEach(el => el.classList.remove('fullscreen-active'));
