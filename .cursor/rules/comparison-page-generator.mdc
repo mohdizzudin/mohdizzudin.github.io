@@ -95,10 +95,11 @@ Rules:
 
 ### Layout and density
 
-- Make the table horizontally scrollable (`overflow-x: auto`). Prefer page vertical scroll; avoid trapping the page inside a nested vertical scroll region unless the user asks for a full-view mode.
-- Keep a **sticky header row** aligned under the sticky app header (`top: var(--sticky-h)`).
+- **Scroll Option 2 (default, required):** Use **page vertical scroll**. The table wrapper must only do **horizontal** scroll (`overflow-x: auto; overflow-y: clip`). Do **not** put a nested `max-height` + vertical `overflow: auto` on the table that traps finger/wheel scrolling.
+- Keep a **fixed or sticky top control bar**. Keep a **sticky header row** aligned under it (`top: var(--sticky-h)`).
 - Keep the **first two columns sticky** on horizontal scroll: `Rank` and `Model`.
-- On small screens, keep Rank/Model sticky columns compact (short rank like `#1` and short model abbrs) and keep the top bar plus table header sticky while scrolling.
+- On small screens, keep Rank/Model sticky columns compact (short rank like `#1` and short model abbrs such as `vivo`, `i17pm`, `samsung`). Prefer sticky Rank/Model over trapping the page in an inner table scroller.
+- **Full View exception only:** If the user explicitly asks for Full View / locked table pane, then and only then may the table use an internal vertical scroll region. Default remains Option 2.
 - Keep cells concise.
 - Use compact badges/tags for compatibility (for example `Full Ugreen support (PD/PPS)`, `Moderate (PD/UFCS)`, `Limited · official charger`).
 - Group physical metadata in one column when useful: `Screen / Weight / OS / FP`.
@@ -156,7 +157,8 @@ Before finishing a generated page, verify:
 - [ ] Zero Compare selection → empty state in cards and table
 - [ ] Trade-in slider/input + bank + tenure update the summary live
 - [ ] Separate `12 Mo` / `24 Mo` / `36 Mo` columns plus Top-Up
-- [ ] Sticky Rank + Model columns and sticky table header (including mobile)
+- [ ] Sticky Rank + Model columns and sticky table header
+- [ ] Option 2 scroll: page vertical scroll; no nested max-height table trap (unless user asked Full View)
 - [ ] Full English UI
 - [ ] Data objects follow the schema and cite verified sources
 

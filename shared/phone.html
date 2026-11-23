@@ -191,13 +191,13 @@
       .dd-btn { padding: 0 8px; font-size: .65rem; }
       .dd-menu { right: auto; left: 0; }
       .table-card { padding: 10px 8px; }
+      /* Option 2: page vertical scroll; table wrapper only scrolls horizontally */
       .table-scroll {
-        overflow: auto;
-        max-height: calc(100dvh - var(--sticky-h) - 16px);
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
+        overflow-x: auto;
+        overflow-y: clip;
+        max-height: none;
       }
-      #masterTable thead th { top: 0; font-size: .68rem; padding: 8px 6px; }
+      #masterTable thead th { top: var(--sticky-h); font-size: .68rem; padding: 8px 6px; }
       #masterTable th.sticky-a, #masterTable td.sticky-a {
         min-width: 40px; max-width: 44px; width: 40px; padding: 6px 3px; text-align: center;
       }

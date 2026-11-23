@@ -18,6 +18,7 @@ When generating or updating interactive product comparison pages (same family as
 - Read and follow **`.cursor/rules/comparison-page-generator.mdc`** strictly.
 - Reference implementation: `shared/phone.html` (`Compare phone vs Huawei Pura 80`).
 - Deliver a single self-contained HTML file with inline CSS and vanilla JS unless the user asks otherwise.
+- **Scroll Option 2:** page vertical scroll by default. Table wrapper is horizontal-only (`overflow-x: auto; overflow-y: clip`). Do not trap scroll in a nested max-height table pane unless the user asks for Full View.
 
 ## Deploy
 
