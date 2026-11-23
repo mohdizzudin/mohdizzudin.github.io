@@ -1,0 +1,28 @@
+---
+description: Publish analysis and standalone HTML pages under shared/ for GitHub Pages
+alwaysApply: true
+---
+
+# Shared HTML pages
+
+This repo is GitHub Pages for `mohdizzudin.github.io`.
+
+## Path convention
+
+- Put standalone analysis, ranking, report, and shareable HTML under `shared/`.
+- Public URL: `https://mohdizzudin.github.io/shared/{filename}.html`
+- Example: `shared/phone.html` → `https://mohdizzudin.github.io/shared/phone.html`
+
+## Rules for agents
+
+- When creating or updating a shareable HTML page, write it to `shared/{slug}.html`.
+- Use a short lowercase slug with hyphens (e.g. `phone`, `flagship-ranking`). Prefer `.html`.
+- Do not place new analysis HTML at the repo root.
+- Do not overwrite unrelated files under `shared/` unless the user names that file.
+- After the user asks to deploy, publish, push, or share: commit, push to `master`, and reply with the live `shared/` URL.
+- GitHub Pages source is `master` at `/`. A push to `master` publishes `shared/*.html` after the Pages build finishes.
+
+## What stays outside shared/
+
+- Site chrome and app pages may stay at root or in existing folders (`index.html`, `trip/`, `checklist/`, `assets/`, etc.).
+- Only shareable analysis / one-off HTML reports use `shared/`.
