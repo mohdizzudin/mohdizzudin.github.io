@@ -476,7 +476,7 @@
     .rp-base { background: #be123c; color: #fff; }
     .num { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--text-primary); }
 
-    .badge-gain, .badge-loss, .tag-x {
+    .badge-gain, .badge-loss, .tag-x, .badge-pd-ok, .badge-pd-limit {
       display: inline-block;
       font-weight: 700;
       font-size: 0.69rem;
@@ -491,6 +491,16 @@
       color: #4338ca;
       margin-right: 4px;
       margin-bottom: 4px;
+    }
+    .badge-pd-ok {
+      background: rgba(34, 197, 94, 0.12);
+      color: #16a34a;
+      border: 1px solid rgba(34, 197, 94, 0.28);
+    }
+    .badge-pd-limit {
+      background: rgba(234, 179, 8, 0.12);
+      color: #ca8a04;
+      border: 1px solid rgba(234, 179, 8, 0.28);
     }
 
     .batt-wrap { display: flex; align-items: center; gap: 8px; min-width: 140px; }
@@ -569,7 +579,7 @@
   <div class="sticky-tools" id="stickyTools">
     <div class="tools-inner">
       <div class="search-row">
-        <input id="searchInput" type="search" placeholder="Cari model, cip, eSIM, kamera…" aria-label="Cari telefon" />
+        <input id="searchInput" type="search" placeholder="Cari model, cip, eSIM, A20 Pro, Snapdragon, PD 3.0, Ugreen…" aria-label="Cari telefon" />
         <select id="sortSelect" aria-label="Susun">
           <option value="rank">Susun: Overall Rank</option>
           <option value="price-asc">Harga (Rendah ke Tinggi)</option>
@@ -639,10 +649,10 @@
 
     <header class="report-header">
       <div class="report-eyebrow">Verified Malaysia Market Data (Nov 2026) · Semua varian 512GB rasmi</div>
-      <h1>Ranking Mengikut Kategori (Kamera, Bateri, Travel, Video &amp; Nilai) vs Huawei Pura 80 Ultra</h1>
+      <h1>Ranking Mengikut Kategori (Kamera, CPU/GPU, Bateri SoT, Caj &amp; Ugreen, Travel) vs Huawei Pura 80 Ultra</h1>
       <p class="report-subtitle">
         Setiap model ada pautan rujukan aktif. Harga &amp; spesifikasi di bawah mengikuti data yang disahkan untuk pasaran Malaysia.
-        Xiaomi dilabel status semakan supaya tidak mengelirukan.
+        Xiaomi dilabel status semakan supaya tidak mengelirukan. Cari “A20 Pro”, “Snapdragon”, “PD 3.0” atau “Ugreen” untuk tapis cepat.
       </p>
       <div class="winner-strip">
         <div class="winner-chip">
@@ -651,19 +661,19 @@
           <div class="winner-chip-why">Kamera Android kuat + 6,510mAh + RM 4,699</div>
         </div>
         <div class="winner-chip">
-          <div class="winner-chip-cat">Juara Kamera</div>
-          <div class="winner-chip-phone">Pura 80 Ultra / iPhone 18 Pro</div>
-          <div class="winner-chip-why">1" RYYB vs Variable Aperture + video</div>
+          <div class="winner-chip-cat">Juara CPU/GPU</div>
+          <div class="winner-chip-phone">iPhone 18 Pro / Pro Max</div>
+          <div class="winner-chip-why">A20 Pro 2nm · SC ~4,707 / MC ~12,598</div>
         </div>
         <div class="winner-chip">
-          <div class="winner-chip-cat">Juara Bateri</div>
+          <div class="winner-chip-cat">Juara Bateri SoT</div>
           <div class="winner-chip-phone">OPPO Find X9 Pro</div>
-          <div class="winner-chip-why">7,500mAh Si-C + 80W/50W</div>
+          <div class="winner-chip-why">7,500mAh · ~11–13 jam SoT</div>
         </div>
         <div class="winner-chip">
-          <div class="winner-chip-cat">Juara Travel</div>
-          <div class="winner-chip-phone">iPhone 17/18 Pro</div>
-          <div class="winner-chip-why">eSIM, Apple Pay/Suica, Privacy S26</div>
+          <div class="winner-chip-cat">Juara Ugreen/PD</div>
+          <div class="winner-chip-phone">S26 Ultra / iPhone</div>
+          <div class="winner-chip-why">USB-PD 3.0 / PPS penuh</div>
         </div>
         <div class="winner-chip">
           <div class="winner-chip-cat">Nilai Terbaik</div>
@@ -754,7 +764,7 @@
               </tr>
               <tr data-phone="vivox300">
                 <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 Pengganti</span></td>
-                <td><a class="ref-link" href="https://shop.vivo.com/my/product/2555" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a></td>
+                <td><a class="ref-link" href="https://www.vivo.com/my/products/param/x300-pro" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a></td>
                 <td>50MP utama + 200MP ZEISS APO telefoto</td>
                 <td><strong>ZEISS Natural Color:</strong> warna langsing &amp; landscape bersih; potret ZEISS cantik.</td>
                 <td>8K 30fps &amp; 4K 120fps 10-bit Log (terbaik di Android).</td>
@@ -762,7 +772,7 @@
               </tr>
               <tr data-phone="oppox9">
                 <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Pengganti</span></td>
-                <td><a class="ref-link" href="https://www.oppo.com/my/smartphones/series-find-x/find-x9-pro/" target="_blank" rel="noopener noreferrer"><strong>OPPO Find X9 Pro</strong></a></td>
+                <td><a class="ref-link" href="https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb" target="_blank" rel="noopener noreferrer"><strong>OPPO Find X9 Pro</strong></a></td>
                 <td>50MP Hasselblad + 200MP telefoto</td>
                 <td><strong>Hasselblad Color:</strong> tone ala filem medium-format, cantik untuk street.</td>
                 <td>4K 120fps Dolby Vision &amp; Master Mode.</td>
@@ -770,7 +780,7 @@
               </tr>
               <tr data-phone="honorm8">
                 <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4</span></td>
-                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/spec/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
+                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/buy/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
                 <td>50MP utama + 200MP telefoto Ultra Night (CIPA 5.5)</td>
                 <td>Warna terang untuk sosial; mode Harcourt Portrait cantik.</td>
                 <td>4K 120fps Magic Log.</td>
@@ -794,7 +804,7 @@
               </tr>
               <tr data-phone="xiaomi17">
                 <td class="sticky-rank-col"><span class="rank-pill rp-mid">#7</span></td>
-                <td><strong>Xiaomi 17 Pro / 18 Pro</strong></td>
+                <td><a class="ref-link" href="https://www.mi.com/my/" target="_blank" rel="noopener noreferrer"><strong>Xiaomi 17 Pro / 18 Pro</strong></a></td>
                 <td>Leica Light Fusion (ikut varian). Semak unit rasmi MY.</td>
                 <td>Leica Authentic/Vibrant (bergantung firmware).</td>
                 <td>8K / 4K120 (ikut varian).</td>
@@ -807,18 +817,106 @@
     </section>
 
     <section class="section">
+      <div class="table-viewport" id="tblCpu">
+        <div class="section-sticky-head">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">3. Prestasi Cip (CPU &amp; GPU Performance Ranking)</h2>
+              <p class="section-desc">Peak skor vs kestabilan thermal. Pautan penanda aras Geekbench / NanoReview / perbandingan SoC disertakan.</p>
+            </div>
+            <button class="btn-fullview" type="button" onclick="openFullView('tblCpu')">Full View Table</button>
+          </div>
+        </div>
+        <div class="fullscreen-toolbar">
+          <span>3. CPU &amp; GPU Performance Rank</span>
+          <button class="btn-close-full" type="button" onclick="closeFullView('tblCpu')">✕ Tutup</button>
+        </div>
+        <div class="fullscreen-scroll-area">
+          <table class="rank-table">
+            <thead>
+              <tr>
+                <th class="sticky-rank-col">CPU/GPU Rank</th>
+                <th>Model</th>
+                <th>Cip &amp; Benchmark</th>
+                <th>Kekuatan</th>
+                <th>Nota Thermal / Gaming</th>
+                <th>Rujukan Luaran</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-rank-1" data-phone="iphone18pro">
+                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 Overall</span></td>
+                <td>
+                  <a class="ref-link" href="https://www.apple.com/my/shop/buy-iphone/iphone-18-pro" target="_blank" rel="noopener noreferrer"><strong>iPhone 18 Pro / Pro Max</strong></a>
+                </td>
+                <td>
+                  <strong>Apple A20 Pro (2nm)</strong><br>
+                  Single-Core: ~4,707 · Multi-Core: ~12,598
+                </td>
+                <td>Paling tinggi overall CPU/GPU dalam set ini. Vapor chamber ~3× saiz gen sebelumnya.</td>
+                <td><span class="badge-gain">+Stabil</span> untuk sesi gaming panjang; throttling paling terkawal.</td>
+                <td><a class="ref-link" href="https://nanoreview.net/en/soc-compare/mediatek-dimensity-9500-vs-apple-a20-pro" target="_blank" rel="noopener noreferrer">NanoReview: Dimensity 9500 vs A20 Pro</a></td>
+              </tr>
+              <tr data-phone="s26u">
+                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 Android Peak</span></td>
+                <td>
+                  <a class="ref-link" href="https://www.senheng.com.my/product/galaxy-s26-ultra-5g/" target="_blank" rel="noopener noreferrer"><strong>Galaxy S26 Ultra</strong></a>
+                  /
+                  <a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/buy/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a>
+                </td>
+                <td>
+                  <strong>Snapdragon 8 Elite Gen 5 (3nm)</strong><br>
+                  Multi-core AnTuTu v11 &gt;4.0M
+                </td>
+                <td>Peak Android tertinggi untuk frame rate &amp; multi-core burst.</td>
+                <td><span class="badge-loss">-Thermal</span> throttling pada beban grafik berterusan (lebih ketara vs A20 Pro).</td>
+                <td><a class="ref-link" href="https://www.91mobiles.com/processor/qualcomm-snapdragon-8-elite-gen-5-vs-mediatek-dimensity-9500" target="_blank" rel="noopener noreferrer">91mobiles: SD 8 Elite Gen 5 vs Dimensity 9500</a></td>
+              </tr>
+              <tr data-phone="vivox300">
+                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Thermal Balance</span></td>
+                <td>
+                  <a class="ref-link" href="https://www.vivo.com/my/products/param/x300-pro" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a>
+                  /
+                  <a class="ref-link" href="https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb" target="_blank" rel="noopener noreferrer"><strong>OPPO Find X9 Pro</strong></a>
+                </td>
+                <td>
+                  <strong>MediaTek Dimensity 9500 (3nm)</strong><br>
+                  Ray tracing &amp; sustained load lebih seimbang
+                </td>
+                <td>Imbangan prestasi + pengurusan haba sangat baik untuk Android.</td>
+                <td><span class="badge-gain">+Haba terkawal</span> semasa gaming &amp; editing panjang.</td>
+                <td><a class="ref-link" href="https://gadgets.beebom.com/guides/apple-a20-pro-vs-dimensity-9500-benchmark-specs" target="_blank" rel="noopener noreferrer">Beebom: A20 Pro vs Dimensity 9500</a></td>
+              </tr>
+              <tr class="row-baseline" data-phone="pura80">
+                <td class="sticky-rank-col"><span class="rank-pill rp-base">ASAL</span></td>
+                <td><a class="ref-link" href="https://consumer.huawei.com/my/phones/pura80-ultra/specs/" target="_blank" rel="noopener noreferrer"><strong>Huawei Pura 80 Ultra</strong></a></td>
+                <td>
+                  <strong>Kirin 9020</strong><br>
+                  Cukup untuk harian &amp; XMAGE
+                </td>
+                <td>Baik untuk foto/video pipeline XMAGE &amp; tugas harian.</td>
+                <td><span class="badge-loss">-Gaming 3D berat</span> di belakang Snapdragon 8 Elite Gen 5 &amp; A20 Pro.</td>
+                <td><a class="ref-link" href="https://unite4buy.com/cpu/HiSilicon-Kirin-9020-vs-Qualcomm-Snapdragon-8-Elite-Gen-5/" target="_blank" rel="noopener noreferrer">Unite4Buy: Kirin 9020 vs SD 8 Elite Gen 5</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="table-viewport" id="tblBattery">
         <div class="section-sticky-head">
           <div class="section-header">
             <div>
-              <h2 class="section-title">3. Rank Bateri &amp; Pengecasan + Ciri Eksklusif</h2>
-              <p class="section-desc">Termasuk pengecas dalam kotak, tempoh kemas kini OS, dan jenis pengimbas cap jari.</p>
+              <h2 class="section-title">4. Rank Bateri Kapasiti &amp; Ciri Eksklusif</h2>
+              <p class="section-desc">Termasuk pengecas dalam kotak, tempoh kemas kini OS, dan jenis pengimbas cap jari. (SoT sebenar ada di seksyen seterusnya.)</p>
             </div>
             <button class="btn-fullview" type="button" onclick="openFullView('tblBattery')">Full View Table</button>
           </div>
         </div>
         <div class="fullscreen-toolbar">
-          <span>3. Battery, OS, Fingerprint &amp; Exclusive</span>
+          <span>4. Battery Capacity, OS, Fingerprint &amp; Exclusive</span>
           <button class="btn-close-full" type="button" onclick="closeFullView('tblBattery')">✕ Tutup</button>
         </div>
         <div class="fullscreen-scroll-area">
@@ -842,18 +940,187 @@
     </section>
 
     <section class="section">
+      <div class="table-viewport" id="tblSot">
+        <div class="section-sticky-head">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">5. Kecekapan Bateri (Battery Performance &amp; Real-World SoT)</h2>
+              <p class="section-desc">mAh besar tidak semestinya paling tahan. Cip cekap + OS boleh menyamai ketahanan bateri lebih besar.</p>
+            </div>
+            <button class="btn-fullview" type="button" onclick="openFullView('tblSot')">Full View Table</button>
+          </div>
+        </div>
+        <div class="fullscreen-toolbar">
+          <span>5. Real-World Screen-on-Time Rank</span>
+          <button class="btn-close-full" type="button" onclick="closeFullView('tblSot')">✕ Tutup</button>
+        </div>
+        <div class="fullscreen-scroll-area">
+          <table class="rank-table">
+            <thead>
+              <tr>
+                <th class="sticky-rank-col">SoT Rank</th>
+                <th>Model</th>
+                <th>Kapasiti</th>
+                <th>Anggaran Screen-on-Time</th>
+                <th>Kenapa ranking begini</th>
+                <th>vs Pura 80 Ultra</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-rank-1" data-phone="oppox9">
+                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 Android</span></td>
+                <td><a class="ref-link" href="https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb" target="_blank" rel="noopener noreferrer"><strong>OPPO Find X9 Pro</strong></a></td>
+                <td>7,500mAh Si-C</td>
+                <td class="num">~11–13 jam SoT</td>
+                <td>Kapasiti terbesar + Dimensity 9500 cekap haba/kuasa.</td>
+                <td><span class="badge-gain">+Dapat:</span> Lonjakan ketahanan harian paling besar.</td>
+              </tr>
+              <tr data-phone="honorm8">
+                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 Fizikal</span></td>
+                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/buy/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
+                <td>7,100mAh Si-C</td>
+                <td class="num">~10–12 jam SoT</td>
+                <td>Bateri besar + pengurusan MagicOS; hampir setanding Find X9 Pro.</td>
+                <td><span class="badge-gain">+Dapat:</span> Sehari+ berat tanpa powerbank.</td>
+              </tr>
+              <tr data-phone="iphone18promax">
+                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Per-mAh</span></td>
+                <td>
+                  <a class="ref-link" href="https://www.apple.com/my/shop/buy-iphone/iphone-18-pro" target="_blank" rel="noopener noreferrer"><strong>iPhone 18 Pro Max</strong></a>
+                  (~5,100mAh) &amp;
+                  <a class="ref-link" href="https://www.apple.com/my/iphone-17-pro/" target="_blank" rel="noopener noreferrer"><strong>17 Pro Max</strong></a>
+                  (~4,823mAh)
+                </td>
+                <td>~4,823–5,100mAh</td>
+                <td class="num">Menyamai Android ~7,000mAh</td>
+                <td>iOS + transistor A19/A20 Pro 2nm/3nm: kecekapan per-mAh tertinggi.</td>
+                <td><span class="badge-gain">+Dapat:</span> Ketahanan tinggi walaupun mAh lebih kecil.</td>
+              </tr>
+              <tr data-phone="vivox300">
+                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4 Imbangan</span></td>
+                <td><a class="ref-link" href="https://www.vivo.com/my/products/param/x300-pro" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a></td>
+                <td>6,510mAh</td>
+                <td class="num">~9.5–11 jam SoT</td>
+                <td>Imbangan kamera berat + bateri besar tanpa ekstrem 7,500mAh.</td>
+                <td><span class="badge-gain">+Dapat:</span> Lebih tahan dari Pura pada penggunaan campuran.</td>
+              </tr>
+              <tr data-phone="s26u">
+                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5 Standard</span></td>
+                <td><a class="ref-link" href="https://www.senheng.com.my/product/galaxy-s26-ultra-5g/" target="_blank" rel="noopener noreferrer"><strong>Galaxy S26 Ultra</strong></a></td>
+                <td>5,000mAh</td>
+                <td class="num">~7.5–9 jam SoT</td>
+                <td>Flagship standard; Privacy Display &amp; S Pen lebih tumpu produktiviti berbanding ketahanan ekstrem.</td>
+                <td><span class="badge-gain">+Dapat:</span> Sedikit lebih cekap dari Kirin pada beban campuran.</td>
+              </tr>
+              <tr class="row-baseline" data-phone="pura80">
+                <td class="sticky-rank-col"><span class="rank-pill rp-base">ASAL</span></td>
+                <td><a class="ref-link" href="https://consumer.huawei.com/my/phones/pura80-ultra/specs/" target="_blank" rel="noopener noreferrer"><strong>Huawei Pura 80 Ultra</strong></a></td>
+                <td>5,170mAh</td>
+                <td class="num">~6.5–7.5 jam SoT</td>
+                <td>Kirin 9020 memerlukan lebih kuasa pada beban 5G/kamera berat.</td>
+                <td><strong>Rujukan semasa anda.</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="table-viewport" id="tblCharge">
+        <div class="section-sticky-head">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">6. Kelajuan Cas &amp; Kesesuaian Pengecas Third-Party (Ugreen / Anker / Baseus)</h2>
+              <p class="section-desc">Peak watt rasmi vs kelajuan sebenar jika guna Ugreen/Anker PD. Cari “Ugreen”, “PD 3.0” atau “PPS” di kotak carian atas.</p>
+            </div>
+            <button class="btn-fullview" type="button" onclick="openFullView('tblCharge')">Full View Table</button>
+          </div>
+        </div>
+        <div class="fullscreen-toolbar">
+          <span>6. Charge Speed &amp; Ugreen/Anker Compatibility</span>
+          <button class="btn-close-full" type="button" onclick="closeFullView('tblCharge')">✕ Tutup</button>
+        </div>
+        <div class="fullscreen-scroll-area">
+          <table class="rank-table" style="min-width:1180px;">
+            <thead>
+              <tr>
+                <th class="sticky-rank-col">Charge Rank</th>
+                <th>Model</th>
+                <th>Kelajuan Rasmi</th>
+                <th>Kesesuaian Charger Ugreen/Anker</th>
+                <th>Standard</th>
+                <th>Nota Praktikal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-rank-1" data-phone="s26u">
+                <td class="sticky-rank-col"><span class="rank-pill rp-1">#1 PD Bebas</span></td>
+                <td><a class="ref-link" href="https://www.senheng.com.my/product/galaxy-s26-ultra-5g/" target="_blank" rel="noopener noreferrer"><strong>Galaxy S26 Ultra</strong></a></td>
+                <td>60W kabel / 25W wireless</td>
+                <td><span class="badge-pd-ok">Menyokong Ugreen 100% (PD/PPS)</span><br>BEBAS / MENYOKONG PENUH</td>
+                <td>USB-PD 3.0 / PPS</td>
+                <td>Ugreen 65W/100W boleh cas pada kelajuan maksimum ~60W.</td>
+              </tr>
+              <tr data-phone="iphone18pro">
+                <td class="sticky-rank-col"><span class="rank-pill rp-2">#2 PD Bebas</span></td>
+                <td><a class="ref-link" href="https://www.apple.com/my/shop/buy-iphone/iphone-18-pro" target="_blank" rel="noopener noreferrer"><strong>iPhone 17 / 18 Pro Series</strong></a></td>
+                <td>~40W–45W kabel</td>
+                <td><span class="badge-pd-ok">Menyokong Ugreen 100% (PD/PPS)</span><br>BEBAS / MENYOKONG PENUH</td>
+                <td>USB-PD</td>
+                <td>Ugreen/Anker 45W+ cukup untuk kelajuan maksimum iPhone.</td>
+              </tr>
+              <tr data-phone="pura80">
+                <td class="sticky-rank-col"><span class="rank-pill rp-3">#3 Sederhana</span></td>
+                <td><a class="ref-link" href="https://consumer.huawei.com/my/phones/pura80-ultra/specs/" target="_blank" rel="noopener noreferrer"><strong>Huawei Pura 80 Ultra</strong></a></td>
+                <td>100W kabel / 80W wireless</td>
+                <td><span class="badge-pd-limit">Terhad Pengecas Original (PD Perlahan)</span><br>SEDERHANA</td>
+                <td>SuperCharge rasmi · PD/UFCS sederhana</td>
+                <td>100W rasmi. Ugreen PD/UFCS ~40W sederhana.</td>
+              </tr>
+              <tr data-phone="honorm8">
+                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4 Terhad</span></td>
+                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/buy/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
+                <td>100W kabel / 80W wireless</td>
+                <td><span class="badge-pd-limit">Terhad Pengecas Original (PD Perlahan)</span><br>TERHAD</td>
+                <td>Honor SuperCharge</td>
+                <td>Perlu kepala + kabel rasmi Honor untuk 100W. Ugreen PD ~18W–30W sahaja.</td>
+              </tr>
+              <tr data-phone="vivox300">
+                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#5 Terhad</span></td>
+                <td><a class="ref-link" href="https://www.vivo.com/my/products/param/x300-pro" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a></td>
+                <td>90W kabel / 40W wireless</td>
+                <td><span class="badge-pd-limit">Terhad Pengecas Original (PD Perlahan)</span><br>TERHAD</td>
+                <td>FlashCharge rasmi</td>
+                <td>Perlu FlashCharge rasmi untuk 90W. Ugreen PD ~18W–30W.</td>
+              </tr>
+              <tr data-phone="oppox9">
+                <td class="sticky-rank-col"><span class="rank-pill rp-mid">#6 Terhad</span></td>
+                <td><a class="ref-link" href="https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb" target="_blank" rel="noopener noreferrer"><strong>OPPO Find X9 Pro</strong></a></td>
+                <td>80W kabel / 50W wireless</td>
+                <td><span class="badge-pd-limit">Terhad Pengecas Original (PD Perlahan)</span><br>TERHAD</td>
+                <td>SUPERVOOC rasmi</td>
+                <td>Perlu SUPERVOOC rasmi untuk 80W. Ugreen PD ~18W.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="table-viewport" id="tblTravel">
         <div class="section-sticky-head">
           <div class="section-header">
             <div>
-              <h2 class="section-title">4. Rank Travel Luar Negara (eSIM, Wallet, Maps, Signal)</h2>
+              <h2 class="section-title">7. Rank Travel Luar Negara (eSIM, Wallet, Maps, Signal)</h2>
               <p class="section-desc">Kelancaran di Jepun, Korea, China, Eropah: eSIM, bayaran transit, navigasi.</p>
             </div>
             <button class="btn-fullview" type="button" onclick="openFullView('tblTravel')">Full View Table</button>
           </div>
         </div>
         <div class="fullscreen-toolbar">
-          <span>4. Travel Readiness</span>
+          <span>7. Travel Readiness</span>
           <button class="btn-close-full" type="button" onclick="closeFullView('tblTravel')">✕ Tutup</button>
         </div>
         <div class="fullscreen-scroll-area">
@@ -887,7 +1154,7 @@
               </tr>
               <tr data-phone="honorm8">
                 <td class="sticky-rank-col"><span class="rank-pill rp-3">#3</span></td>
-                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/spec/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
+                <td><a class="ref-link" href="https://www.honor.com/my/phones/honor-magic8-pro/buy/" target="_blank" rel="noopener noreferrer"><strong>Honor Magic8 Pro</strong></a></td>
                 <td>Dual eSIM + SIM</td>
                 <td>Google Wallet</td>
                 <td><span class="tag-x">IP68/IP69/IP69K</span> + 3D ToF Face Unlock</td>
@@ -895,7 +1162,7 @@
               </tr>
               <tr data-phone="vivox300">
                 <td class="sticky-rank-col"><span class="rank-pill rp-mid">#4</span></td>
-                <td><a class="ref-link" href="https://shop.vivo.com/my/product/2555" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a> / <a class="ref-link" href="https://www.oppo.com/my/smartphones/series-find-x/find-x9-pro/" target="_blank" rel="noopener noreferrer"><strong>Find X9 Pro</strong></a></td>
+                <td><a class="ref-link" href="https://www.vivo.com/my/products/param/x300-pro" target="_blank" rel="noopener noreferrer"><strong>vivo X300 Pro</strong></a> / <a class="ref-link" href="https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb" target="_blank" rel="noopener noreferrer"><strong>Find X9 Pro</strong></a></td>
                 <td>Dual eSIM + SIM</td>
                 <td>Google Wallet</td>
                 <td>Maps/Auto penuh, IP68/IP69, bateri besar</td>
@@ -920,14 +1187,14 @@
         <div class="section-sticky-head">
           <div class="section-header">
             <div>
-              <h2 class="section-title">5. Jadual Spesifikasi Lengkap, Ansuran &amp; Top-Up</h2>
+              <h2 class="section-title">8. Jadual Spesifikasi Lengkap, Ansuran &amp; Top-Up</h2>
               <p class="section-desc">Top-up = harga efektif − nilai trade-in slider. Semua pautan model aktif.</p>
             </div>
             <button class="btn-fullview" type="button" onclick="openFullView('tblFullSpec')">Full View Table</button>
           </div>
         </div>
         <div class="fullscreen-toolbar">
-          <span>5. Full Spec 512GB MY</span>
+          <span>8. Full Spec 512GB MY</span>
           <button class="btn-close-full" type="button" onclick="closeFullView('tblFullSpec')">✕ Tutup</button>
         </div>
         <div class="fullscreen-scroll-area">
@@ -991,8 +1258,8 @@
         battery: 6510,
         charge: '90W kabel / 40W wireless',
         camera: '50MP utama + 200MP ZEISS APO telefoto',
-        search: 'vivo x300 pro dimensity zeiss esim android kamera telefoto',
-        url: 'https://shop.vivo.com/my/product/2555',
+        search: 'vivo x300 pro dimensity 9500 zeiss esim android kamera telefoto flashcharge ugreen pd terhad',
+        url: 'https://www.vivo.com/my/products/param/x300-pro',
         chargerInBox: 'Ada (biasanya 90W MY)',
         osUpdates: '~4–5 tahun OS + patch (ColorOS/Funtouch ikut rantau)',
         fingerprint: 'Ultrasonic (in-display)',
@@ -1019,8 +1286,8 @@
         battery: 7100,
         charge: '100W kabel / 80W wireless',
         camera: '50MP utama + 200MP telefoto',
-        search: 'honor magic8 pro snapdragon 3d tof ip69k esim android',
-        url: 'https://www.honor.com/my/phones/honor-magic8-pro/spec/',
+        search: 'honor magic8 pro snapdragon 8 elite gen 5 3d tof ip69k esim android ugreen pd terhad',
+        url: 'https://www.honor.com/my/phones/honor-magic8-pro/buy/',
         chargerInBox: 'Ada (biasanya 100W)',
         osUpdates: '~5 tahun MagicOS / patch keselamatan',
         fingerprint: 'Ultrasonic (in-display)',
@@ -1047,8 +1314,8 @@
         battery: 7500,
         charge: '80W kabel / 50W wireless',
         camera: '50MP Hasselblad + 200MP telefoto',
-        search: 'oppo find x9 pro hasselblad dimensity bateri esim android',
-        url: 'https://www.oppo.com/my/smartphones/series-find-x/find-x9-pro/',
+        search: 'oppo find x9 pro hasselblad dimensity 9500 bateri sot esim android supervooc ugreen pd terhad',
+        url: 'https://shop.urbanrepublic.com.my/products/oppo-find-x9-pro-16gb-512gb',
         chargerInBox: 'Ada (biasanya 80W SUPERVOOC)',
         osUpdates: '~5 tahun ColorOS + patch',
         fingerprint: 'Optical (in-display)',
@@ -1075,7 +1342,7 @@
         battery: 5000,
         charge: '60W kabel / 25W wireless',
         camera: '200MP f/1.4 utama + zoom 3x/5x',
-        search: 'samsung galaxy s26 ultra privacy display s pen esim android',
+        search: 'samsung galaxy s26 ultra privacy display s pen esim android snapdragon ugreen anker pd 3.0 pps menyokong',
         url: 'https://www.senheng.com.my/product/galaxy-s26-ultra-5g/',
         chargerInBox: 'Tiada (beli berasingan)',
         osUpdates: '7 tahun OS + keselamatan',
@@ -1103,7 +1370,7 @@
         battery: 3988,
         charge: '~31 jam video · caj USB-C',
         camera: '48MP f/1.78 + 48MP 4x',
-        search: 'iphone 17 pro apple a19 ios esim suica wallet video',
+        search: 'iphone 17 pro apple a19 ios esim suica wallet video ugreen anker pd 3.0 menyokong',
         url: 'https://www.apple.com/my/iphone-17-pro/',
         chargerInBox: 'Tiada',
         osUpdates: '~6–7 tahun iOS',
@@ -1131,7 +1398,7 @@
         battery: 4250,
         charge: '~36 jam video · caj USB-C',
         camera: '48MP Fusion Main Variable Aperture f/1.48–f/4.0',
-        search: 'iphone 18 pro apple a20 variable aperture ios esim',
+        search: 'iphone 18 pro apple a20 pro variable aperture ios esim ugreen anker pd 3.0 geekbench nanoreview menyokong',
         url: 'https://www.apple.com/my/shop/buy-iphone/iphone-18-pro',
         chargerInBox: 'Tiada',
         osUpdates: '~6–7 tahun iOS',
@@ -1159,7 +1426,7 @@
         battery: 6000,
         charge: '~90W / 50W (ikut varian)',
         camera: 'Leica (ikut varian rasmi)',
-        search: 'xiaomi 17 18 pro leica android esim',
+        search: 'xiaomi 17 18 pro leica android esim snapdragon',
         url: 'https://www.mi.com/my/',
         chargerInBox: 'Ada (biasanya HyperCharge)',
         osUpdates: '~4–5 tahun HyperOS (ikut rantau)',
@@ -1188,7 +1455,7 @@
         battery: 4823,
         charge: '~39 jam video',
         camera: '48MP f/1.78 + 48MP 4x',
-        search: 'iphone 17 pro max apple ios esim',
+        search: 'iphone 17 pro max apple a19 ios esim ugreen anker pd 3.0 sot kecekapan menyokong',
         url: 'https://www.apple.com/my/iphone-17-pro/',
         chargerInBox: 'Tiada',
         osUpdates: '~6–7 tahun iOS',
@@ -1216,7 +1483,7 @@
         battery: 5100,
         charge: '~45 jam video',
         camera: '48MP Variable Aperture f/1.48–f/4.0',
-        search: 'iphone 18 pro max apple a20 variable aperture ios',
+        search: 'iphone 18 pro max apple a20 pro variable aperture ios ugreen anker pd 3.0 sot kecekapan geekbench menyokong',
         url: 'https://www.apple.com/my/shop/buy-iphone/iphone-18-pro',
         chargerInBox: 'Tiada',
         osUpdates: '~6–7 tahun iOS',
@@ -1244,7 +1511,7 @@
         battery: 5170,
         charge: '100W kabel / 80W wireless',
         camera: '50MP 1" RYYB Variable Aperture + 3.7x &amp; 9.4x',
-        search: 'huawei pura 80 ultra kirin kamera ryyb',
+        search: 'huawei pura 80 ultra kirin 9020 kamera ryyb ugreen ufcs pd sederhana',
         url: 'https://consumer.huawei.com/my/phones/pura80-ultra/specs/',
         chargerInBox: 'Ada (biasanya 100W)',
         osUpdates: 'HarmonyOS / patch (ikut rantau; tiada Google Play natif)',
