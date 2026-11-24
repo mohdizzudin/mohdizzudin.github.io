@@ -309,6 +309,106 @@
             }
         }
 
+
+        .controls-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-top: 14px;
+        }
+
+        .control-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .sort-select {
+            padding: 12px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            background: #fff;
+            color: #333;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        .sort-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .filter-btn.status-safe-btn.active {
+            background: #2e7d32;
+            color: #fff;
+        }
+
+        .filter-btn.status-check-btn.active {
+            background: #ef6c00;
+            color: #fff;
+        }
+
+        th.sortable {
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        th.sortable:hover {
+            opacity: 0.9;
+        }
+
+        th.sortable .sort-ind {
+            font-size: 11px;
+            opacity: 0.85;
+            margin-left: 4px;
+        }
+
+        .status-pill {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-pill.safe {
+            background: #e8f5e9;
+            color: #1b5e20;
+        }
+
+        .status-pill.check {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .analysis-box {
+            background: white;
+            border-radius: 15px;
+            padding: 20px 22px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            color: #444;
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .analysis-box h2 {
+            font-size: 1.15rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .analysis-box ul {
+            margin: 8px 0 0 18px;
+        }
+
         .no-results {
             text-align: center;
             padding: 50px;
@@ -332,14 +432,45 @@
             </p>
         </header>
 
+        <div class="analysis-box">
+            <h2>Analisis ringkas (konbini Jepun)</h2>
+            <p>Tiada produk konbini biasa yang dijamin <strong>halal-certified</strong>. Guna status <strong>Selamat</strong> untuk item asas (air, teh plain, buah, kacang plain, nasi putih) dan <strong>Semak</strong> bila ada risiko mirin/酒精, dashi ikan, gelatin, mayonis, ekstrak daging/babi, atau sos teriyaki.</p>
+            <ul>
+                <li>Elakkan item bertulis 豚 / tonkatsu / tonjiru / bacon / ham / sausage tanpa semakan jelas.</li>
+                <li>Semak label 原材料名 untuk 酒・みりん・酒精・ゼラチン・ラード・エキス.</li>
+                <li>Ayam goreng / oden / cup noodles / sandwich cream biasanya <strong>Semak</strong> atau elak.</li>
+            </ul>
+        </div>
+
         <div class="search-container">
             <div class="search-box">
                 <input type="text" id="searchInput" class="search-input" placeholder="Cari makanan... / Search food... / 食べ物を検索...">
-                <button class="filter-btn active" data-filter="all">Semua / All</button>
-                <button class="filter-btn" data-filter="7-Eleven">7-Eleven</button>
-                <button class="filter-btn" data-filter="Lawson">Lawson</button>
-                <button class="filter-btn" data-filter="FamilyMart">FamilyMart</button>
-                <span id="resultsCount" class="results-count">Menunjukkan 100+ item</span>
+                <span id="resultsCount" class="results-count">Menunjukkan 0 item</span>
+            </div>
+            <div class="controls-row">
+                <span class="control-label">Kedai</span>
+                <button type="button" class="filter-btn store-btn active" data-store="all">Semua</button>
+                <button type="button" class="filter-btn store-btn" data-store="7-Eleven">7-Eleven</button>
+                <button type="button" class="filter-btn store-btn" data-store="Lawson">Lawson</button>
+                <button type="button" class="filter-btn store-btn" data-store="FamilyMart">FamilyMart</button>
+            </div>
+            <div class="controls-row">
+                <span class="control-label">Status</span>
+                <button type="button" class="filter-btn status-btn active" data-status="all">Semua</button>
+                <button type="button" class="filter-btn status-btn status-safe-btn" data-status="safe">✓ Selamat</button>
+                <button type="button" class="filter-btn status-btn status-check-btn" data-status="check">⚠ Semak</button>
+            </div>
+            <div class="controls-row">
+                <span class="control-label">Sort</span>
+                <select id="sortSelect" class="sort-select" aria-label="Sort items">
+                    <option value="id-asc">Default (ID)</option>
+                    <option value="name-asc">Nama A → Z</option>
+                    <option value="name-desc">Nama Z → A</option>
+                    <option value="category-asc">Kategori A → Z</option>
+                    <option value="status-safe">Selamat dulu</option>
+                    <option value="status-check">Semak dulu</option>
+                    <option value="store-asc">Bil. kedai (banyak → sikit)</option>
+                </select>
             </div>
         </div>
 
@@ -348,10 +479,10 @@
                 <thead>
                     <tr>
                         <th>Gambar</th>
-                        <th>Nama Makanan</th>
-                        <th>Kategori</th>
-                        <th>Kedai</th>
-                        <th class="hide-mobile">Status</th>
+                        <th class="sortable" data-sort="name-asc">Nama Makanan <span class="sort-ind" data-col="name"></span></th>
+                        <th class="sortable" data-sort="category-asc">Kategori <span class="sort-ind" data-col="category"></span></th>
+                        <th class="sortable" data-sort="store-asc">Kedai <span class="sort-ind" data-col="store"></span></th>
+                        <th class="sortable" data-sort="status-safe">Status <span class="sort-ind" data-col="status"></span></th>
                         <th class="hide-mobile">Nota / Notes</th>
                     </tr>
                 </thead>
@@ -524,27 +655,110 @@
             { id: 118, namaMY: "Sup Jagung", nameEN: "Corn Soup", nameJP: "コーンスープ (Kōn Sūpu)", category: "Sup / Soups", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Sup jagung krim. Semak stok ayam/daging.", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200&h=200&fit=crop" },
             { id: 119, namaMY: "Sup Tonjiru (Sup Sayur)", nameEN: "Vegetable Miso Soup", nameJP: "豚汁 (Tonjiru)", category: "Sup / Soups", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "AWAS - Nama ada '豚' (babi). ELAKKAN!", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200&h=200&fit=crop" },
             { id: 120, namaMY: "Sup Kenchinjiru (Sayur)", nameEN: "Vegetable Soup", nameJP: "けんちん汁 (Kenchinjiru)", category: "Sup / Soups", stores: ["Lawson", "FamilyMart"], status: "check", notes: "Sup sayuran Jepun. Semak stok yang digunakan.", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200&h=200&fit=crop" }
+,
+            // ===== TAMBAHAN ANALISIS / EXTRA (121-160) =====
+            { id: 121, namaMY: "Salad Sayur Plain", nameEN: "Plain Vegetable Salad", nameJP: "野菜サラダ (Yasai Sarada)", category: "Salad / Sayur", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Sayur biasanya OK. SEMAK dressing berasingan (mayonnaise/anchovy).", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200&h=200&fit=crop" },
+            { id: 122, namaMY: "Potong Sayur Mentah", nameEN: "Cut Raw Vegetables", nameJP: "カット野菜 (Katto Yasai)", category: "Salad / Sayur", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Sayur potong tanpa sos. Pilihan selamat.", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=200&h=200&fit=crop" },
+            { id: 123, namaMY: "Hijiki Salad", nameEN: "Hijiki Seaweed Salad", nameJP: "ひじきサラダ (Hijiki Sarada)", category: "Salad / Sayur", stores: ["Lawson", "FamilyMart"], status: "check", notes: "Rumpai laut. Semak dashi/mirin dalam perasa.", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200&h=200&fit=crop" },
+            { id: 124, namaMY: "Cola / Soft Drink Plain", nameEN: "Cola Soft Drink", nameJP: "コーラ (Kōra)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Minuman berkarbonat biasa. Biasanya selamat.", image: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=200&h=200&fit=crop" },
+            { id: 125, namaMY: "Ramune", nameEN: "Ramune Soda", nameJP: "ラムネ (Ramune)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Soda Jepun. Biasanya selamat.", image: "https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=200&h=200&fit=crop" },
+            { id: 126, namaMY: "Aquarius", nameEN: "Aquarius Sports Drink", nameJP: "アクエリアス (Akueriasu)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Minuman sukan. Biasanya selamat.", image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=200&h=200&fit=crop" },
+            { id: 127, namaMY: "Calpis Water", nameEN: "Calpis Water", nameJP: "カルピスウォーター (Karupisu Wōtā)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Minuman susu berasid. Semak label bahan tambahan.", image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&h=200&fit=crop" },
+            { id: 128, namaMY: "Royal Milk Tea (Botol)", nameEN: "Bottled Royal Milk Tea", nameJP: "ロイヤルミルクティー (Roiyaru Miruku Tī)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Teh susu. Semak perisa dan bahan tambahan.", image: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=200&h=200&fit=crop" },
+            { id: 129, namaMY: "Cafe Latte Botol", nameEN: "Bottled Cafe Latte", nameJP: "カフェラテ (Kafe Rate)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kopi susu. Biasanya tiada alkohol, tetap semak label.", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&h=200&fit=crop" },
+            { id: 130, namaMY: "Amazake", nameEN: "Amazake (Sweet Fermented Rice Drink)", nameJP: "甘酒 (Amazake)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Fermentasi beras. Sesetengah jenis ada kesan alkohol — SEMAK label アルコール.", image: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=200&h=200&fit=crop" },
+            { id: 131, namaMY: "Onigiri Mentaiko", nameEN: "Spicy Cod Roe Rice Ball", nameJP: "明太子おにぎり (Mentaiko Onigiri)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Telur ikan pedas. Semak mayonis/mirin.", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" },
+            { id: 132, namaMY: "Onigiri Spicy Tuna", nameEN: "Spicy Tuna Rice Ball", nameJP: "スパイシーツナおにぎり", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Tuna pedas + mayo. Semak gelatin dalam mayo.", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" },
+            { id: 133, namaMY: "Chicken Nanban / Karaage", nameEN: "Fried Chicken (Karaage/Nanban)", nameJP: "唐揚げ / チキン南蛮", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Ayam goreng konbini — BUKAN zabiha. Elak jika perlukan daging halal ketat.", image: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=200&h=200&fit=crop" },
+            { id: 134, namaMY: "FamiChiki / Hot Chicken", nameEN: "Convenience Store Fried Chicken", nameJP: "ファミチキ等", category: "Protein", stores: ["FamilyMart", "Lawson", "7-Eleven"], status: "check", notes: "Ayam panas popular. Bukan sertu/halal. Elak jika ketat.", image: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=200&h=200&fit=crop" },
+            { id: 135, namaMY: "Oden (Pelbagai)", nameEN: "Oden Assorted", nameJP: "おでん (Oden)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kuah dashi ikan + ramai item ada mirin. Semak setiap skewer; elak daging babi.", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200&h=200&fit=crop" },
+            { id: 136, namaMY: "Cup Noodles / Instant Ramen", nameEN: "Instant Cup Noodles", nameJP: "カップヌードル (Kappu Nūdoru)", category: "Sup / Soups", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Ramai ada ekstrak babi/daging (豚エキス). WAJIB baca label.", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&h=200&fit=crop" },
+            { id: 137, namaMY: "Yakisoba Cup / Pack", nameEN: "Yakisoba Pack", nameJP: "焼きそば (Yakisoba)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Sos gelap sering ada mirin/ekstrak. Semak label.", image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=200&h=200&fit=crop" },
+            { id: 138, namaMY: "Sandwich Telur", nameEN: "Egg Sandwich", nameJP: "たまごサンド (Tamago Sando)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Mayo telur. Semak gelatin & lemak roti (ラード).", image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&h=200&fit=crop" },
+            { id: 139, namaMY: "Fruit Sandwich", nameEN: "Fruit Sando", nameJP: "フルーツサンド (Furūtsu Sando)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Krim whip + buah. Semak gelatin/stabilizer.", image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=200&h=200&fit=crop" },
+            { id: 140, namaMY: "SOYJOY Bar", nameEN: "SOYJOY Nutrition Bar", nameJP: "ソイジョイ (Soijoi)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Bar soya. Pilih perisa plain/buah; semak gelatin.", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=200&h=200&fit=crop" },
+            { id: 141, namaMY: "Calorie Mate", nameEN: "Calorie Mate Block", nameJP: "カロリーメイト (Karorī Meito)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Bar nutrisi. Semak vitamin/coating & gelatin.", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=200&h=200&fit=crop" },
+            { id: 142, namaMY: "Pocky", nameEN: "Pocky Sticks", nameJP: "ポッキー (Pokkī)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Salut coklat/perisa. Semak alkohol & gelatin.", image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=200&h=200&fit=crop" },
+            { id: 143, namaMY: "Hi-Chew", nameEN: "Hi-Chew Candy", nameJP: "ハイチュウ (Haichū)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Gula-gula kenyal. Semak gelatin/pewarna.", image: "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=200&h=200&fit=crop" },
+            { id: 144, namaMY: "Gummy Candy", nameEN: "Gummy Candy", nameJP: "グミ (Gumi)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Hampir selalu ada ゼラチン (gelatin). Elak jika ragu.", image: "https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=200&h=200&fit=crop" },
+            { id: 145, namaMY: "KitKat", nameEN: "KitKat Chocolate", nameJP: "キットカット (Kittokatto)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Varian Jepun banyak. Semak liqueur/gelatin pada perisa special.", image: "https://images.unsplash.com/photo-1606312619070-d48b4cbc43fd?w=200&h=200&fit=crop" },
+            { id: 146, namaMY: "Ais Krim Vanilla Cup", nameEN: "Vanilla Ice Cream Cup", nameJP: "アイスクリーム (Aisukurīmu)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak gelatin & emulsifier. Elak rasa alkohol (rum/wine).", image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=200&h=200&fit=crop" },
+            { id: 147, namaMY: "Soft Serve Cone", nameEN: "Soft Serve Ice Cream", nameJP: "ソフトクリーム (Sofuto Kurīmu)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Mesin soft cream. Semak jika ada info bahan di kedai.", image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=200&h=200&fit=crop" },
+            { id: 148, namaMY: "Madu Sachet / Botol Kecil", nameEN: "Honey", nameJP: "はちみつ (Hachimitsu)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Madu tulen. Selamat.", image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=200&h=200&fit=crop" },
+            { id: 149, namaMY: "Jem Strawberi", nameEN: "Strawberry Jam", nameJP: "イチゴジャム (Ichigo Jamu)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Biasanya selamat; semak alkohol pengawet jarang.", image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=200&h=200&fit=crop" },
+            { id: 150, namaMY: "Peanut Butter", nameEN: "Peanut Butter", nameJP: "ピーナッツバター (Pīnattsu Batā)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Pilih yang ringkas (kacang+garam). Semak minyak/hidrogenasi.", image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=200&h=200&fit=crop" },
+            { id: 151, namaMY: "Gula & Garam Sachet", nameEN: "Sugar & Salt Packets", nameJP: "砂糖・塩", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Asas dapur. 100% selamat.", image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=200&h=200&fit=crop" },
+            { id: 152, namaMY: "Takuan (Lobak Jeruk)", nameEN: "Pickled Daikon", nameJP: "たくあん (Takuan)", category: "Salad / Sayur", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Jeruk kuning. Semak mirin/pewarna.", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=200&h=200&fit=crop" },
+            { id: 153, namaMY: "Gari (Halia Jeruk)", nameEN: "Pickled Ginger", nameJP: "ガリ (Gari)", category: "Salad / Sayur", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Halia jeruk sushi. Semak gula/cuka/alkohol.", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=200&h=200&fit=crop" },
+            { id: 154, namaMY: "Kimchi Cup", nameEN: "Kimchi", nameJP: "キムチ (Kimuchi)", category: "Salad / Sayur", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Ramai guna seafood extract / ikan. Semak label.", image: "https://images.unsplash.com/photo-1583225214464-9296029427aa?w=200&h=200&fit=crop" },
+            { id: 155, namaMY: "Hiyayakko (Tauhu Sejuk)", nameEN: "Chilled Tofu", nameJP: "冷奴 (Hiyayakko)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Tauhu sejuk OK; semak topping kicap/dashi/mirin.", image: "https://images.unsplash.com/photo-1628689469838-524a4a973b8e?w=200&h=200&fit=crop" },
+            { id: 156, namaMY: "Instant Coffee Stick", nameEN: "Instant Coffee Stick", nameJP: "インスタントコーヒー", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Kopi serbuk plain. Selamat (tanpa creamer haram).", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&h=200&fit=crop" },
+            { id: 157, namaMY: "Creamer Stick (Non-dairy)", nameEN: "Coffee Creamer Stick", nameJP: "クリーミングパウダー", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak lemak haiwan / casein source.", image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&h=200&fit=crop" },
+            { id: 158, namaMY: "Meiji Chocolate Milk Bar", nameEN: "Meiji Milk Chocolate", nameJP: "明治ミルクチョコレート", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Coklat susu. Semak emulsifier & liqueur variants.", image: "https://images.unsplash.com/photo-1606312619070-d48b4cbc43fd?w=200&h=200&fit=crop" },
+            { id: 159, namaMY: "Frozen Cut Fruit", nameEN: "Frozen Cut Fruit", nameJP: "カットフルーツ冷凍", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Buah frozen tanpa sos. Selamat.", image: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=200&h=200&fit=crop" },
+            { id: 160, namaMY: "Onigiri Salmon Mayo", nameEN: "Salmon Mayo Rice Ball", nameJP: "サーモンマヨおにぎり", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Salmon + mayo. Semak gelatin mayo & perisa.", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" }
+
         ];
+
+        let storeFilter = 'all';
+        let statusFilter = 'all';
+        let sortMode = 'id-asc';
+
+        function storeClass(store) {
+            if (store === '7-Eleven') return 'store-7eleven';
+            if (store === 'Lawson') return 'store-lawson';
+            return 'store-familymart';
+        }
+
+        function sortData(list) {
+            const arr = list.slice();
+            const byName = (a, b) => a.namaMY.localeCompare(b.namaMY, 'ms');
+            switch (sortMode) {
+                case 'name-asc':
+                    arr.sort(byName);
+                    break;
+                case 'name-desc':
+                    arr.sort((a, b) => byName(b, a));
+                    break;
+                case 'category-asc':
+                    arr.sort((a, b) => a.category.localeCompare(b.category, 'ms') || byName(a, b));
+                    break;
+                case 'status-safe':
+                    arr.sort((a, b) => (a.status === 'safe' ? 0 : 1) - (b.status === 'safe' ? 0 : 1) || byName(a, b));
+                    break;
+                case 'status-check':
+                    arr.sort((a, b) => (a.status === 'check' ? 0 : 1) - (b.status === 'check' ? 0 : 1) || byName(a, b));
+                    break;
+                case 'store-asc':
+                    arr.sort((a, b) => b.stores.length - a.stores.length || byName(a, b));
+                    break;
+                default:
+                    arr.sort((a, b) => a.id - b.id);
+            }
+            return arr;
+        }
 
         function renderTable(data) {
             const tbody = document.getElementById('foodTableBody');
             const noResults = document.getElementById('noResults');
             const resultsCount = document.getElementById('resultsCount');
+            const safeN = foodData.filter(i => i.status === 'safe').length;
+            const checkN = foodData.filter(i => i.status === 'check').length;
 
             if (data.length === 0) {
                 tbody.innerHTML = '';
                 noResults.style.display = 'block';
-                resultsCount.textContent = 'Tiada hasil / No results';
+                resultsCount.textContent = `0 item · DB ${foodData.length} (Selamat ${safeN} / Semak ${checkN})`;
                 return;
             }
 
             noResults.style.display = 'none';
-            resultsCount.textContent = `Menunjukkan ${data.length} item / Showing ${data.length} items`;
+            resultsCount.textContent = `Menunjukkan ${data.length} / ${foodData.length} · Selamat ${safeN} · Semak ${checkN}`;
 
             tbody.innerHTML = data.map(item => `
-                <tr data-stores="${item.stores.join(',')}" data-search="${item.namaMY.toLowerCase()} ${item.nameEN.toLowerCase()} ${item.nameJP.toLowerCase()}">
+                <tr>
                     <td>
-                        <img src="${item.image}" alt="${item.nameEN}" class="food-image" onerror="this.src='https://via.placeholder.com/80?text=🍱'">
+                        <img src="${item.image}" alt="${item.nameEN}" class="food-image" loading="lazy" onerror="this.src='https://via.placeholder.com/80?text=🍱'">
                     </td>
                     <td>
                         <div class="food-name">${item.namaMY}</div>
@@ -555,14 +769,10 @@
                         <span class="category-tag">${item.category}</span>
                     </td>
                     <td>
-                        ${item.stores.map(store => {
-                            const storeClass = store === '7-Eleven' ? 'store-7eleven' : 
-                                             store === 'Lawson' ? 'store-lawson' : 'store-familymart';
-                            return `<span class="store-badge ${storeClass}">${store}</span>`;
-                        }).join('')}
+                        ${item.stores.map(store => `<span class="store-badge ${storeClass(store)}">${store}</span>`).join('')}
                     </td>
-                    <td class="hide-mobile">
-                        <span class="${item.status === 'safe' ? 'status-safe' : 'status-check'}">
+                    <td>
+                        <span class="status-pill ${item.status === 'safe' ? 'safe' : 'check'}">
                             ${item.status === 'safe' ? '✓ Selamat' : '⚠ Semak'}
                         </span>
                     </td>
@@ -573,39 +783,83 @@
             `).join('');
         }
 
-        function filterData() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-
-            let filtered = foodData;
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            let filtered = foodData.slice();
 
             if (searchTerm) {
-                filtered = filtered.filter(item => 
+                filtered = filtered.filter(item =>
                     item.namaMY.toLowerCase().includes(searchTerm) ||
                     item.nameEN.toLowerCase().includes(searchTerm) ||
                     item.nameJP.toLowerCase().includes(searchTerm) ||
-                    item.category.toLowerCase().includes(searchTerm)
+                    item.category.toLowerCase().includes(searchTerm) ||
+                    item.notes.toLowerCase().includes(searchTerm)
                 );
             }
 
-            if (activeFilter !== 'all') {
-                filtered = filtered.filter(item => item.stores.includes(activeFilter));
+            if (storeFilter !== 'all') {
+                filtered = filtered.filter(item => item.stores.includes(storeFilter));
             }
 
-            renderTable(filtered);
+            if (statusFilter !== 'all') {
+                filtered = filtered.filter(item => item.status === statusFilter);
+            }
+
+            renderTable(sortData(filtered));
+            updateSortIndicators();
         }
 
-        document.getElementById('searchInput').addEventListener('input', filterData);
+        function updateSortIndicators() {
+            document.querySelectorAll('.sort-ind').forEach(el => { el.textContent = ''; });
+            const map = {
+                'name-asc': ['name', '▲'], 'name-desc': ['name', '▼'],
+                'category-asc': ['category', '▲'],
+                'store-asc': ['store', '▼'],
+                'status-safe': ['status', '▲'], 'status-check': ['status', '▼'],
+                'id-asc': [null, '']
+            };
+            const info = map[sortMode];
+            if (!info || !info[0]) return;
+            const el = document.querySelector(`.sort-ind[data-col="${info[0]}"]`);
+            if (el) el.textContent = info[1];
+        }
 
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+        document.getElementById('sortSelect').addEventListener('change', function () {
+            sortMode = this.value;
+            applyFilters();
+        });
+
+        document.querySelectorAll('.store-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.store-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                filterData();
+                storeFilter = this.dataset.store;
+                applyFilters();
             });
         });
 
-        renderTable(foodData);
+        document.querySelectorAll('.status-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                statusFilter = this.dataset.status;
+                applyFilters();
+            });
+        });
+
+        document.querySelectorAll('th.sortable').forEach(th => {
+            th.addEventListener('click', function () {
+                const next = this.dataset.sort;
+                if (sortMode === 'name-asc' && next === 'name-asc') sortMode = 'name-desc';
+                else if (sortMode === 'status-safe' && next === 'status-safe') sortMode = 'status-check';
+                else sortMode = next;
+                document.getElementById('sortSelect').value = sortMode;
+                applyFilters();
+            });
+        });
+
+        applyFilters();
     </script>
 </body>
 </html>
