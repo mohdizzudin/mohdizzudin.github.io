@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senarai Makanan Halal Konbini Jepun</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .author-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .author-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .search-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .filter-btn {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .filter-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .results-count {
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th {
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: middle;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .food-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .food-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .food-name-en {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .food-name-jp {
+            color: #888;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .store-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 2px;
+        }
+
+        .store-7eleven {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .store-lawson {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .store-familymart {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #f3e5f5;
+            color: #7b1fa2;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-safe {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .status-check {
+            color: #f57c00;
+            font-weight: 600;
+        }
+
+        .notes {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .legend {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-safe { background: #2e7d32; }
+        .dot-check { background: #f57c00; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 10px 8px;
+            }
+
+            .food-image {
+                width: 60px;
+                height: 60px;
+            }
+
+            .hide-mobile {
+                display: none;
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #666;
+        }
+
+        .no-results-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍙 Senarai Makanan Halal Konbini Jepun</h1>
+            <p class="subtitle">Halal-Friendly Food at Japanese Convenience Stores | 日本のコンビニのハラール対応食品</p>
+            <a href="https://mohdizzudin.github.io" target="_blank" class="author-link">🌐 mohdizzudin.github.io</a>
+            <p style="margin-top:10px; font-size:14px; color:#888;">
+                📍 <a href="https://mohdizzudin.github.io/shared/makanan-halal-konbini.html" style="color:#667eea;">mohdizzudin.github.io/shared/makanan-halal-konbini.html</a>
+            </p>
+        </header>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="Cari makanan... / Search food... / 食べ物を検索...">
+                <button class="filter-btn active" data-filter="all">Semua / All</button>
+                <button class="filter-btn" data-filter="7-Eleven">7-Eleven</button>
+                <button class="filter-btn" data-filter="Lawson">Lawson</button>
+                <button class="filter-btn" data-filter="FamilyMart">FamilyMart</button>
+                <span id="resultsCount" class="results-count">Menunjukkan 100+ item</span>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="foodTable">
+                <thead>
+                    <tr>
+                        <th>Gambar</th>
+                        <th>Nama Makanan</th>
+                        <th>Kategori</th>
+                        <th>Kedai</th>
+                        <th class="hide-mobile">Status</th>
+                        <th class="hide-mobile">Nota / Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="foodTableBody">
+                </tbody>
+            </table>
+            <div id="noResults" class="no-results" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <p>Tiada makanan dijumpai / No food found / 食べ物が見つかりません</p>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-dot dot-safe"></span>
+                <span>Selamat (Biasanya) / Usually Safe</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-dot dot-check"></span>
+                <span>Semak Label / Check Label</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>⚠️ Sila semak label bahan (原材料名) sebelum membeli. Tiada produk yang disahkan halal secara rasmi.</p>
+            <p style="margin-top:10px;">Please check ingredient labels before purchasing. No products are officially halal-certified.</p>
+            <p style="margin-top:20px; font-size:14px;">
+                <a href="https://mohdizzudin.github.io/shared/" target="_blank">📁 Lihat Semua Fail / View All Files</a>
+            </p>
+            <p style="margin-top:10px; font-size:12px;">Data dikumpul dari pelbagai sumber termasuk <a href="https://www.halal-navi.com" target="_blank">Halal Navi</a> dan <a href="https://halalgohan.jp" target="_blank">Halal Gohan</a></p>
+        </footer>
+    </div>
+
+    <script>
+        const foodData = [
+            // ===== NASI / RICE (1-15) =====
+            { id: 1, namaMY: "Onigiri Salmon", nameEN: "Salmon Rice Ball", nameJP: "鮭おにぎり (Sake Onigiri)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak label untuk bahan tambahan. Elakkan yang ada mayonis.", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" },
+            { id: 2, namaMY: "Onigiri Kombu (Rumpai Laut)", nameEN: "Kelp Seaweed Rice Ball", nameJP: "昆布おにぎり (Kombu Onigiri)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Pilihan yang lebih selamat. Semak mirin/alkohol.", image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=200&h=200&fit=crop" },
+            { id: 3, namaMY: "Onigiri Umeboshi (Plum Jeruk)", nameEN: "Pickled Plum Rice Ball", nameJP: "梅おにぎり (Ume Onigiri)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Pilihan klasik. Semak label untuk alkohol.", image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200&h=200&fit=crop" },
+            { id: 4, namaMY: "Nasi Putih Kukus", nameEN: "Plain Steamed Rice", nameJP: "白ごはん (Shiro Gohan)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilihan paling selamat untuk nasi. Tiada perisa tambahan.", image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=200&h=200&fit=crop" },
+            { id: 5, namaMY: "Inari Sushi (Tauhu Berinti Nasi)", nameEN: "Inari Sushi (Tofu Pocket Rice)", nameJP: "いなり寿司 (Inari Zushi)", category: "Nasi / Rice", stores: ["Lawson", "FamilyMart"], status: "check", notes: "Kulit tauhu mungkin mengandungi mirin. Semak label.", image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=200&h=200&fit=crop" },
+            { id: 6, namaMY: "Onigiri Tuna Mayo", nameEN: "Tuna Mayo Rice Ball", nameJP: "ツナマヨおにぎり (Tsuna Mayo Onigiri)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak mayonis untuk gelatin. Tuna biasanya selamat.", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" },
+            { id: 7, namaMY: "Onigiri Okaka (Ikan Bonito)", nameEN: "Bonito Flakes Rice Ball", nameJP: "おかかおにぎり (Okaka Onigiri)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Ikan kering. Semak tiada sos kicap dengan alkohol.", image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=200&h=200&fit=crop" },
+            { id: 8, namaMY: "Onigiri Nozawana (Sayur Jeruk)", nameEN: "Pickled Greens Rice Ball", nameJP: "野沢菜おにぎり (Nozawana Onigiri)", category: "Nasi / Rice", stores: ["Lawson", "FamilyMart"], status: "check", notes: "Sayur jeruk. Semak label untuk bahan tambahan.", image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200&h=200&fit=crop" },
+            { id: 9, namaMY: "Onigiri Takana (Mustard Greens)", nameEN: "Mustard Greens Rice Ball", nameJP: "高菜おにぎり (Takana Onigiri)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson"], status: "check", notes: "Daun mustard jeruk. Semak mirin/alkohol.", image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=200&h=200&fit=crop" },
+            { id: 10, namaMY: "Onigiri Tarako (Telur Ikan Kod)", nameEN: "Cod Roe Rice Ball", nameJP: "たらこおにぎり (Tarako Onigiri)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Telur ikan. Semak tiada alkohol dalam perisa.", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop" },
+            { id: 11, namaMY: "Nasi Sekigihan (Nasi Kacang Merah)", nameEN: "Red Bean Rice", nameJP: "赤飯 (Sekihan)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Nasi dengan kacang azuki. Semak label.", image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=200&h=200&fit=crop" },
+            { id: 12, namaMY: "Onigiri Ebi (Udang)", nameEN: "Shrimp Rice Ball", nameJP: "海老おにぎり (Ebi Onigiri)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson"], status: "check", notes: "Udang. Semak mayonis dan bahan tambahan.", image: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=200&h=200&fit=crop" },
+            { id: 13, namaMY: "Okayu (Bubur Nasi)", nameEN: "Rice Porridge", nameJP: "おかゆ (Okayu)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Bubur nasi. Semak kaldu/stok yang digunakan.", image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=200&h=200&fit=crop" },
+            { id: 14, namaMY: "Onigiri Wakame (Rumpai Laut)", nameEN: "Wakame Seaweed Rice Ball", nameJP: "わかめおにぎり (Wakame Onigiri)", category: "Nasi / Rice", stores: ["Lawson", "FamilyMart"], status: "check", notes: "Rumpai laut wakame. Pilihan vegetarian.", image: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=200&h=200&fit=crop" },
+            { id: 15, namaMY: "Onigiri Goma (Bijan)", nameEN: "Sesame Rice Ball", nameJP: "ごまおにぎり (Goma Onigiri)", category: "Nasi / Rice", stores: ["7-Eleven", "Lawson"], status: "check", notes: "Nasi dengan bijan. Semak mirin.", image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200&h=200&fit=crop" },
+
+            // ===== MINUMAN / DRINKS (16-35) =====
+            { id: 16, namaMY: "Air Mineral", nameEN: "Mineral Water", nameJP: "ミネラルウォーター (Mineraru Wōtā)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "100% selamat. Pilih jenama tempatan seperti Irohasu, Suntory.", image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=200&h=200&fit=crop" },
+            { id: 17, namaMY: "Susu Soya Tanpa Gula", nameEN: "Unsweetened Soy Milk", nameJP: "無調整豆乳 (Muchousei Tōnyū)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih jenis 'muchousei' (無調整) untuk tiada bahan tambahan.", image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&h=200&fit=crop" },
+            { id: 18, namaMY: "Teh Hijau Tanpa Gula", nameEN: "Unsweetened Green Tea", nameJP: "緑茶 (Ryokucha)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih Oi Ocha, Ayataka, atau Itoen. Semua selamat.", image: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=200&h=200&fit=crop" },
+            { id: 19, namaMY: "Teh Barli", nameEN: "Barley Tea", nameJP: "麦茶 (Mugicha)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Minuman tradisional Jepun. 100% selamat.", image: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=200&h=200&fit=crop" },
+            { id: 20, namaMY: "Teh Oolong", nameEN: "Oolong Tea", nameJP: "烏龍茶 (Ūroncha)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Teh Cina tanpa gula. Selamat.", image: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=200&h=200&fit=crop" },
+            { id: 21, namaMY: "Jus Oren", nameEN: "Orange Juice", nameJP: "オレンジジュース (Orenji Jūsu)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih 100% jus tanpa bahan tambahan.", image: "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=200&h=200&fit=crop" },
+            { id: 22, namaMY: "Jus Epal", nameEN: "Apple Juice", nameJP: "りんごジュース (Ringo Jūsu)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih 100% jus. Selamat untuk diminum.", image: "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=200&h=200&fit=crop" },
+            { id: 23, namaMY: "Jus Anggur", nameEN: "Grape Juice", nameJP: "ぶどうジュース (Budō Jūsu)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih 100% jus tanpa alkohol.", image: "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=200&h=200&fit=crop" },
+            { id: 24, namaMY: "Kopi Hitam (Tanpa Susu)", nameEN: "Black Coffee", nameJP: "ブラックコーヒー (Burakku Kōhī)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Kopi tanpa susu. Selamat.", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200&h=200&fit=crop" },
+            { id: 25, namaMY: "Susu Segar", nameEN: "Fresh Milk", nameJP: "牛乳 (Gyūnyū)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Susu lembu tulen. 100% selamat.", image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&h=200&fit=crop" },
+            { id: 26, namaMY: "Air Soda Plain", nameEN: "Plain Soda Water", nameJP: "炭酸水 (Tansansui)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Air bergas tanpa perisa. Selamat.", image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=200&h=200&fit=crop" },
+            { id: 27, namaMY: "Teh Jasmine", nameEN: "Jasmine Tea", nameJP: "ジャスミン茶 (Jasumin Cha)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Teh bunga melati. Selamat.", image: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=200&h=200&fit=crop" },
+            { id: 28, namaMY: "Teh Hojicha (Teh Panggang)", nameEN: "Roasted Green Tea", nameJP: "ほうじ茶 (Hōjicha)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Teh hijau panggang. Selamat.", image: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=200&h=200&fit=crop" },
+            { id: 29, namaMY: "Jus Pic (Peach)", nameEN: "Peach Juice", nameJP: "桃ジュース (Momo Jūsu)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih 100% jus. Semak tiada alkohol.", image: "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=200&h=200&fit=crop" },
+            { id: 30, namaMY: "Susu Soya Berperisa", nameEN: "Flavored Soy Milk", nameJP: "調整豆乳 (Chōsei Tōnyū)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak perisa untuk bahan haram.", image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&h=200&fit=crop" },
+            { id: 31, namaMY: "Jus Tomato", nameEN: "Tomato Juice", nameJP: "トマトジュース (Tomato Jūsu)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "100% jus tomato. Selamat.", image: "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=200&h=200&fit=crop" },
+            { id: 32, namaMY: "Air Kelapa", nameEN: "Coconut Water", nameJP: "ココナッツウォーター (Kokonattsu Wōtā)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Air kelapa tulen. 100% selamat.", image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=200&h=200&fit=crop" },
+            { id: 33, namaMY: "Teh Genmaicha (Teh Beras)", nameEN: "Brown Rice Green Tea", nameJP: "玄米茶 (Genmaicha)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Teh hijau dengan beras panggang. Selamat.", image: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=200&h=200&fit=crop" },
+            { id: 34, namaMY: "Jus Sayur Campuran", nameEN: "Mixed Vegetable Juice", nameJP: "野菜ジュース (Yasai Jūsu)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Jus sayuran. Semak label untuk bahan tambahan.", image: "https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?w=200&h=200&fit=crop" },
+            { id: 35, namaMY: "Minuman Sukan (Pocari Sweat)", nameEN: "Sports Drink (Pocari Sweat)", nameJP: "ポカリスエット (Pokari Suetto)", category: "Minuman / Drinks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Minuman elektrolit. Selamat.", image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=200&h=200&fit=crop" },
+
+            // ===== BUAH / FRUITS (36-45) =====
+            { id: 36, namaMY: "Pisang", nameEN: "Banana", nameJP: "バナナ (Banana)", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Buah segar. 100% selamat.", image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=200&h=200&fit=crop" },
+            { id: 37, namaMY: "Epal", nameEN: "Apple", nameJP: "りんご (Ringo)", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Buah segar. 100% selamat.", image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=200&h=200&fit=crop" },
+            { id: 38, namaMY: "Cawan Buah-buahan", nameEN: "Fruit Cup", nameJP: "フルーツカップ (Furūtsu Kappu)", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak sirap dan bahan pengawet. Pilih yang tanpa jeli.", image: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=200&h=200&fit=crop" },
+            { id: 39, namaMY: "Oren Mandarin", nameEN: "Mandarin Orange", nameJP: "みかん (Mikan)", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Buah segar. 100% selamat.", image: "https://images.unsplash.com/photo-1547514701-42782101795e?w=200&h=200&fit=crop" },
+            { id: 40, namaMY: "Anggur", nameEN: "Grapes", nameJP: "ぶどう (Budō)", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Buah segar. 100% selamat.", image: "https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=200&h=200&fit=crop" },
+            { id: 41, namaMY: "Strawberi", nameEN: "Strawberry", nameJP: "いちご (Ichigo)", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Buah segar. 100% selamat.", image: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=200&h=200&fit=crop" },
+            { id: 42, namaMY: "Kiwi", nameEN: "Kiwi", nameJP: "キウイ (Kiui)", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Buah segar. 100% selamat.", image: "https://images.unsplash.com/photo-1585059895524-72359e06133a?w=200&h=200&fit=crop" },
+            { id: 43, namaMY: "Pic (Peach)", nameEN: "Peach", nameJP: "桃 (Momo)", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Buah segar bermusim. 100% selamat.", image: "https://images.unsplash.com/photo-1595124216322-21c665726f74?w=200&h=200&fit=crop" },
+            { id: 44, namaMY: "Pear Jepun (Nashi)", nameEN: "Japanese Pear", nameJP: "梨 (Nashi)", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pir Jepun. 100% selamat.", image: "https://images.unsplash.com/photo-1514756331096-242fdeb70d4a?w=200&h=200&fit=crop" },
+            { id: 45, namaMY: "Tembikai", nameEN: "Watermelon", nameJP: "スイカ (Suika)", category: "Buah / Fruits", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Buah segar bermusim. 100% selamat.", image: "https://images.unsplash.com/photo-1563114773-84221bd62daa?w=200&h=200&fit=crop" },
+
+            // ===== TENUSU / DAIRY (46-55) =====
+            { id: 46, namaMY: "Yogurt Plain", nameEN: "Plain Yogurt", nameJP: "プレーンヨーグルト (Purēn Yōguruto)", category: "Tenusu / Dairy", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih Meiji Bulgaria atau Morinaga plain. Elakkan yang ada gelatin.", image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&h=200&fit=crop" },
+            { id: 47, namaMY: "Keju Hirisan", nameEN: "Cheese Slices", nameJP: "スライスチーズ (Suraisu Chīzu)", category: "Tenusu / Dairy", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kebanyakan selamat. Semak tiada gelatin dalam senarai bahan.", image: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=200&h=200&fit=crop" },
+            { id: 48, namaMY: "Keju Krim", nameEN: "Cream Cheese", nameJP: "クリームチーズ (Kurīmu Chīzu)", category: "Tenusu / Dairy", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak sumber enzim dan gelatin.", image: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=200&h=200&fit=crop" },
+            { id: 49, namaMY: "Yogurt Minuman", nameEN: "Drinking Yogurt", nameJP: "飲むヨーグルト (Nomu Yōguruto)", category: "Tenusu / Dairy", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak tiada gelatin. Pilih yang plain.", image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&h=200&fit=crop" },
+            { id: 50, namaMY: "Keju String", nameEN: "String Cheese", nameJP: "さけるチーズ (Sakeru Chīzu)", category: "Tenusu / Dairy", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Keju tarik. Semak label bahan.", image: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=200&h=200&fit=crop" },
+            { id: 51, namaMY: "Puding Susu", nameEN: "Milk Pudding", nameJP: "ミルクプリン (Miruku Purin)", category: "Tenusu / Dairy", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "SEMAK gelatin (ゼラチン). Ramai yang ada gelatin.", image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&h=200&fit=crop" },
+            { id: 52, namaMY: "Krim Segar", nameEN: "Fresh Cream", nameJP: "生クリーム (Nama Kurīmu)", category: "Tenusu / Dairy", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Krim susu tulen. Biasanya selamat.", image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&h=200&fit=crop" },
+            { id: 53, namaMY: "Butter", nameEN: "Butter", nameJP: "バター (Batā)", category: "Tenusu / Dairy", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Mentega tulen. Selamat.", image: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=200&h=200&fit=crop" },
+            { id: 54, namaMY: "Yogurt Greek", nameEN: "Greek Yogurt", nameJP: "ギリシャヨーグルト (Girisha Yōguruto)", category: "Tenusu / Dairy", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak tiada gelatin. Pilih yang plain.", image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&h=200&fit=crop" },
+            { id: 55, namaMY: "Keju Camembert", nameEN: "Camembert Cheese", nameJP: "カマンベールチーズ (Kamanbēru Chīzu)", category: "Tenusu / Dairy", stores: ["7-Eleven", "Lawson"], status: "check", notes: "Keju Perancis. Semak enzim dan bahan.", image: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=200&h=200&fit=crop" },
+
+            // ===== PROTEIN (56-70) =====
+            { id: 56, namaMY: "Telur Rebus", nameEN: "Boiled Egg", nameJP: "ゆで卵 (Yude Tamago)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Telur plain selamat. Elakkan telur berperisa (味付き) kerana mungkin ada mirin.", image: "https://images.unsplash.com/photo-1518569656558-1f25e69d93d7?w=200&h=200&fit=crop" },
+            { id: 57, namaMY: "Tauhu (Tofu)", nameEN: "Tofu", nameJP: "豆腐 (Tōfu)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Tauhu plain selamat. Elakkan yang sudah bersos.", image: "https://images.unsplash.com/photo-1628689469838-524a4a973b8e?w=200&h=200&fit=crop" },
+            { id: 58, namaMY: "Natto (Kacang Soya Fermentasi)", nameEN: "Fermented Soybeans", nameJP: "納豆 (Nattō)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kacang soya fermentasi. Semak sos yang disertakan.", image: "https://images.unsplash.com/photo-1628689469838-524a4a973b8e?w=200&h=200&fit=crop" },
+            { id: 59, namaMY: "Telur Onsen (Telur Separuh Masak)", nameEN: "Soft Boiled Egg", nameJP: "温泉卵 (Onsen Tamago)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak sos yang disertakan untuk mirin/alkohol.", image: "https://images.unsplash.com/photo-1518569656558-1f25e69d93d7?w=200&h=200&fit=crop" },
+            { id: 60, namaMY: "Tauhu Goreng (Atsuage)", nameEN: "Fried Tofu", nameJP: "厚揚げ (Atsuage)", category: "Protein", stores: ["Lawson", "FamilyMart"], status: "check", notes: "Tauhu goreng. Semak minyak dan sos.", image: "https://images.unsplash.com/photo-1628689469838-524a4a973b8e?w=200&h=200&fit=crop" },
+            { id: 61, namaMY: "Yuba (Kulit Tauhu)", nameEN: "Tofu Skin", nameJP: "湯葉 (Yuba)", category: "Protein", stores: ["7-Eleven", "Lawson"], status: "check", notes: "Kulit tauhu. Semak bahan perisa.", image: "https://images.unsplash.com/photo-1628689469838-524a4a973b8e?w=200&h=200&fit=crop" },
+            { id: 62, namaMY: "Telur Rebus Berperisa", nameEN: "Flavored Boiled Egg", nameJP: "味付き卵 (Ajitsuki Tamago)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "SEMAK label untuk mirin dan alkohol. Kebanyakan ada.", image: "https://images.unsplash.com/photo-1518569656558-1f25e69d93d7?w=200&h=200&fit=crop" },
+            { id: 63, namaMY: "Ikan Salmon Panggang", nameEN: "Grilled Salmon", nameJP: "焼き鮭 (Yaki Sake)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak sos dan perisa. Mungkin ada mirin.", image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200&h=200&fit=crop" },
+            { id: 64, namaMY: "Ikan Saba Panggang", nameEN: "Grilled Mackerel", nameJP: "焼きさば (Yaki Saba)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak sos miso/teriyaki untuk mirin.", image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200&h=200&fit=crop" },
+            { id: 65, namaMY: "Chikuwa (Kek Ikan)", nameEN: "Fish Cake Tube", nameJP: "ちくわ (Chikuwa)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kek ikan. Semak label untuk mirin dan alkohol.", image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200&h=200&fit=crop" },
+            { id: 66, namaMY: "Kamaboko (Kek Ikan)", nameEN: "Fish Cake", nameJP: "かまぼこ (Kamaboko)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kek ikan merah jambu/putih. Semak mirin.", image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200&h=200&fit=crop" },
+            { id: 67, namaMY: "Sashimi Salmon", nameEN: "Salmon Sashimi", nameJP: "サーモン刺身 (Sāmon Sashimi)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Ikan mentah. Semak sos yang disertakan.", image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200&h=200&fit=crop" },
+            { id: 68, namaMY: "Surimi (Ketam Tiruan)", nameEN: "Imitation Crab", nameJP: "カニカマ (Kanikama)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Surimi. Semak tiada alkohol dalam bahan.", image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200&h=200&fit=crop" },
+            { id: 69, namaMY: "Ikan Shirasu (Ikan Kecil)", nameEN: "Whitebait Fish", nameJP: "しらす (Shirasu)", category: "Protein", stores: ["7-Eleven", "Lawson"], status: "check", notes: "Ikan kecil. Biasanya selamat, semak label.", image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=200&h=200&fit=crop" },
+            { id: 70, namaMY: "Udang Rebus", nameEN: "Boiled Shrimp", nameJP: "ボイルエビ (Boiru Ebi)", category: "Protein", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Udang rebus. Semak tiada sos beralkohol.", image: "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=200&h=200&fit=crop" },
+
+            // ===== SNEK / SNACKS (71-90) =====
+            { id: 71, namaMY: "Edamame", nameEN: "Edamame (Soybeans)", nameJP: "枝豆 (Edamame)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Kacang soya muda. Biasanya hanya garam sahaja.", image: "https://images.unsplash.com/photo-1564894809611-1742fc40ed80?w=200&h=200&fit=crop" },
+            { id: 72, namaMY: "Kacang Badam", nameEN: "Almonds", nameJP: "アーモンド (Āmondo)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih yang tanpa perisa. Elakkan yang bersalut.", image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=200&h=200&fit=crop" },
+            { id: 73, namaMY: "Kacang Campuran", nameEN: "Mixed Nuts", nameJP: "ミックスナッツ (Mikkusu Nattsu)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Pilih yang plain/unseasoned. Elakkan yang berperisa.", image: "https://images.unsplash.com/photo-1536591597546-fb9926e7de0c?w=200&h=200&fit=crop" },
+            { id: 74, namaMY: "Kerepek Kentang Plain", nameEN: "Plain Potato Chips", nameJP: "ポテトチップス塩味 (Poteto Chippusu Shioaji)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Pilih perisa garam sahaja. Elakkan perisa daging.", image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=200&h=200&fit=crop" },
+            { id: 75, namaMY: "Rumpai Laut Kering (Nori)", nameEN: "Dried Seaweed (Nori)", nameJP: "のり (Nori)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih yang plain. Nori berperisa mungkin ada sos kicap dengan alkohol.", image: "https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?w=200&h=200&fit=crop" },
+            { id: 76, namaMY: "Kacang Walnut", nameEN: "Walnuts", nameJP: "くるみ (Kurumi)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Kacang walnut plain. Selamat.", image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=200&h=200&fit=crop" },
+            { id: 77, namaMY: "Kacang Cashew", nameEN: "Cashew Nuts", nameJP: "カシューナッツ (Kashū Nattsu)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih yang plain tanpa perisa.", image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=200&h=200&fit=crop" },
+            { id: 78, namaMY: "Kacang Macadamia", nameEN: "Macadamia Nuts", nameJP: "マカダミアナッツ (Makadamia Nattsu)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Kacang macadamia plain. Selamat.", image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=200&h=200&fit=crop" },
+            { id: 79, namaMY: "Kismis", nameEN: "Raisins", nameJP: "レーズン (Rēzun)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Anggur kering. 100% selamat.", image: "https://images.unsplash.com/photo-1536591597546-fb9926e7de0c?w=200&h=200&fit=crop" },
+            { id: 80, namaMY: "Kurma", nameEN: "Dates", nameJP: "デーツ (Dētsu)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Buah kurma kering. 100% selamat.", image: "https://images.unsplash.com/photo-1536591597546-fb9926e7de0c?w=200&h=200&fit=crop" },
+            { id: 81, namaMY: "Kerepek Jagung", nameEN: "Corn Chips", nameJP: "コーンチップス (Kōn Chippusu)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak perisa. Pilih yang plain/garam.", image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=200&h=200&fit=crop" },
+            { id: 82, namaMY: "Senbei (Kerepek Beras)", nameEN: "Rice Crackers", nameJP: "せんべい (Senbei)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak sos kicap untuk alkohol. Pilih yang plain.", image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=200&h=200&fit=crop" },
+            { id: 83, namaMY: "Arare (Kerepek Beras Kecil)", nameEN: "Small Rice Crackers", nameJP: "あられ (Arare)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kerepek beras kecil. Semak label.", image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=200&h=200&fit=crop" },
+            { id: 84, namaMY: "Pretz (Snek Sebat)", nameEN: "Pretz Sticks", nameJP: "プリッツ (Purittsu)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Pilih perisa vegetarian. Semak bahan.", image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=200&h=200&fit=crop" },
+            { id: 85, namaMY: "Kacang Tanah", nameEN: "Peanuts", nameJP: "ピーナッツ (Pīnattsu)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Pilih yang plain/bergaram sahaja.", image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=200&h=200&fit=crop" },
+            { id: 86, namaMY: "Popcorn Plain", nameEN: "Plain Popcorn", nameJP: "ポップコーン (Poppukōn)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Pilih perisa garam/butter. Elakkan perisa daging.", image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=200&h=200&fit=crop" },
+            { id: 87, namaMY: "Kacang Pistasio", nameEN: "Pistachios", nameJP: "ピスタチオ (Pisutachio)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Kacang pistasio plain. Selamat.", image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=200&h=200&fit=crop" },
+            { id: 88, namaMY: "Dried Mango", nameEN: "Dried Mango", nameJP: "ドライマンゴー (Dorai Mangō)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "safe", notes: "Mangga kering. Semak tiada alkohol pengawet.", image: "https://images.unsplash.com/photo-1536591597546-fb9926e7de0c?w=200&h=200&fit=crop" },
+            { id: 89, namaMY: "Keropok Udang", nameEN: "Shrimp Crackers", nameJP: "えびせんべい (Ebi Senbei)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Keropok udang. Semak label untuk bahan tambahan.", image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=200&h=200&fit=crop" },
+            { id: 90, namaMY: "Kelapa Kering", nameEN: "Dried Coconut", nameJP: "ココナッツチップス (Kokonattsu Chippusu)", category: "Snek / Snacks", stores: ["7-Eleven", "Lawson"], status: "safe", notes: "Kelapa kering/chips. Selamat.", image: "https://images.unsplash.com/photo-1536591597546-fb9926e7de0c?w=200&h=200&fit=crop" },
+
+            // ===== PENCUCI MULUT / DESSERTS (91-105) =====
+            { id: 91, namaMY: "Daifuku (Kuih Mochi Kacang Merah)", nameEN: "Daifuku (Red Bean Mochi)", nameJP: "大福 (Daifuku)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak label untuk 酒精 (alkohol). Kebanyakan selamat.", image: "https://images.unsplash.com/photo-1558985212-d167b6760a32?w=200&h=200&fit=crop" },
+            { id: 92, namaMY: "Pau Kacang Merah", nameEN: "Red Bean Steamed Bun", nameJP: "あんまん (Anman)", category: "Pencuci Mulut / Desserts", stores: ["Lawson", "FamilyMart"], status: "check", notes: "Pilihan vegetarian. Semak label tiada alkohol.", image: "https://images.unsplash.com/photo-1582769923195-c6e60dc1d8dc?w=200&h=200&fit=crop" },
+            { id: 93, namaMY: "Castella (Kek Span Jepun)", nameEN: "Castella Sponge Cake", nameJP: "カステラ (Kasutera)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak label untuk 酒精 (alkohol) dan 洋酒 (arak).", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&h=200&fit=crop" },
+            { id: 94, namaMY: "Mochi Ichigo (Strawberi)", nameEN: "Strawberry Mochi", nameJP: "いちご大福 (Ichigo Daifuku)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Mochi dengan strawberi. Semak alkohol.", image: "https://images.unsplash.com/photo-1558985212-d167b6760a32?w=200&h=200&fit=crop" },
+            { id: 95, namaMY: "Dorayaki (Penkek Kacang Merah)", nameEN: "Red Bean Pancake", nameJP: "どら焼き (Dorayaki)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Penkek dengan inti kacang merah. Semak mirin.", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&h=200&fit=crop" },
+            { id: 96, namaMY: "Yokan (Jeli Kacang Merah)", nameEN: "Red Bean Jelly", nameJP: "羊羹 (Yōkan)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Jeli tradisional. Biasanya guna agar bukan gelatin.", image: "https://images.unsplash.com/photo-1558985212-d167b6760a32?w=200&h=200&fit=crop" },
+            { id: 97, namaMY: "Manju (Kuih Kukus)", nameEN: "Steamed Bun Sweet", nameJP: "まんじゅう (Manjū)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kuih tradisional. Semak label bahan.", image: "https://images.unsplash.com/photo-1582769923195-c6e60dc1d8dc?w=200&h=200&fit=crop" },
+            { id: 98, namaMY: "Warabi Mochi", nameEN: "Bracken Starch Mochi", nameJP: "わらび餅 (Warabi Mochi)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Mochi lembut. Semak topping kinako.", image: "https://images.unsplash.com/photo-1558985212-d167b6760a32?w=200&h=200&fit=crop" },
+            { id: 99, namaMY: "Dango (Bebola Mochi)", nameEN: "Mochi Dumplings", nameJP: "団子 (Dango)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Bebola mochi. Semak sos untuk mirin.", image: "https://images.unsplash.com/photo-1558985212-d167b6760a32?w=200&h=200&fit=crop" },
+            { id: 100, namaMY: "Taiyaki (Kek Ikan)", nameEN: "Fish-Shaped Cake", nameJP: "たい焼き (Taiyaki)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kek berbentuk ikan. Semak bahan doh.", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=200&h=200&fit=crop" },
+            { id: 101, namaMY: "Monaka (Kuih Wafer)", nameEN: "Wafer Sweet", nameJP: "最中 (Monaka)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson"], status: "check", notes: "Wafer dengan inti kacang merah. Semak label.", image: "https://images.unsplash.com/photo-1558985212-d167b6760a32?w=200&h=200&fit=crop" },
+            { id: 102, namaMY: "Kinako Mochi", nameEN: "Soybean Flour Mochi", nameJP: "きなこ餅 (Kinako Mochi)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Mochi dengan serbuk kacang soya. Semak gula.", image: "https://images.unsplash.com/photo-1558985212-d167b6760a32?w=200&h=200&fit=crop" },
+            { id: 103, namaMY: "Sakura Mochi", nameEN: "Cherry Blossom Mochi", nameJP: "桜餅 (Sakura Mochi)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Mochi merah jambu. Bermusim (spring). Semak label.", image: "https://images.unsplash.com/photo-1558985212-d167b6760a32?w=200&h=200&fit=crop" },
+            { id: 104, namaMY: "Kuri Manju (Chestnut)", nameEN: "Chestnut Sweet", nameJP: "栗まんじゅう (Kuri Manjū)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson"], status: "check", notes: "Kuih dengan inti chestnut. Semak bahan.", image: "https://images.unsplash.com/photo-1582769923195-c6e60dc1d8dc?w=200&h=200&fit=crop" },
+            { id: 105, namaMY: "Annin Tofu (Puding Almond)", nameEN: "Almond Jelly", nameJP: "杏仁豆腐 (Annin Dōfu)", category: "Pencuci Mulut / Desserts", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "SEMAK gelatin! Ramai guna agar tapi ada yang guna gelatin.", image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&h=200&fit=crop" },
+
+            // ===== ROTI / BREAD (106-115) =====
+            { id: 106, namaMY: "Roti Tawar Plain", nameEN: "Plain White Bread", nameJP: "食パン (Shokupan)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kebanyakan selamat. Semak tiada lemak haiwan (ラード).", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" },
+            { id: 107, namaMY: "Croissant", nameEN: "Croissant", nameJP: "クロワッサン (Kurowassan)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak butter vs margarin. Elakkan yang ada lard.", image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=200&h=200&fit=crop" },
+            { id: 108, namaMY: "Roti Gandum", nameEN: "Whole Wheat Bread", nameJP: "全粒粉パン (Zenryūfun Pan)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Roti gandum. Semak label bahan.", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" },
+            { id: 109, namaMY: "Roti Perancis (Baguette)", nameEN: "French Bread", nameJP: "フランスパン (Furansu Pan)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Biasanya selamat. Semak tiada lard.", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" },
+            { id: 110, namaMY: "Roti Kismis", nameEN: "Raisin Bread", nameJP: "レーズンパン (Rēzun Pan)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Roti dengan kismis. Semak rum/alkohol.", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" },
+            { id: 111, namaMY: "Melon Pan", nameEN: "Melon Bread", nameJP: "メロンパン (Meron Pan)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Roti manis popular. Semak label bahan.", image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=200&h=200&fit=crop" },
+            { id: 112, namaMY: "Roti Coklat", nameEN: "Chocolate Bread", nameJP: "チョコパン (Choko Pan)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak coklat untuk alkohol/liqueur.", image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=200&h=200&fit=crop" },
+            { id: 113, namaMY: "An-Pan (Roti Kacang Merah)", nameEN: "Red Bean Bread", nameJP: "あんパン (An Pan)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Roti dengan inti anko. Biasanya selamat.", image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=200&h=200&fit=crop" },
+            { id: 114, namaMY: "Roti Tuna", nameEN: "Tuna Bread", nameJP: "ツナパン (Tsuna Pan)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Semak mayonis untuk gelatin.", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" },
+            { id: 115, namaMY: "Roti Jagung", nameEN: "Corn Bread", nameJP: "コーンパン (Kōn Pan)", category: "Roti / Bread", stores: ["7-Eleven", "Lawson"], status: "check", notes: "Roti dengan jagung. Semak label.", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop" },
+
+            // ===== SUP / SOUPS (116-120) =====
+            { id: 116, namaMY: "Sup Miso (Paket)", nameEN: "Instant Miso Soup", nameJP: "味噌汁 (Miso Shiru)", category: "Sup / Soups", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Kebanyakan guna stok ikan. Semak tiada 酒精 dan ekstrak daging.", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200&h=200&fit=crop" },
+            { id: 117, namaMY: "Sup Wakame", nameEN: "Wakame Seaweed Soup", nameJP: "わかめスープ (Wakame Sūpu)", category: "Sup / Soups", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Sup rumpai laut. Semak stok yang digunakan.", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200&h=200&fit=crop" },
+            { id: 118, namaMY: "Sup Jagung", nameEN: "Corn Soup", nameJP: "コーンスープ (Kōn Sūpu)", category: "Sup / Soups", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "Sup jagung krim. Semak stok ayam/daging.", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200&h=200&fit=crop" },
+            { id: 119, namaMY: "Sup Tonjiru (Sup Sayur)", nameEN: "Vegetable Miso Soup", nameJP: "豚汁 (Tonjiru)", category: "Sup / Soups", stores: ["7-Eleven", "Lawson", "FamilyMart"], status: "check", notes: "AWAS - Nama ada '豚' (babi). ELAKKAN!", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200&h=200&fit=crop" },
+            { id: 120, namaMY: "Sup Kenchinjiru (Sayur)", nameEN: "Vegetable Soup", nameJP: "けんちん汁 (Kenchinjiru)", category: "Sup / Soups", stores: ["Lawson", "FamilyMart"], status: "check", notes: "Sup sayuran Jepun. Semak stok yang digunakan.", image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=200&h=200&fit=crop" }
+        ];
+
+        function renderTable(data) {
+            const tbody = document.getElementById('foodTableBody');
+            const noResults = document.getElementById('noResults');
+            const resultsCount = document.getElementById('resultsCount');
+
+            if (data.length === 0) {
+                tbody.innerHTML = '';
+                noResults.style.display = 'block';
+                resultsCount.textContent = 'Tiada hasil / No results';
+                return;
+            }
+
+            noResults.style.display = 'none';
+            resultsCount.textContent = `Menunjukkan ${data.length} item / Showing ${data.length} items`;
+
+            tbody.innerHTML = data.map(item => `
+                <tr data-stores="${item.stores.join(',')}" data-search="${item.namaMY.toLowerCase()} ${item.nameEN.toLowerCase()} ${item.nameJP.toLowerCase()}">
+                    <td>
+                        <img src="${item.image}" alt="${item.nameEN}" class="food-image" onerror="this.src='https://via.placeholder.com/80?text=🍱'">
+                    </td>
+                    <td>
+                        <div class="food-name">${item.namaMY}</div>
+                        <div class="food-name-en">${item.nameEN}</div>
+                        <div class="food-name-jp">${item.nameJP}</div>
+                    </td>
+                    <td>
+                        <span class="category-tag">${item.category}</span>
+                    </td>
+                    <td>
+                        ${item.stores.map(store => {
+                            const storeClass = store === '7-Eleven' ? 'store-7eleven' : 
+                                             store === 'Lawson' ? 'store-lawson' : 'store-familymart';
+                            return `<span class="store-badge ${storeClass}">${store}</span>`;
+                        }).join('')}
+                    </td>
+                    <td class="hide-mobile">
+                        <span class="${item.status === 'safe' ? 'status-safe' : 'status-check'}">
+                            ${item.status === 'safe' ? '✓ Selamat' : '⚠ Semak'}
+                        </span>
+                    </td>
+                    <td class="hide-mobile">
+                        <span class="notes">${item.notes}</span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterData() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+
+            let filtered = foodData;
+
+            if (searchTerm) {
+                filtered = filtered.filter(item => 
+                    item.namaMY.toLowerCase().includes(searchTerm) ||
+                    item.nameEN.toLowerCase().includes(searchTerm) ||
+                    item.nameJP.toLowerCase().includes(searchTerm) ||
+                    item.category.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            if (activeFilter !== 'all') {
+                filtered = filtered.filter(item => item.stores.includes(activeFilter));
+            }
+
+            renderTable(filtered);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', filterData);
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                filterData();
+            });
+        });
+
+        renderTable(foodData);
+    </script>
+</body>
+</html>
