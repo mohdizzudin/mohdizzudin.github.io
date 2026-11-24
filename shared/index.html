@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Files | mohdizzudin.github.io</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #a0a0a0;
+            font-size: 1.1em;
+        }
+
+        .home-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .home-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .file-list {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .file-list h2 {
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .file-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .file-icon {
+            font-size: 2em;
+            margin-right: 15px;
+            width: 50px;
+            text-align: center;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .file-desc {
+            font-size: 0.9em;
+            color: #a0a0a0;
+        }
+
+        .file-arrow {
+            font-size: 1.5em;
+            color: #667eea;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .file-item:hover .file-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            font-size: 0.75em;
+            margin-left: 10px;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .file-item {
+                padding: 12px 15px;
+            }
+
+            .file-icon {
+                font-size: 1.5em;
+                width: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 Shared Files</h1>
+            <p class="subtitle">mohdizzudin.github.io/shared</p>
+            <a href="https://mohdizzudin.github.io" class="home-link">🏠 Home</a>
+        </header>
+
+        <div class="file-list">
+            <h2>📂 Senarai Fail / File List</h2>
+
+            <a href="makanan-halal-konbini.html" class="file-item">
+                <span class="file-icon">🍙</span>
+                <div class="file-info">
+                    <div class="file-name">makanan-halal-konbini.html <span class="badge">120 items</span></div>
+                    <div class="file-desc">Senarai Makanan Halal di Konbini Jepun (7-Eleven, Lawson, FamilyMart)</div>
+                </div>
+                <span class="file-arrow">→</span>
+            </a>
+
+            <a href="phone.html" class="file-item">
+                <span class="file-icon">📱</span>
+                <div class="file-info">
+                    <div class="file-name">phone.html</div>
+                    <div class="file-desc">Phone Comparison - Compare phone vs Huawei Pura 80</div>
+                </div>
+                <span class="file-arrow">→</span>
+            </a>
+
+        </div>
+
+        <footer>
+            <p>© 2024 <a href="https://mohdizzudin.github.io">mohdizzudin.github.io</a></p>
+        </footer>
+    </div>
+</body>
+</html>
